@@ -31,12 +31,19 @@ export default {
     unrevealCard () {
       this.isCardRevealed = false
     },
+    goToNextCard() {
+      if (this.index === this.dictionary.length - 1) {
+        this.index = 0
+      } else {
+        this.index++
+      }
+    },
     onCardClick () {
       if (!this.isCardRevealed) {
         this.revealCard()
       } else {
         this.unrevealCard()
-        this.index++
+        this.goToNextCard()
       }
     },
     handleKeyEvent (e) {
