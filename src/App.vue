@@ -21,4 +21,18 @@ html, body, #app {
   height: 100%;
   margin: 0;
 }
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*,
+*:focus,
+*:active {
+  -webkit-tap-highlight-color: rgba(185, 40, 40, 0);
+  -webkit-tap-highlight-color: transparent;
+}
 </style>

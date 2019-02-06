@@ -8,11 +8,12 @@
 
 <script>
 import nouns from '@/dictionary/nouns'
+import { shuffle } from 'lodash'
 
 export default {
   data () {
     return {
-      dictionary: nouns,
+      dictionary: shuffle(nouns),
       index: 0,
       isCardRevealed: false,
     }
