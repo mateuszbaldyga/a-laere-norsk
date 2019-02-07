@@ -1,4 +1,5 @@
 const dict = [
+  // Lekcja
   [
     {
       'no': 'Å ligge, ligger',
@@ -61,6 +62,7 @@ const dict = [
       'pl': 'nosić'
     }
   ],
+  // Lekcja
   [
     {
       no: 'å bake baker',
@@ -113,6 +115,45 @@ const dict = [
     {
       no: 'å bestille bestiller',
       pl: 'zamawiać'
+    }
+  ],
+  // Lekcja
+  [
+    {
+      "no": "å hjelpe, hjelper",
+      "pl": "pomagać"
+    },
+    {
+      "no": "å veie, veier",
+      "pl": "ważyć"
+    },
+    {
+      "no": "å veksle, veksler",
+      "pl": "wymieniać"
+    },
+    {
+      "no": "å overføre, overfører",
+      "pl": "przelać"
+    },
+    {
+      "no": "å fylle, fyller",
+      "pl": "wypełniać"
+    },
+    {
+      "no": "å gi, gir",
+      "pl": "dawać,podawać"
+    },
+    {
+      "no": "å låne, låner",
+      "pl": "pożyczyć,wypożyczyć"
+    },
+    {
+      "no": "å bli, blir",
+      "pl": "zostać,pozostać"
+    },
+    {
+      "no": "å få, får",
+      "pl": "otrzymać"
     }
   ]
 ]

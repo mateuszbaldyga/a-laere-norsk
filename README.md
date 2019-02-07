@@ -1,4 +1,4 @@
-# norsk-learning
+# Å lære norsk
 
 ## Project setup
 ```
