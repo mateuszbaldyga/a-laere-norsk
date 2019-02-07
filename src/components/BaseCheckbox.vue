@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '@/assets/styles/shared-vars.scss';
+@import "@/assets/styles/breakpoints.scss";
 
 .BaseCheckbox {
     position: relative;
@@ -63,6 +63,10 @@ export default {
     line-height: 1.15;
     margin: 10px;
 
+    @include media(ltMobile) {
+      font-size: 30px;
+    }
+
     &:before {
         content: '';
         position: absolute;
@@ -71,7 +75,7 @@ export default {
         width: 30px;
         height: 30px;
         background-color: #fff;
-        border: 1px solid #000;
+        border: 1px solid #68ff93;
     }
 }
 

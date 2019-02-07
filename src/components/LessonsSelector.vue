@@ -16,7 +16,7 @@
         </li>
       </ul>
 
-      <BaseButton v-visible="chosenLessons.length" @click.native="start()">GÅ!</BaseButton>
+      <BaseButton class="LessonsSelector_goBtn" v-visible="chosenLessons.length" @click.native="start()">GÅ!</BaseButton>
       </div>
   </div>
 </template>
@@ -60,6 +60,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/breakpoints.scss";
+
 .LessonsSelector {
   height: 100%;
   display: flex;
@@ -79,6 +81,16 @@ export default {
     min-width: 0;
     padding: 0 20px;
     margin: 10px 0 15px;
+
+    @include media(ltMobile) {
+          font-size: 45px;
+    }
+  }
+
+  &_goBtn.BaseButton {
+        @include media(ltMobile) {
+          font-size: 60px;
+    }
   }
 
   .BaseCheckbox {

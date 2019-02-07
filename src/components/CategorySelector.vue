@@ -39,6 +39,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/breakpoints.scss";
+
 .CategorySelector {
   height: 100%;
   display: flex;
@@ -50,9 +52,13 @@ export default {
     position: relative;
     cursor: pointer;
 font-size: 6vw;
-    line-height: 1.8;
-        padding: 6px 30px;
+    line-height: .8;
+        padding: 20px 30px;
         transition: transform .1s;
+
+        @include media(ltMobile) {
+          font-size: 30px;
+        }
 
         &.-selected {
           z-index: 1;
@@ -62,6 +68,10 @@ font-size: 6vw;
 
   .BaseButton {
     margin-top: 100px;
+
+    @include media(ltMobile) {
+      font-size: 60px;
+    }
   }
 }
 </style>

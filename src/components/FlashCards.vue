@@ -86,20 +86,21 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/breakpoints.scss";
+
 .FlashCards {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
 
   &_lap {
     position: absolute;
     top: 0;
     right: 0;
     text-align: right;
-    font-size: 30px;
-    padding: 40px;
+    font-size: 20px;
+    padding: 30px;
   }
 
   &_card {
@@ -112,8 +113,9 @@ export default {
     line-height: 1.4;
     flex: 1;
     user-select: none;
+    word-break: break-all;
 
-    @media (max-widh: 600px) {
+    @include media(ltMobile) {
       font-size: 40px;
     }
   }
@@ -125,10 +127,10 @@ export default {
       margin-top: 0;
       background: none;
       color: #000;
-
-      // &:first-child {
-      //   background-color: #ffbb11;
-      // }
+      min-width: 0;
+      width: 50%;
+      font-size: 30px;
+      padding: 20px;
     }
   }
 }
