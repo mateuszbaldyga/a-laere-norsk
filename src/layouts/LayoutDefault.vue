@@ -22,17 +22,17 @@ export default {
 .LayoutDefault {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     height: 100%;
-        align-items: stretch;
 
     > header {
         height: 50px;
     }
 
     > main {
-        flex: 1;
         display: flex;
         flex-direction: column;
+        flex: 1;
     }
 
     > footer {

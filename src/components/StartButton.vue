@@ -1,12 +1,12 @@
 <template>
-    <component
+    <Component
+        :is="$attrs.to ? 'router-link' : 'button'"
         class="StartButton"
         :class="className"
-        :is="$attrs.to ? 'router-link' : 'button'"
         v-bind="$attrs"
         >
         <slot />
-    </component>
+    </Component>
 </template>
 
 <script>
@@ -32,13 +32,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     height: 50px;
+    padding: 0;
     background: $color-screamin-green;
     color: white;
+    font-size: 50px;
     user-select: none;
-        width: 100%;
-        font-size: 50px;
-        padding: 0;
 
     .BaseSvg {
         width: 26px;

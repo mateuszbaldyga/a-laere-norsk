@@ -10,7 +10,10 @@
             </RouterLink>
         </div>
 
-        <div class="PageCategorySelector_main" slot="main">
+        <div
+            slot="main"
+            class="PageCategorySelector_main"
+            >
             <h2
                 v-for="(category, index) in categories"
                 :key="index"

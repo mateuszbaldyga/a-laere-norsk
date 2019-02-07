@@ -27,16 +27,16 @@ export default {
 <style lang="scss">
 
 .BaseButton {
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 30px;
     height: 50px;
+    padding: 10px 30px;
     background: $color-screamin-green;
     color: white;
     font-size: 20px;
     user-select: none;
+    overflow: hidden;
 
     .BaseSvg {
         width: 26px;

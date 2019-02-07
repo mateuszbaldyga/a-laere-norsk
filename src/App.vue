@@ -26,7 +26,7 @@ html, body, #app {
 }
 
 .container {
-    padding-left: 15px;
     padding-right: 20px;
+    padding-left: 15px;
 }
 </style>

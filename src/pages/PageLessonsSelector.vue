@@ -1,11 +1,16 @@
 <template>
     <LayoutDefault class="PageLessonsSelector">
         <div slot="header">
-            <BackButton :to="{name: 'categories'}"></BackButton>
+            <BackButton :to="{name: 'categories'}" />
         </div>
 
-        <div class="PageLessonsSelector_main" slot="main">
-            <h1 class="container">{{ categoryName }}</h1>
+        <div
+            slot="main"
+            class="PageLessonsSelector_main"
+            >
+            <h1 class="container">
+                {{ categoryName }}
+            </h1>
 
             <ul class="main_list container">
                 <li
@@ -14,8 +19,8 @@
                     >
                     <BaseCheckbox
                         :value="chosenLessons"
-                        @input="onInput"
                         :optionValue="index"
+                        @input="onInput"
                         >
                         {{ index + 1 + ' Lekcja' }}
                     </BaseCheckbox>
@@ -60,7 +65,7 @@ export default {
 
     computed: {
         ...mapState([
-          'chosenLessons'
+            'chosenLessons',
         ]),
         lessonsToRender () {
             return this.lessons
@@ -97,9 +102,9 @@ export default {
     }
 
     &_main {
-        height: 100%;
         display: flex;
         flex-direction: column;
+        height: 100%;
 
         .main_list {
             overflow-x: hidden;
@@ -109,8 +114,8 @@ export default {
     }
 
     & &_allBtn {
-        background-color: #ff6896;
         width: 100%;
+        background-color: #ff6896;
         margin-top: auto;
     }
 

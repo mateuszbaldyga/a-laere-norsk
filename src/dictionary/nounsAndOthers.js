@@ -2,7 +2,7 @@ const dict = [
 
     // test
     [
-            {
+        {
             'no': 'en bil',
             'pl': 'samochód',
         },

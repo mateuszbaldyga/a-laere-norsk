@@ -1,8 +1,8 @@
 <template>
     <LayoutDefault class="PageFlashCards">
         <div slot="header">
-            <BackButton :to="{name: 'lessons'}"></BackButton>
-                <!-- v-visible="lap" -->
+            <BackButton :to="{name: 'lessons'}" />
+            <!-- v-visible="lap" -->
             <p
                 class="PageFlashCards_lap"
                 >
@@ -18,7 +18,10 @@
                 {{ word | capitalize }}
             </h1>
         </div>
-        <div slot="footer" class="PageFlashCards_actions">
+        <div
+            slot="footer"
+            class="PageFlashCards_actions"
+            >
             <button @click="unrevealCard() + goBack()">
                 ⇦
             </button>
@@ -61,7 +64,7 @@ export default {
                 '-male-female': _word.indexOf('ei/') > -1 || _word.indexOf('en/') > -1,
                 '-neuter': _word.indexOf('et ') > -1,
             }
-        }
+        },
     },
 
     methods: {
@@ -118,56 +121,60 @@ export default {
     height: 100%;
 
     &_lap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 20px;
-    line-height: 50px;
-    width: 50px;
-    text-align: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        font-size: 20px;
+        line-height: 50px;
+        text-align: center;
     }
 
     &_card {
         display: flex;
         flex: 1;
         width: 100%;
+        padding: 10px;
         font-size: 60px;
         user-select: none;
         text-align: center;
         line-height: 1.4;
-        padding: 10px;
+
+        @include media(ltMobile) {
+            font-size: 40px;
+        }
 
         > h1 {
             position: relative;
-            padding: 5px;
-            flex: 1;
             display: flex;
-                    align-items: center;
-        justify-content: center;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 5px;
 
-        &:before {
-        transition: opacity .3s;
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            opacity: 0;
-            z-index: -1;
-        }
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: -1;
+                opacity: 0;
+                transition: opacity .3s;
+            }
 
             &.-male {
                 &:before {
-                    opacity: 1;
                     background-color: $color-male;
+                    opacity: 1;
                 }
             }
 
             &.-female {
                 &:before {
-                    opacity: 1;
                     background-color: $color-female;
+                    opacity: 1;
                 }
             }
 
@@ -180,14 +187,10 @@ export default {
 
             &.-neuter {
                 &:before {
-                    opacity: 1;
                     background-color: $color-neuter;
+                    opacity: 1;
                 }
             }
-        }
-
-        @include media(ltMobile) {
-            font-size: 40px;
         }
     }
 
