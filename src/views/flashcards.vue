@@ -1,5 +1,5 @@
 <template>
-    <PageFlashCards :PageFlashCards="chosenPageFlashCards" />
+    <PageFlashCards :flashcards="chosenPageFlashCards" />
 </template>
 
 <script>

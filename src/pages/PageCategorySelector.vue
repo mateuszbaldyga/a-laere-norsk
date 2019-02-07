@@ -1,38 +1,45 @@
 <template>
     <LayoutDefault class="PageCategorySelector">
-        <template slot="main">
-            <div
+        <div slot="header">
+            <RouterLink
+                v-if="$route.name !== 'categories'"
+                id="home"
+                :to="{ name: 'categories' }"
+                >
+                🏠
+            </RouterLink>
+        </div>
+
+        <div class="PageCategorySelector_main" slot="main">
+            <h2
                 v-for="(category, index) in categories"
                 :key="index"
+                :style="{ background: category.color }"
+                :class="{ '-selected': category.title === chosenCategory.title }"
+                @click="chooseCategory(category)"
                 >
-                <h2
-                    :style="{ background: category.color }"
-                    :class="{ '-selected': category.title === chosenCategory.title }"
-                    @click="chooseCategory(category)"
-                    >
-                    {{ category.title }}
-                </h2>
-            </div>
-        </template>
+                {{ category.title }}
+            </h2>
+        </div>
 
-        <template slot="footer">
-            <BaseButton
+        <div slot="footer">
+            <StartButton
                 v-visible="chosenCategory.title"
                 @click.native="start()"
                 >
                 GÅ!
-            </BaseButton>
-        </template>
+            </StartButton>
+        </div>
     </LayoutDefault>
 </template>
 
 <script>
-import BaseButton from '@/components/BaseButton'
+import StartButton from '@/components/StartButton'
 import { mapState } from 'vuex'
 
 export default {
     components: {
-        BaseButton,
+        StartButton,
     },
 
     props: {
@@ -55,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/breakpoints.scss';
+@import '@/assets/styles/shared-vars.scss';
 
 .PageCategorySelector {
     display: flex;
@@ -64,16 +71,20 @@ export default {
     height: 100%;
     color: #222;
 
+    &_main {
+        margin: auto 0;
+    }
+
     h2 {
         position: relative;
         padding: 20px 30px;
-        font-size: 6vw;
+        font-size: 50px;
         cursor: pointer;
         transition: transform .1s;
         line-height: .8;
 
         @include media(ltMobile) {
-            font-size: 30px;
+            font-size: 25px;
         }
 
         &.-selected {
@@ -82,12 +93,8 @@ export default {
         }
     }
 
-    .BaseButton {
-        margin-top: 100px;
+    .StartButton {
 
-        @include media(ltMobile) {
-            font-size: 60px;
-        }
     }
 }
 </style>

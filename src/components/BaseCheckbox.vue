@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/breakpoints.scss';
+@import '@/assets/styles/shared-vars.scss';
 
 .BaseCheckbox {
     position: relative;
@@ -75,14 +75,14 @@ export default {
         width: 30px;
         height: 30px;
         background-color: #fff;
-        border: 1px solid #68ff93;
+        border: 1px solid $color-screamin-green;
     }
 }
 
 .BaseCheckbox.-checked {
 
     &:before {
-        background-color: #68ff93;
+        background-color: $color-screamin-green;
     }
 }
 </style>

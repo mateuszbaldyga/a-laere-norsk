@@ -1,11 +1,12 @@
 <template>
-    <button
-        class="BaseButton"
+    <component
+        class="StartButton"
         :class="className"
+        :is="$attrs.to ? 'router-link' : 'button'"
         v-bind="$attrs"
         >
         <slot />
-    </button>
+    </component>
 </template>
 
 <script>
@@ -25,18 +26,19 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/styles/shared-vars.scss';
 
-.BaseButton {
-    overflow: hidden;
+.StartButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 30px;
     height: 50px;
     background: $color-screamin-green;
     color: white;
-    font-size: 20px;
     user-select: none;
+        width: 100%;
+        font-size: 50px;
+        padding: 0;
 
     .BaseSvg {
         width: 26px;

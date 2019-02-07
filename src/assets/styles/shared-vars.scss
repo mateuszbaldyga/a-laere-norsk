@@ -1,2 +1,12 @@
+@import 'breakpoints';
+
 // Color
+$color-screamin-green: #68ff93;
 $color-onahau: #c5e8ff;
+$color-pastel-pink: #ffd1d9;
+$color-alto: #dedede;
+$color-egg-white: #fff8c2;
+
+$color-male: $color-onahau;
+$color-female: $color-pastel-pink;
+$color-neuter: $color-egg-white;

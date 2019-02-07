@@ -1,15 +1,6 @@
 <template>
     <div id="app">
-        <RouterLink
-            v-if="$route.name !== 'categories'"
-            id="home"
-            :to="{ name: 'categories' }"
-            >
-            🏠
-        </RouterLink>
-        <main>
-            <RouterView />
-        </main>
+        <RouterView />
     </div>
 </template>
 
@@ -23,7 +14,7 @@ export default {
 
 <style lang="scss">
 @import '@/assets/styles/reset.scss';
-@import '@/assets/styles/breakpoints.scss';
+@import '@/assets/styles/shared-vars.scss';
 
 html, body, #app {
     width: 100%;
@@ -34,24 +25,8 @@ html, body, #app {
     overflow: hidden;
 }
 
-#app {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px;
-
-    > main {
-        flex: 1;
-    }
-
-    #home {
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        flex-shrink: 0;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
+.container {
+    padding-left: 15px;
+    padding-right: 20px;
 }
-
 </style>

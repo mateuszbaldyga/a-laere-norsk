@@ -1,39 +1,40 @@
 <template>
-    <div class="PageFlashCards">
-        <p
-            v-visible="lap"
-            class="PageFlashCards_lap"
-            >
-            {{ lap }}
-        </p>
+    <LayoutDefault class="PageFlashCards">
+        <div slot="header">
+            <BackButton :to="{name: 'lessons'}"></BackButton>
+                <!-- v-visible="lap" -->
+            <p
+                class="PageFlashCards_lap"
+                >
+                {{ lap }}
+            </p>
+        </div>
         <div
-            class="PageFlashCards_card"
+            slot="main"
+            class="PageFlashCards_card container"
             @click="onCardClick()"
             >
-            {{ word | capitalize }}
+            <h1 :class="className">
+                {{ word | capitalize }}
+            </h1>
         </div>
-        <div class="PageFlashCards_actions">
-            <BaseButton @click.native="unrevealCard() + goBack()">
+        <div slot="footer" class="PageFlashCards_actions">
+            <button @click="unrevealCard() + goBack()">
                 ⇦
-            </BaseButton>
-            <BaseButton @click.native="unrevealCard() + goNext() ">
+            </button>
+            <button @click="unrevealCard() + goNext() ">
                 ⇨
-            </BaseButton>
+            </button>
         </div>
-    </div>
+    </LayoutDefault>
 </template>
 
 <script>
 import { shuffle } from 'lodash'
-import BaseButton from '@/components/BaseButton'
 
 export default {
-    components: {
-        BaseButton,
-    },
-
     props: {
-        pageFlashCards: Array,
+        flashcards: Array,
     },
 
     data () {
@@ -45,12 +46,22 @@ export default {
     },
 
     computed: {
-        PageFlashCardsInGame () {
-            return shuffle(this.PageFlashCards)
+        flashcardsInGame () {
+            return shuffle(this.flashcards)
         },
         word () {
-            return this.PageFlashCardsInGame[this.index][this.isCardRevealed ? 'no' : 'pl']
+            return this.flashcardsInGame[this.index][this.isCardRevealed ? 'no' : 'pl']
         },
+        className () {
+            const _word = this.word.toLowerCase()
+
+            return {
+                '-male': _word.indexOf('en ') > -1,
+                '-female': _word.indexOf('ei ') > -1,
+                '-male-female': _word.indexOf('ei/') > -1 || _word.indexOf('en/') > -1,
+                '-neuter': _word.indexOf('et ') > -1,
+            }
+        }
     },
 
     methods: {
@@ -65,7 +76,7 @@ export default {
             this.index--
         },
         goNext () {
-            if (this.index === this.PageFlashCardsInGame.length - 1) {
+            if (this.index === this.flashcardsInGame.length - 1) {
                 this.lap++
                 this.index = 0
             } else {
@@ -98,7 +109,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/breakpoints.scss';
+@import '@/assets/styles/shared-vars.scss';
 
 .PageFlashCards {
     display: flex;
@@ -107,25 +118,73 @@ export default {
     height: 100%;
 
     &_lap {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 30px;
-        font-size: 20px;
-        text-align: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    line-height: 50px;
+    width: 50px;
+    text-align: center;
     }
 
     &_card {
         display: flex;
-        align-items: center;
-        justify-content: center;
         flex: 1;
         width: 100%;
         font-size: 60px;
         user-select: none;
         text-align: center;
         line-height: 1.4;
-        word-break: break-all;
+        padding: 10px;
+
+        > h1 {
+            position: relative;
+            padding: 5px;
+            flex: 1;
+            display: flex;
+                    align-items: center;
+        justify-content: center;
+
+        &:before {
+        transition: opacity .3s;
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            z-index: -1;
+        }
+
+            &.-male {
+                &:before {
+                    opacity: 1;
+                    background-color: $color-male;
+                }
+            }
+
+            &.-female {
+                &:before {
+                    opacity: 1;
+                    background-color: $color-female;
+                }
+            }
+
+            &.-male-female {
+                &:before {
+                    opacity: 1;
+                    background-image: linear-gradient(15deg, $color-male 50%, $color-female 50%);
+                }
+            }
+
+            &.-neuter {
+                &:before {
+                    opacity: 1;
+                    background-color: $color-neuter;
+                }
+            }
+        }
 
         @include media(ltMobile) {
             font-size: 40px;
@@ -134,15 +193,12 @@ export default {
 
     &_actions {
         display: flex;
+        align-items: stretch;
+        height: 100%;
+        font-size: 20px;
 
-        .BaseButton {
-            min-width: 0;
+        > button {
             width: 50%;
-            padding: 20px;
-            background: none;
-            margin-top: 0;
-            color: #000;
-            font-size: 30px;
         }
     }
 }

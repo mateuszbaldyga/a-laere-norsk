@@ -19,9 +19,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "lessons" */ './views/lessons.vue'),
     },
     {
-        path: '/PageFlashCards',
-        name: 'PageFlashCards',
-        component: () => import(/* webpackChunkName: "PageFlashCards" */ './views/lessons.vue'),
+        path: '/flashcards',
+        name: 'flashcards',
+        component: () => import(/* webpackChunkName: "PageFlashCards" */ './views/flashcards.vue'),
     },
 ]
 

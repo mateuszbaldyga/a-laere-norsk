@@ -1,48 +1,56 @@
 <template>
-    <div class="PageLessonsSelector">
-        <div>
-            <h1>{{ categoryName }}</h1>
+    <LayoutDefault class="PageLessonsSelector">
+        <div slot="header">
+            <BackButton :to="{name: 'categories'}"></BackButton>
+        </div>
 
-            <BaseButton
-                class="PageLessonsSelector_allBtn"
-                @click.native="selectAll()"
-                >
-                ALLE
-            </BaseButton>
+        <div class="PageLessonsSelector_main" slot="main">
+            <h1 class="container">{{ categoryName }}</h1>
 
-            <ul>
+            <ul class="main_list container">
                 <li
                     v-for="(lesson, index) in lessonsToRender"
                     :key="index"
                     >
                     <BaseCheckbox
-                        v-model="chosenLessons"
+                        :value="chosenLessons"
+                        @input="onInput"
                         :optionValue="index"
                         >
-                        {{ lessonsToRender.length - index + ' Lekcja' }}
+                        {{ index + 1 + ' Lekcja' }}
                     </BaseCheckbox>
                 </li>
             </ul>
 
-            <BaseButton
+            <StartButton
+                class="PageLessonsSelector_allBtn"
+                @click.native="selectAll()"
+                >
+                ALLE
+            </StartButton>
+        </div>
+
+        <div slot="footer">
+            <StartButton
                 v-visible="chosenLessons.length"
                 class="PageLessonsSelector_goBtn"
-                @click.native="start()"
+                :to="{ name: 'flashcards' }"
                 >
                 GÅ!
-            </BaseButton>
+            </StartButton>
         </div>
-    </div>
+    </LayoutDefault>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import BaseCheckbox from '@/components/BaseCheckbox'
-import BaseButton from '@/components/BaseButton'
+import StartButton from '@/components/StartButton'
 
 export default {
     components: {
         BaseCheckbox,
-        BaseButton,
+        StartButton,
     },
 
     props: {
@@ -50,67 +58,60 @@ export default {
         categoryName: String,
     },
 
-    data () {
-        return {
-            chosenLessons: [],
-        }
-    },
-
     computed: {
+        ...mapState([
+          'chosenLessons'
+        ]),
         lessonsToRender () {
-            return this.lessons.reverse()
+            return this.lessons
         },
     },
 
     methods: {
+        onInput (val) {
+            this.$store.commit('CHOOSE_LESSONS', val)
+        },
         start () {
-            this.$store.commit('CHOOSE_LESSONS', this.chosenLessons)
-            this.$router.push({ name: 'PageFlashCards' })
+            this.$router.push({ name: 'flashcards' })
         },
         selectAll () {
             if (this.chosenLessons.length === this.lessons.length) {
-                this.chosenLessons = []
+                this.$store.commit('CHOOSE_LESSONS', [])
             } else {
-                this.chosenLessons = this.lessons.map((item, i) => i)
+                const val = this.lessons.map((item, i) => i)
+                this.$store.commit('CHOOSE_LESSONS', val)
             }
-            this.$store.commit('CHOOSE_LESSONS', this.chosenLessons)
         },
     },
 }
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/breakpoints.scss';
+@import '@/assets/styles/shared-vars.scss';
 
 .PageLessonsSelector {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #222;
 
     h1 {
         margin-bottom: 20px;
         font-size: 40px;
     }
 
-    &_allBtn.BaseButton {
-        min-width: 0;
-        width: auto;
-        padding: 0 20px;
-        background-color: #ff6896;
-        margin: 10px 0 15px;
-        font-size: 6vw;
+    &_main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
 
-        @include media(ltMobile) {
-            font-size: 45px;
+        .main_list {
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
     }
 
-    &_goBtn.BaseButton {
-        @include media(ltMobile) {
-            font-size: 60px;
-        }
+    & &_allBtn {
+        background-color: #ff6896;
+        width: 100%;
+        margin-top: auto;
     }
 
     .BaseCheckbox {

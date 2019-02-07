@@ -28,7 +28,7 @@ export default new Vuex.Store({
             if (!state.chosenLessons.length) return
 
             const { lessons } = state.chosenCategory
-            return flatten(lessons.filter((item, index) => state.chosenLessons.includes(index)))
+            return Object.freeze(flatten(lessons.filter((item, index) => state.chosenLessons.includes(index))))
         },
     },
     mutations: {

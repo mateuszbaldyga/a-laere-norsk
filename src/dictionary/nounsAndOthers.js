@@ -1,4 +1,26 @@
 const dict = [
+
+    // test
+    [
+            {
+            'no': 'en bil',
+            'pl': 'samochód',
+        },
+        {
+            'no': 'En/ei reise',
+            'pl': 'podróż',
+        },
+        {
+            'no': 'ei reise',
+            'pl': 'podróż',
+        },
+        {
+            'no': 'Et frimerke',
+            'pl': 'znaczek pocztowy',
+        },
+
+    ],
+
     // Lekcja
     [
         {

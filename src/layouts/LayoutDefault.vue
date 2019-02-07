@@ -4,7 +4,7 @@
             <slot name="header" />
         </header>
         <main>
-            <slot name="content" />
+            <slot name="main" />
         </main>
         <footer>
             <slot name="footer" />
@@ -22,14 +22,17 @@ export default {
 .LayoutDefault {
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 100%;
+        align-items: stretch;
 
     > header {
         height: 50px;
     }
 
     > main {
-        flex: 1px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 
     > footer {
