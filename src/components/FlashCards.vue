@@ -1,28 +1,44 @@
 <template>
   <div class="FlashCards">
+    <p class="FlashCards_lap" v-visible="lap">{{ lap }}</p>
     <div class="FlashCards_card" @click="onCardClick()">
-      {{ word }}
+      {{ word | capitalize }}
+    </div>
+    <div class="FlashCards_actions">
+      <BaseButton @click.native="unrevealCard() + goBack()">⬅</BaseButton>
+      <BaseButton @click.native="unrevealCard() + goNext() ">➡</BaseButton>
     </div>
   </div>
 </template>
 
 <script>
-import nouns from '@/dictionary/nouns'
 import { shuffle } from 'lodash'
+import BaseButton from '@/components/BaseButton'
 
 export default {
+  components: {
+    BaseButton
+  },
+
+  props: {
+    flashCards: Array
+  },
+
   data () {
     return {
-      dictionary: shuffle(nouns),
       index: 0,
       isCardRevealed: false,
+      lap: 0
     }
   },
 
   computed: {
-    word () {
-      return this.dictionary[this.index][this.isCardRevealed ? 'no' : 'pl' ]
+    flashCardsInGame () {
+      return shuffle(this.flashCards)
     },
+    word () {
+      return this.flashCardsInGame[this.index][this.isCardRevealed ? 'no' : 'pl' ]
+    }
   },
 
   methods: {
@@ -32,8 +48,13 @@ export default {
     unrevealCard () {
       this.isCardRevealed = false
     },
-    goToNextCard() {
-      if (this.index === this.dictionary.length - 1) {
+    goBack () {
+      if (this.index === 0) return
+      this.index--
+    },
+    goNext () {
+      if (this.index === this.flashCardsInGame.length - 1) {
+        this.lap++
         this.index = 0
       } else {
         this.index++
@@ -44,23 +65,23 @@ export default {
         this.revealCard()
       } else {
         this.unrevealCard()
-        this.goToNextCard()
+        this.goNext()
       }
     },
     handleKeyEvent (e) {
-        if (e.keyCode === 32) {
-            this.onCardClick()
-        }
-    },
+      if (e.keyCode === 32) {
+        this.onCardClick()
+      }
+    }
   },
 
   mounted () {
-      document.addEventListener('keydown', this.handleKeyEvent)
+    document.addEventListener('keydown', this.handleKeyEvent)
   },
 
   beforeDestroy () {
-      document.removeEventListener('keydown', this.handleKeyEvent)
-  },
+    document.removeEventListener('keydown', this.handleKeyEvent)
+  }
 }
 </script>
 
@@ -68,14 +89,47 @@ export default {
 .FlashCards {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &_lap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+    font-size: 30px;
+    padding: 40px;
+  }
 
   &_card {
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 60px;
+    text-align: center;
+    line-height: 1.4;
+    flex: 1;
+    user-select: none;
+
+    @media (max-widh: 600px) {
+      font-size: 40px;
+    }
+  }
+
+  &_actions {
+    display: flex;
+
+    .BaseButton {
+      margin-top: 0;
+      background: none;
+      color: #000;
+
+      // &:first-child {
+      //   background-color: #ffbb11;
+      // }
+    }
   }
 }
 </style>

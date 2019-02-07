@@ -1,4 +1,4 @@
-function transform(words) {
+function transform (words) {
   const dict = []
 
   words.split(';').forEach(item => {
@@ -8,7 +8,7 @@ function transform(words) {
 
     dict.push({
       no: split[0].trim(),
-      pl: split[1].trim(),
+      pl: split[1].trim()
     })
   })
 

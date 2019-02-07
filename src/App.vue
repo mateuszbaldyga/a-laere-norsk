@@ -1,38 +1,25 @@
 <template>
   <div id="app">
-    <FlashCards></FlashCards>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import FlashCards from '@/components/FlashCards'
-
 export default {
-  name: 'app',
-  components: {
-    FlashCards
+  beforeCreate () {
+    this.$router.push({ name: 'categories' })
   }
 }
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/reset.scss";
+
 html, body, #app {
   width: 100%;
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
-*,
-*:before,
-*:after {
-  margin: 0;
-  box-sizing: border-box;
-}
-
-*,
-*:focus,
-*:active {
-  -webkit-tap-highlight-color: rgba(185, 40, 40, 0);
-  -webkit-tap-highlight-color: transparent;
-}
 </style>
