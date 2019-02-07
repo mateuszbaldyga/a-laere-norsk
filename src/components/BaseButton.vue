@@ -10,17 +10,17 @@
 
 <script>
 export default {
-  props: {
-    isLoading: Boolean
-  },
+    props: {
+        isLoading: Boolean,
+    },
 
-  computed: {
-    className () {
-      return {
-        '-loading': this.isLoading
-      }
-    }
-  }
+    computed: {
+        className () {
+            return {
+                '-loading': this.isLoading,
+            }
+        },
+    },
 }
 </script>
 
@@ -28,17 +28,17 @@ export default {
 // @import '@/assets/styles/shared-vars.scss';
 
 .BaseButton {
-    align-items: center;
-    justify-content: center;
     // background-color: $color-accent;
     display: flex;
-    margin-top: 40px;
-    width: 100%;
-        font-size: 9vw;
-    background: #68ff93;
-    color: white;
-    height: auto;
+    align-items: center;
+    justify-content: center;
     min-width: 300px;
+    width: 100%;
+    height: auto;
+    background: #68ff93;
+    margin-top: 40px;
+    color: white;
+    font-size: 9vw;
     user-select: none;
 
     .BaseSvg {

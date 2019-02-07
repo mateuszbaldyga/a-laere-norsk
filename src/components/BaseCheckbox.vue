@@ -1,70 +1,70 @@
 <template>
-  <label
-      class="BaseCheckbox"
-      :class="className"
-      >
-      <input
-          type="checkbox"
-          v-bind="$attrs"
-          :value="optionValue"
-          :checked="checked"
-          v-on="listeners"
-          >
-      <span><slot /></span>
-  </label>
+    <label
+        class="BaseCheckbox"
+        :class="className"
+        >
+        <input
+            type="checkbox"
+            v-bind="$attrs"
+            :value="optionValue"
+            :checked="checked"
+            v-on="listeners"
+            >
+        <span><slot /></span>
+    </label>
 </template>
 
 <script>
 export default {
-  props: {
-    optionValue: {
-      type: [ String, Number ],
-      required: true
+    props: {
+        optionValue: {
+            type: [ String, Number ],
+            required: true,
+        },
+        value: [ Array, Event ],
     },
-    value: [ Array, Event ]
-  },
-  computed: {
-    checked () {
-      return this.value.includes(this.optionValue)
+    computed: {
+        checked () {
+            return this.value.includes(this.optionValue)
+        },
+        listeners () {
+            return {
+                change: () => {
+                    let value = [...this.value]
+                    if (this.checked) {
+                        value.splice(value.indexOf(this.optionValue), 1)
+                    } else {
+                        value.push(this.optionValue)
+                    }
+                    this.$emit('input', value)
+                },
+            }
+        },
+        className () {
+            return {
+                '-checked': this.checked,
+            }
+        },
     },
-    listeners () {
-      return {
-        change: () => {
-          let value = [...this.value]
-          if (this.checked) {
-            value.splice(value.indexOf(this.optionValue), 1)
-          } else {
-            value.push(this.optionValue)
-          }
-          this.$emit('input', value)
-        }
-      }
-    },
-    className () {
-      return {
-        '-checked': this.checked
-      }
-    }
-  }
 }
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/breakpoints.scss";
+@import '@/assets/styles/breakpoints.scss';
 
 .BaseCheckbox {
     position: relative;
     display: inline-flex;
     align-items: center;
     padding-left: 50px;
+    margin: 10px;
     font-size: 4vw;
     font-weight: 300;
     cursor: pointer;
     line-height: 1.15;
-    margin: 10px;
 
     @include media(ltMobile) {
-      font-size: 30px;
+        font-size: 30px;
     }
 
     &:before {

@@ -1,49 +1,57 @@
 <template>
-  <div id="app">
-    <router-link id="home" :to="{ name: 'categories' }" v-if="$route.name !== 'categories'">🏠</router-link>
-    <main>
-      <router-view/>
-    </main>
-  </div>
+    <div id="app">
+        <RouterLink
+            v-if="$route.name !== 'categories'"
+            id="home"
+            :to="{ name: 'categories' }"
+            >
+            🏠
+        </RouterLink>
+        <main>
+            <RouterView />
+        </main>
+    </div>
 </template>
 
 <script>
 export default {
-  beforeCreate () {
-    this.$router.push({ name: 'categories' })
-  }
+    beforeCreate () {
+        this.$router.push({ name: 'categories' })
+    },
 }
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/reset.scss";
-@import "@/assets/styles/breakpoints.scss";
+@import '@/assets/styles/reset.scss';
+@import '@/assets/styles/breakpoints.scss';
 
 html, body, #app {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    overflow: hidden;
 }
 
 #app {
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
 
-  > main {
-    flex: 1;
-  }
+    > main {
+        flex: 1;
+    }
 
-  #home {
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
+    #home {
         position: absolute;
-    top: 30px;
-    left: 30px;
-  }
+        top: 30px;
+        left: 30px;
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
 }
 
 </style>

@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/norsk-learing/'
+    publicPath: '/norsk-learing/',
 }
