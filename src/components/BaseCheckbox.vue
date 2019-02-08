@@ -58,14 +58,10 @@ export default {
     align-items: center;
     padding-left: 50px;
     margin: 10px;
-    font-size: 4vw;
+    font-size: 30px;
     font-weight: 300;
     cursor: pointer;
     line-height: 1.15;
-
-    @include media(ltMobile) {
-        font-size: 30px;
-    }
 
     &:before {
         content: '';

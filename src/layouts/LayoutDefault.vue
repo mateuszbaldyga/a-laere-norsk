@@ -20,10 +20,13 @@ export default {
 
 <style lang="scss">
 .LayoutDefault {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     height: 100%;
+    max-width: 700px;
+    margin: 0 auto;
 
     > header {
         height: 50px;
