@@ -528,7 +528,7 @@ const dict = [
             'pl': 'wporządku',
         },
         {
-            'no': 'en/ie pære',
+            'no': 'en/ei pære',
             'pl': 'gruszka',
         },
     ],
