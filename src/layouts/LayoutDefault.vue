@@ -26,8 +26,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    height: 100%;
     max-width: 700px;
+    height: 100%;
     margin: 0 auto;
 
     > header {

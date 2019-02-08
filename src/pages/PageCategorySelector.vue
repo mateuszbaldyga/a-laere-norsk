@@ -1,7 +1,6 @@
 <template>
     <LayoutDefault class="PageCategorySelector">
-        <div slot="header">
-        </div>
+        <div slot="header" />
 
         <div
             slot="main"
@@ -56,7 +55,7 @@ export default {
     },
 
     created () {
-      console.log('🦄 this.categories', this.categories)
+        console.log('🦄 this.categories', this.categories)
     },
 }
 </script>
@@ -78,10 +77,10 @@ export default {
     h2 {
         position: relative;
         padding: 0 15px;
+        font-size: 25px;
         cursor: pointer;
         line-height: .8;
         text-align: center;
-        font-size: 25px;
         line-height: $header-footer-height;
 
         &.-selected {

@@ -17,12 +17,12 @@ export default {
 @import '@/assets/styles/shared-vars.scss';
 
 .BackButton {
-    height: $header-footer-height;
-    width: $header-footer-height;
     display: inline-flex;
-    margin-right: 20px;
     align-items: center;
     justify-content: center;
+    width: $header-footer-height;
+    height: $header-footer-height;
+    margin-right: 20px;
     font-size: 25px;
     transform: scale(-1, 1);
 }

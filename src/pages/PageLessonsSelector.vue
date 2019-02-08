@@ -14,7 +14,7 @@
 
             <ul class="main_list container">
                 <li
-                    v-for="(lesson, index) in this.lessons.length"
+                    v-for="(lesson, index) in lessons.length"
                     :key="index"
                     >
                     <BaseCheckbox
@@ -87,7 +87,7 @@ export default {
     },
 
     created () {
-      console.log('🦄 this.categories', this.lessons)
+        console.log('🦄 this.categories', this.lessons)
     },
 }
 </script>

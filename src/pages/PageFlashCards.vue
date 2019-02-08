@@ -2,7 +2,12 @@
     <LayoutDefault class="PageFlashCards">
         <div slot="header">
             <BackButton :to="{name: 'lessons'}" />
-            <button class="PageFlashCards_shuffleBtn" @click="shuffle()">&#x1f500;</button>
+            <button
+                class="PageFlashCards_shuffleBtn"
+                @click="shuffle()"
+                >
+                &#x1f500;
+            </button>
             <p
                 class="PageFlashCards_lap"
                 >
@@ -131,12 +136,12 @@ export default {
     height: 100%;
 
     &_shuffleBtn {
-        height: $header-footer-height;
-        width: $header-footer-height;
         display: inline-flex;
-        margin-right: 20px;
         align-items: center;
         justify-content: center;
+        width: $header-footer-height;
+        height: $header-footer-height;
+        margin-right: 20px;
         font-size: 25px;
     }
 
