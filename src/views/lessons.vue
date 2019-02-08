@@ -1,17 +1,17 @@
 <template>
-    <PageLessonsSelector
+    <PageLessons
         :lessons="chosenCategory.lessons"
         :categoryName="chosenCategory.title"
         />
 </template>
 
 <script>
-import PageLessonsSelector from '@/pages/PageLessonsSelector'
+import PageLessons from '@/pages/PageLessons'
 import { mapState } from 'vuex'
 
 export default {
     components: {
-        PageLessonsSelector,
+        PageLessons,
     },
 
     computed: {

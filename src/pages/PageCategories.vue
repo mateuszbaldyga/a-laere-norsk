@@ -1,10 +1,10 @@
 <template>
-    <LayoutDefault class="PageCategorySelector">
+    <LayoutDefault class="PageCategories">
         <div slot="header" />
 
         <div
             slot="main"
-            class="PageCategorySelector_main"
+            class="PageCategories_main"
             >
             <h2
                 v-for="(category, index) in categories"
@@ -63,7 +63,7 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/shared-vars.scss';
 
-.PageCategorySelector {
+.PageCategories {
     display: flex;
     align-items: center;
     justify-content: center;

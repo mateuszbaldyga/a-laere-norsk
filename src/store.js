@@ -12,12 +12,12 @@ export default new Vuex.Store({
             {
                 title: 'Czasowniki',
                 lessons: deepFreeze(verbs),
-                color: '#ffd9d9',
+                // color: '#ffd9d9',
             },
             {
                 title: 'Rzeczowniki + inne',
                 lessons: deepFreeze(nounsAndOthers),
-                color: '#c5e2ff',
+                // color: '#c5e2ff',
             },
         ]),
         chosenCategory: {},

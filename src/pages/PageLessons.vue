@@ -1,12 +1,12 @@
 <template>
-    <LayoutDefault class="PageLessonsSelector">
+    <LayoutDefault class="PageLessons">
         <div slot="header">
             <BackButton :to="{name: 'categories'}" />
         </div>
 
         <div
             slot="main"
-            class="PageLessonsSelector_main"
+            class="PageLessons_main"
             >
             <h1 class="container">
                 {{ categoryName }}
@@ -28,7 +28,7 @@
             </ul>
 
             <StartButton
-                class="PageLessonsSelector_allBtn"
+                class="PageLessons_allBtn"
                 @click.native="selectAll()"
                 >
                 ALLE
@@ -38,7 +38,7 @@
         <div slot="footer">
             <StartButton
                 v-visible="chosenLessons.length"
-                class="PageLessonsSelector_goBtn"
+                class="PageLessons_goBtn"
                 :to="{ name: 'flashcards' }"
                 >
                 GÅ!
@@ -95,7 +95,7 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/shared-vars.scss';
 
-.PageLessonsSelector {
+.PageLessons {
 
     h1 {
         margin-bottom: 20px;

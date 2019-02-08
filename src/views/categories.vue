@@ -1,14 +1,14 @@
 <template>
-    <PageCategorySelector :categories="database" />
+    <PageCategories :categories="database" />
 </template>
 
 <script>
-import PageCategorySelector from '@/pages/PageCategorySelector'
+import PageCategories from '@/pages/PageCategories'
 import { mapState } from 'vuex'
 
 export default {
     components: {
-        PageCategorySelector,
+        PageCategories,
     },
 
     computed: {
