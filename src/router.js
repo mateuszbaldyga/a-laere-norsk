@@ -21,7 +21,12 @@ const routes = [
     {
         path: '/flashcards',
         name: 'flashcards',
-        component: () => import(/* webpackChunkName: "PageFlashCards" */ './views/flashcards.vue'),
+        component: () => import(/* webpackChunkName: "flashcards" */ './views/flashcards.vue'),
+    },
+    {
+        path: '/create-dict',
+        name: 'create-dict',
+        component: () => import(/* webpackChunkName: "create-dict" */ './views/create-dict.vue'),
     },
 ]
 

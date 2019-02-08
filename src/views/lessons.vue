@@ -18,6 +18,6 @@ export default {
         ...mapState([
             'chosenCategory',
         ]),
-    },
+    }
 }
 </script>
