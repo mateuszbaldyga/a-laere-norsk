@@ -108,6 +108,7 @@ export default {
 
     created () {
         this.shuffle()
+        console.log('🦄 this.flashcards', this.flashcards)
     },
 
     mounted () {

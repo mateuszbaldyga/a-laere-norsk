@@ -14,7 +14,7 @@
 
             <ul class="main_list container">
                 <li
-                    v-for="(lesson, index) in lessonsToRender"
+                    v-for="(lesson, index) in this.lessons.length"
                     :key="index"
                     >
                     <BaseCheckbox
@@ -67,9 +67,6 @@ export default {
         ...mapState([
             'chosenLessons',
         ]),
-        lessonsToRender () {
-            return this.lessons
-        },
     },
 
     methods: {
@@ -87,6 +84,10 @@ export default {
                 this.$store.commit('CHOOSE_LESSONS', val)
             }
         },
+    },
+
+    created () {
+      console.log('🦄 this.categories', this.lessons)
     },
 }
 </script>

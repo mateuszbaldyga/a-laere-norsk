@@ -1,24 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { flatten } from 'lodash'
+import { deepFreeze } from '@/helpers'
 import { nounsAndOthers, verbs } from '@/dictionary'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        database: [
+        database: Object.freeze([
             {
                 title: 'Czasowniki',
-                lessons: verbs,
+                lessons: deepFreeze(verbs),
                 color: '#ffd9d9',
             },
             {
                 title: 'Rzeczowniki + inne',
-                lessons: nounsAndOthers,
+                lessons: deepFreeze(nounsAndOthers),
                 color: '#c5e2ff',
             },
-        ],
+        ]),
         chosenCategory: {},
         chosenLessons: [],
         chosenPageFlashCards: [],
@@ -28,7 +29,7 @@ export default new Vuex.Store({
             if (!state.chosenLessons.length) return
 
             const { lessons } = state.chosenCategory
-            return Object.freeze(flatten(lessons.filter((item, index) => state.chosenLessons.includes(index))))
+            return flatten(lessons.filter((item, index) => state.chosenLessons.includes(index)))
         },
     },
     mutations: {

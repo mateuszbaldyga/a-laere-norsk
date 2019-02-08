@@ -54,6 +54,10 @@ export default {
             this.$router.push({ name: 'lessons' })
         },
     },
+
+    created () {
+      console.log('🦄 this.categories', this.categories)
+    },
 }
 </script>
 
