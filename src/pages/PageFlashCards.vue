@@ -22,7 +22,7 @@
             slot="footer"
             class="PageFlashCards_actions"
             >
-            <button @click="unrevealCard() + goBack()">
+            <button @click="goBack()">
                 ⇦
             </button>
             <button @click="unrevealCard() + goNext() ">
@@ -75,8 +75,13 @@ export default {
             this.isCardRevealed = false
         },
         goBack () {
-            if (this.index === 0) return
-            this.index--
+            if (this.isCardRevealed) {
+                this.unrevealCard()
+            } else if (this.index === 0) {
+                return
+            } else {
+                this.index--
+            }
         },
         goNext () {
             if (this.index === this.flashcardsInGame.length - 1) {
