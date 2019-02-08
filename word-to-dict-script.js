@@ -2,6 +2,7 @@ function transform (words) {
     const dict = []
 
     words.split(';').forEach(item => {
+        item = item.toLowerCase().replace(/,(?=[^\s])/g, ", ")
         const split = item.split('-')
 
         if (split.length < 2) return

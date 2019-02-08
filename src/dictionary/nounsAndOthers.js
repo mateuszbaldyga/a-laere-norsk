@@ -1,74 +1,73 @@
 const dict = [
 
     // test
+    // [
+    //     {
+    //         'no': 'en bil',
+    //         'pl': 'samochód',
+    //     },
+    //     {
+    //         'no': 'en/ei reise',
+    //         'pl': 'podróż',
+    //     },
+    //     {
+    //         'no': 'ei reise',
+    //         'pl': 'podróż',
+    //     },
+    //     {
+    //         'no': 'et frimerke',
+    //         'pl': 'znaczek pocztowy',
+    //     },
+    // ],
+
+    // lekcja
     [
         {
-            'no': 'en bil',
-            'pl': 'samochód',
-        },
-        {
-            'no': 'En/ei reise',
-            'pl': 'podróż',
-        },
-        {
-            'no': 'ei reise',
-            'pl': 'podróż',
-        },
-        {
-            'no': 'Et frimerke',
-            'pl': 'znaczek pocztowy',
-        },
-
-    ],
-
-    // Lekcja
-    [
-        {
-            'no': 'Hei',
+            'no': 'hei',
             'pl': 'cześć (na powitanie)',
         },
         {
-            'no': 'God dag',
+            'no': 'god dag',
             'pl': 'dzień dobry',
         },
         {
-            'no': 'God morgen',
-            'pl': 'dzięń dobry (rano do 14.00)',
+            'no': 'god morgen',
+            'pl': 'dzień dobry (rano do 1400)',
         },
         {
-            'no': 'Ha det',
+            'no': 'ha det',
             'pl': 'cześć na pożegnanie',
         },
         {
-            'no': 'Ha det bra',
+            'no': 'ha det bra',
             'pl': 'część na pożegnanie',
         },
         {
-            'no': 'Takk',
+            'no': 'takk',
             'pl': 'dziękuję',
         },
         {
-            'no': 'Tusen takk',
+            'no': 'tusen takk',
             'pl': 'bardzo dziękuję',
         },
         {
-            'no': 'Ha en fin dag',
+            'no': 'ha en fin dag',
             'pl': 'miłego dnia',
         },
         {
-            'no': 'Lykke til',
+            'no': 'lykke til',
             'pl': 'powodzenia',
         },
         {
-            'no': 'Vi snakkes',
+            'no': 'vi snakkes',
             'pl': 'do usłyszenia',
         },
         {
-            'no': 'Vi ses',
+            'no': 'vi ses',
             'pl': 'do zobaczenia',
         },
         {
-            'no': 'Ukedager',
+            'no': 'ukedager',
             'pl': 'dni tygodnia',
         },
         {
@@ -88,151 +87,151 @@ const dict = [
             'pl': 'czwartek',
         },
         {
-            'no': 'Fredag',
+            'no': 'fredag',
             'pl': 'piątek',
         },
         {
-            'no': 'Lørdag',
+            'no': 'lørdag',
             'pl': 'sobota',
         },
         {
-            'no': 'Søndag',
+            'no': 'søndag',
             'pl': 'niedziela',
         },
         {
-            'no': 'Måneder',
+            'no': 'måneder',
             'pl': 'miesiące',
         },
         {
-            'no': 'Januar',
+            'no': 'januar',
             'pl': 'styczeń',
         },
         {
-            'no': 'Februar',
+            'no': 'februar',
             'pl': 'luty',
         },
         {
-            'no': 'Mars',
+            'no': 'mars',
             'pl': 'marzec',
         },
         {
-            'no': 'April',
+            'no': 'april',
             'pl': 'kwiecień',
         },
         {
-            'no': 'Mai',
+            'no': 'mai',
             'pl': 'maj',
         },
         {
-            'no': 'Juni',
+            'no': 'juni',
             'pl': 'czerwiec',
         },
         {
-            'no': 'Juli',
+            'no': 'juli',
             'pl': 'lipiec',
         },
         {
-            'no': 'August',
+            'no': 'august',
             'pl': 'sierpień',
         },
         {
-            'no': 'September',
+            'no': 'september',
             'pl': 'wrzesień',
         },
         {
-            'no': 'Oktober',
+            'no': 'oktober',
             'pl': 'październik',
         },
         {
-            'no': 'November',
+            'no': 'november',
             'pl': 'listopad',
         },
         {
-            'no': 'Desember',
+            'no': 'desember',
             'pl': 'grudzień',
         },
         {
-            'no': 'Årstider',
+            'no': 'årstider',
             'pl': 'pory roku',
         },
         {
-            'no': 'Vår',
+            'no': 'vår',
             'pl': 'wiosna',
         },
         {
-            'no': 'Sommer',
+            'no': 'sommer',
             'pl': 'lato',
         },
         {
-            'no': 'Høst',
+            'no': 'høst',
             'pl': 'jesień',
         },
         {
-            'no': 'Vinter',
+            'no': 'vinter',
             'pl': 'zima',
         },
         {
-            'no': 'I dag',
+            'no': 'i dag',
             'pl': 'dzisiaj',
         },
         {
-            'no': 'I morgen',
+            'no': 'i morgen',
             'pl': 'jutro',
         },
         {
-            'no': 'I går',
+            'no': 'i går',
             'pl': 'wczoraj',
         },
         {
-            'no': 'Nå',
+            'no': 'nå',
             'pl': 'teraz',
         },
         {
-            'no': 'Etterpå',
+            'no': 'etterpå',
             'pl': 'później',
         },
         {
-            'no': 'Morgen',
+            'no': 'morgen',
             'pl': 'ranek,rano',
         },
         {
-            'no': 'Formiddag',
+            'no': 'formiddag',
             'pl': 'przedpołudnie',
         },
         {
-            'no': 'Middag',
+            'no': 'middag',
             'pl': 'południe ,obiad',
         },
         {
-            'no': 'Ettermiddag',
+            'no': 'ettermiddag',
             'pl': 'popołudnie',
         },
         {
-            'no': 'Kveld',
+            'no': 'kveld',
             'pl': 'wieczór',
         },
         {
-            'no': 'I kveld',
+            'no': 'i kveld',
             'pl': 'wieczorem',
         },
         {
-            'no': 'Natt',
+            'no': 'natt',
             'pl': 'noc',
         },
         {
-            'no': 'Jeg',
+            'no': 'jeg',
             'pl': 'ja',
         },
         {
-            'no': 'Du',
+            'no': 'du',
             'pl': 'ty',
         },
         {
-            'no': 'Han',
+            'no': 'han',
             'pl': 'on',
         },
         {
-            'no': 'Hun',
+            'no': 'hun',
             'pl': 'ona',
         },
         {
@@ -248,233 +247,229 @@ const dict = [
             'pl': 'oni',
         },
     ],
-    // Lekcja
+    // lekcja
     [
         {
-            'no': 'Selv',
+            'no': 'selv',
             'pl': 'sam',
         },
         {
-            'no': 'Et frimerke',
+            'no': 'et frimerke',
             'pl': 'znaczek pocztowy',
         },
         {
-            'no': 'En kjærlighet',
+            'no': 'en kjærlighet',
             'pl': 'miłość',
         },
         {
-            'no': 'En/ei reise',
+            'no': 'en/ei reise',
             'pl': 'podróż',
         },
         {
-            'no': 'En e',
-            'pl': 'post e',
-        },
-        {
-            'no': 'Gjennom',
+            'no': 'gjennom',
             'pl': 'przez',
         },
         {
-            'no': 'En flyktning',
+            'no': 'en flyktning',
             'pl': 'uchodźca',
         },
         {
-            'no': 'En nyhet',
+            'no': 'en nyhet',
             'pl': 'wiadomość',
         },
         {
-            'no': 'En vei',
-            'pl': 'droga på veien',
+            'no': 'en vei, på veien',
+            'pl': 'droga',
         },
         {
-            'no': 'Trist',
+            'no': 'trist',
             'pl': 'smutny',
         },
         {
-            'no': 'Under',
+            'no': 'under',
             'pl': 'pod',
         },
         {
-            'no': 'Om kvelden',
+            'no': 'om kvelden',
             'pl': 'każdego wieczora',
         },
         {
-            'no': 'Hver kveld',
+            'no': 'hver kveld',
             'pl': 'każdego wieczora',
         },
         {
-            'no': 'En penn',
+            'no': 'en penn',
             'pl': 'długopis',
         },
         {
-            'no': 'Alle',
+            'no': 'alle',
             'pl': 'wszyscy',
         },
         {
-            'no': 'Et land',
+            'no': 'et land',
             'pl': 'kraj',
         },
         {
-            'no': 'Et kurs',
+            'no': 'et kurs',
             'pl': 'kurs',
         },
     ],
-    // Lekcja
+    // lekcja
     [
         {
-            no: 'En/ei tann',
+            no: 'en/ei tann',
             pl: 'ząb',
         },
         {
-            no: 'Travelt',
-            pl: 'śpieszyć się,zagoniony,zabiegany',
+            no: 'travelt',
+            pl: 'śpieszyć się, zagoniony, zabiegany',
         },
         {
-            no: 'En sekk',
+            no: 'en sekk',
             pl: 'worek',
         },
         {
-            no: 'En skolesekk',
+            no: 'en skolesekk',
             pl: 'plecak',
         },
         {
-            no: 'Gjøre vondt',
+            no: 'gjøre vondt',
             pl: 'ból',
         },
         {
-            no: 'Vondt i magen',
+            no: 'vondt i magen',
             pl: 'ból brzucha',
         },
         {
-            no: 'Vondt i halsen',
+            no: 'vondt i halsen',
             pl: 'ból gardła',
         },
         {
-            no: 'En/ei kantine',
+            no: 'en/ei kantine',
             pl: 'stołówka',
         },
         {
-            no: 'Cirka, ca.',
+            no: 'cirka, ca',
             pl: 'około',
         },
         {
-            no: 'En feil',
+            no: 'en feil',
             pl: 'błąd',
         },
         {
-            no: 'Et menneske',
+            no: 'et menneske',
             pl: 'człowiek',
         },
         {
-            no: 'Bare',
+            no: 'bare',
             pl: 'tylko',
         },
         {
-            no: 'Trøtt',
+            no: 'trøtt',
             pl: 'zmęczony',
         },
         {
-            no: 'Foran',
+            no: 'foran',
             pl: 'przy',
         },
         {
-            no: 'Under',
+            no: 'under',
             pl: 'pod',
         },
         {
-            no: 'Før',
-            pl: 'przed,przedtem',
+            no: 'før',
+            pl: 'przed, przedtem',
         },
         {
-            no: 'Fri',
+            no: 'fri',
             pl: 'wolne',
         },
         {
-            no: 'En/ei stue',
+            no: 'en/ei stue',
             pl: 'salon',
         },
         {
-            no: 'En sofa',
+            no: 'en sofa',
             pl: 'sofa',
         },
         {
-            no: 'Et teppe',
+            no: 'et teppe',
             pl: 'dywan',
         },
         {
-            no: 'En lenestol',
+            no: 'en lenestol',
             pl: 'fotel',
         },
         {
-            no: 'En/ei bokhylle',
+            no: 'en/ei bokhylle',
             pl: 'półka',
         },
         {
-            no: 'Ferdig',
+            no: 'ferdig',
             pl: 'gotowy',
         },
         {
-            no: 'En/ei kake',
-            pl: 'ciasto,ciastko',
+            no: 'en/ei kake',
+            pl: 'ciasto, ciastko',
         },
         {
-            no: 'En katt',
+            no: 'en katt',
             pl: 'kot',
         },
         {
-            no: 'En/ei mus',
+            no: 'en/ei mus',
             pl: 'mysz',
         },
         {
-            no: 'En/ei høne',
+            no: 'en/ei høne',
             pl: 'kura',
         },
         {
-            no: 'Et mel',
+            no: 'et mel',
             pl: 'mąka',
         },
         {
-            no: 'Tilbake',
+            no: 'tilbake',
             pl: 'z powrotem, wstecz',
         },
         {
-            no: 'Hel',
-            pl: 'cały ,całkowity',
+            no: 'hel',
+            pl: 'cały, całkowity',
         },
         {
-            no: 'Vanlig',
+            no: 'vanlig',
             pl: 'zwyczajny',
         },
         {
-            no: 'Beklager',
-            pl: 'przykro mi.',
+            no: 'beklager',
+            pl: 'przykro mi',
         },
         {
-            no: 'Et smørbrød',
+            no: 'et smørbrød',
             pl: 'kanapka',
         },
         {
-            no: 'En servitør',
+            no: 'en servitør',
             pl: 'kelner',
         },
         {
-            no: 'En gjest',
+            no: 'en gjest',
             pl: 'gość',
         },
         {
-            no: 'En hjelp',
+            no: 'en hjelp',
             pl: 'pomoc',
         },
         {
-            no: 'En lege',
+            no: 'en lege',
             pl: 'lekarz',
         },
         {
-            no: 'En tannlege',
+            no: 'en tannlege',
             pl: 'dentysta',
         },
     ],
-    // Lekcja
+    // lekcja
     [
         {
             'no': 'dessverre',

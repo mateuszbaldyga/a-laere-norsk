@@ -1,5 +1,5 @@
 const dict = [
-    // Lekcja
+    // lekcja
     {
         'no': 'men',
         'pl': 'ale',
@@ -17,19 +17,19 @@ const dict = [
         'pl': 'czy mogę otrzymać',
     },
     {
-        'no': 'Vi har dessverre ikke, podwójne zaprzeczenie (wyjątek ikke za dessverre)',
-        'pl': 'My nie mamy niestety',
+        'no': 'vi har dessverre ikke, podwójne zaprzeczenie (wyjątek ikke za dessverre)',
+        'pl': 'my nie mamy niestety',
     },
     {
         'no': 'lånekort',
         'pl': 'karta wypożyczeniowa',
     },
     {
-        'no': 'Trenger du hjelp?',
-        'pl': 'Czy potrzebujesz pomocy?',
+        'no': 'trenger du hjelp?',
+        'pl': 'czy potrzebujesz pomocy?',
     },
     {
-        'no': 'Mål',
+        'no': 'mål',
         'pl': 'miara, cel, meta',
     },
     {
@@ -38,7 +38,7 @@ const dict = [
     },
     {
         'no': 'et bankkort',
-        'pl': '',
+        'pl': 'karta bankowa',
     },
     {
         'no': 'et førerkort',
@@ -57,60 +57,8 @@ const dict = [
         'pl': 'odrabiać lekcje',
     },
     {
-        'no': 'Trenger',
+        'no': 'trenger',
         'pl': 'potrzebować',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
-    },
-    {
-        'no': '',
-        'pl': '',
     },
 ]
 

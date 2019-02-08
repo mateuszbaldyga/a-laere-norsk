@@ -1,8 +1,8 @@
 const dict = [
-    // Lekcja
+    // lekcja
     [
         {
-            'no': 'Å ligge, ligger',
+            'no': 'å ligge, ligger',
             'pl': 'leżeć',
         },
         {
@@ -46,7 +46,7 @@ const dict = [
             'pl': 'opowiadać',
         },
         {
-            'no': 'å Lete etter, leter etter',
+            'no': 'å lete etter, leter etter',
             'pl': 'szukać',
         },
         {
@@ -62,7 +62,7 @@ const dict = [
             'pl': 'nosić',
         },
     ],
-    // Lekcja
+    // lekcja
     [
         {
             no: 'å bake baker',
@@ -117,7 +117,7 @@ const dict = [
             pl: 'zamawiać',
         },
     ],
-    // Lekcja
+    // lekcja
     [
         {
             'no': 'å hjelpe, hjelper',

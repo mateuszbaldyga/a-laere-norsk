@@ -54,13 +54,11 @@ export default {
             return this.flashcardsInGame[this.index][this.isCardRevealed ? 'no' : 'pl']
         },
         className () {
-            const _word = this.word.toLowerCase()
-
             return {
-                '-male': _word.indexOf('en ') > -1,
-                '-female': _word.indexOf('ei ') > -1,
-                '-male-female': _word.indexOf('ei/') > -1 || _word.indexOf('en/') > -1,
-                '-neuter': _word.indexOf('et ') > -1,
+                '-male': this.word.indexOf('en ') === 0,
+                '-female': this.word.indexOf('ei ') === 0,
+                '-male-female': this.word.indexOf('ei/en') === 0 || this.word.indexOf('en/ei') === 0,
+                '-neuter': this.word.indexOf('et ') === 0,
             }
         },
     },
