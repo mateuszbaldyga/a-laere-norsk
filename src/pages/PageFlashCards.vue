@@ -104,6 +104,7 @@ export default {
         },
         shuffle () {
             this.flashcardsInGame = shuffle(this.flashcards)
+            this.index = 0
         },
     },
 

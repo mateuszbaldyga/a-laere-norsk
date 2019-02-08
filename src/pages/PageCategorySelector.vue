@@ -1,13 +1,6 @@
 <template>
     <LayoutDefault class="PageCategorySelector">
         <div slot="header">
-            <RouterLink
-                v-if="$route.name !== 'categories'"
-                id="home"
-                :to="{ name: 'categories' }"
-                >
-                🏠
-            </RouterLink>
         </div>
 
         <div
@@ -80,19 +73,16 @@ export default {
 
     h2 {
         position: relative;
-        padding: 20px 30px;
-        font-size: 50px;
+        padding: 0 15px;
         cursor: pointer;
-        transition: transform .1s;
         line-height: .8;
-
-        @include media(ltMobile) {
-            font-size: 25px;
-        }
+        text-align: center;
+        font-size: 25px;
+        line-height: $header-footer-height;
 
         &.-selected {
-            z-index: 1;
-            transform: scale(1.2);
+            background-color: $color-screamin-green !important;
+            color: #fff;
         }
     }
 
