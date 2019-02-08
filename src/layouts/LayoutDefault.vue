@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/styles/shared-vars.scss';
+
 .LayoutDefault {
     position: relative;
     display: flex;
@@ -29,7 +31,7 @@ export default {
     margin: 0 auto;
 
     > header {
-        height: 50px;
+        height: $header-footer-height;
     }
 
     > main {
@@ -39,7 +41,7 @@ export default {
     }
 
     > footer {
-        height: 50px;
+        height: $header-footer-height;
     }
 }
 </style>

@@ -14,11 +14,16 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/styles/shared-vars.scss';
+
 .BackButton {
-    position: absolute;
-    padding: 15px;
+    height: $header-footer-height;
+    width: $header-footer-height;
+    display: inline-flex;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
     font-size: 25px;
-    transform: rotateY(30deg);
     transform: scale(-1, 1);
 }
 </style>

@@ -33,11 +33,11 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 50px;
+    height: $header-footer-height;
     padding: 0;
     background: $color-screamin-green;
     color: white;
-    font-size: 50px;
+    font-size: $header-footer-height;
     user-select: none;
 
     .BaseSvg {

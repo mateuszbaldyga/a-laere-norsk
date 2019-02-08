@@ -2,7 +2,7 @@
     <LayoutDefault class="PageFlashCards">
         <div slot="header">
             <BackButton :to="{name: 'lessons'}" />
-            <!-- v-visible="lap" -->
+            <button class="PageFlashCards_shuffleBtn" @click="shuffle()">&#x1f500;</button>
             <p
                 class="PageFlashCards_lap"
                 >
@@ -45,13 +45,11 @@ export default {
             index: 0,
             isCardRevealed: false,
             lap: 0,
+            flashcardsInGame: [],
         }
     },
 
     computed: {
-        flashcardsInGame () {
-            return shuffle(this.flashcards)
-        },
         word () {
             return this.flashcardsInGame[this.index][this.isCardRevealed ? 'no' : 'pl']
         },
@@ -104,6 +102,13 @@ export default {
                 this.onCardClick()
             }
         },
+        shuffle () {
+            this.flashcardsInGame = shuffle(this.flashcards)
+        },
+    },
+
+    created () {
+        this.shuffle()
     },
 
     mounted () {
@@ -124,6 +129,16 @@ export default {
     flex-direction: column;
     width: 100%;
     height: 100%;
+
+    &_shuffleBtn {
+        height: $header-footer-height;
+        width: $header-footer-height;
+        display: inline-flex;
+        margin-right: 20px;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+    }
 
     &_lap {
         position: absolute;
