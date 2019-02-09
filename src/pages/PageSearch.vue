@@ -14,11 +14,10 @@
                 placeholder="Search"
                 >
             <ul
-                v-if="searchResults.length"
                 class="PageSearch_results"
                 >
                 <li
-                    v-for="(word, index) in searchResults"
+                    v-for="(word, index) in list"
                     :key="index"
                     >
                     <strong><i>🇳🇴</i> {{ word.no }}</strong><span><i>🇵🇱</i>{{ word.pl }}</span>
@@ -30,20 +29,27 @@
 
 <script>
 import { debounce } from 'lodash'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
     computed: {
         ...mapState([
+            'searchQuery',
             'searchResults',
+        ]),
+        ...mapGetters([
+            'SEARCH_RESULTS_SOURCE',
         ]),
         query: {
             set: function (val) {
                 this.$store.commit('SET_SEARCH_QUERY', val)
             },
             get: function () {
-                return this.$store.state['searchQuery']
+                return this.searchQuery
             },
+        },
+        list () {
+            return this.searchResults.length && this.searchQuery ? this.searchResults : this.SEARCH_RESULTS_SOURCE
         },
     },
 
@@ -61,6 +67,10 @@ export default {
         handleSearch: debounce(function () {
             this.$store.commit('HANDLE_SEARCH')
         }, 400),
+    },
+
+    created () {
+        console.log('🦄 this.list', this.list)
     },
 }
 </script>
@@ -101,8 +111,7 @@ export default {
 
         > li {
             padding-bottom: 10px;
-            border-bottom: 1px solid red;
-            border-bottom: 1px solid #fff;
+            border-bottom: 1px solid #ffffff80;
             margin-bottom: 10px;
             font-size: 13px;
             font-weight: 300;
@@ -121,6 +130,10 @@ export default {
             margin-right: 5px;
             font-size: 20px;
         }
+    }
+
+    footer {
+        display: none;
     }
 }
 </style>

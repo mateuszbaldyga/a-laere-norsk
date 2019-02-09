@@ -2,6 +2,12 @@
     <LayoutDefault class="PageCategories">
         <template slot="header">
             <Navigation />
+            <RouterLink
+                class="PageCategories_searchBtn"
+                :to="{ name: 'search' }"
+                >
+                🔍
+            </RouterLink>
             <h1 class="PageCategories_counter">
                 {{ wordsAmount }} words
             </h1>
@@ -81,6 +87,14 @@ export default {
 
     &_main {
         margin: auto 0;
+    }
+
+    &_searchBtn {
+        align-items: center;
+        justify-content: center;
+        width: $header-footer-height;
+font-size: 25px;
+        line-height: $header-footer-height;
     }
 
     h2 {

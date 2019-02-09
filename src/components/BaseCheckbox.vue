@@ -57,9 +57,9 @@ export default {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    padding-left: 45px;
+    padding-left: 35px;
     margin: 10px 0;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 300;
     cursor: pointer;
     line-height: 1.15;
@@ -69,8 +69,8 @@ export default {
         position: absolute;
         top: 2px;
         left: 0;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         background-color: #fff;
         border: 1px solid $color-accent-start;
     }

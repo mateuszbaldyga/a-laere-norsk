@@ -62,8 +62,8 @@ export default {
 
     > button {
         z-index: $z-id-modal + 1;
-        width: 100px;
-        height: 100px;
+        width: $header-footer-height;
+        height: $header-footer-height;
         padding-top: 10px;
         padding-left: 15px;
         font-size: 25px;
@@ -79,8 +79,7 @@ export default {
         padding: 100px 0;
         background-color: #fff;
         border-right: 1px solid #000;
-        line-height: 2;
-
+        line-height: 50px;
     }
 }
 
