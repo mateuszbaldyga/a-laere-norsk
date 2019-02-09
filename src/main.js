@@ -5,6 +5,7 @@ import store from './store'
 import './global-components'
 
 import VueVisible from 'vue-visible'
+import './registerServiceWorker'
 Vue.use(VueVisible)
 
 Vue.filter('capitalize', function (value) {

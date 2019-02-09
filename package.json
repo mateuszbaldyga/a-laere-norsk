@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "build": "vue-cli-service build",
+    "lint": "yarn lint:css && yarn lint:js",
     "deploy:gh-pages": "yarn build && push-dir --dir=dist --branch=gh-pages --cleanup",
     "dev": "vue-cli-service serve",
-    "lint": "yarn lint:css && yarn lint:js",
     "lint:css": "stylelint '**/*.vue'",
     "lint:fix": "yarn lint:css --fix && yarn lint:js --fix",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "lodash": "^4.17.11",
+    "register-service-worker": "^1.5.2",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
     "vue-visible": "^1.0.2",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-pwa": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
