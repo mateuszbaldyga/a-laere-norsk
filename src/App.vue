@@ -18,10 +18,10 @@ export default {
 // @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin-ext');
 
-* {
-    background-color: black !important;
-    color: #fff !important;
-}
+// * {
+//     background-color: black !important;
+//     color: #fff !important;
+// }
 
 html, body, #app {
     width: 100%;
