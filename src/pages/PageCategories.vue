@@ -93,7 +93,7 @@ export default {
         align-items: center;
         justify-content: center;
         width: $header-footer-height;
-font-size: 25px;
+        font-size: 25px;
         line-height: $header-footer-height;
     }
 

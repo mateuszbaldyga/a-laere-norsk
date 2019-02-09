@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { flatten, flattenDepth } from 'lodash'
-import { deepFreeze } from '@/helpers'
+import { deepFreeze, replaceSpecialChars } from '@/helpers'
 import { nounsAndOthers, verbs } from '@/dictionary'
 
 Vue.use(Vuex)
@@ -47,7 +47,11 @@ export default new Vuex.Store({
             return res
         },
         SEARCH_RESULTS_SOURCE: state => flattenDepth(state.database.map(item => item.lessons), 2),
-        SEARCH_INDEXED: (state, getters) => getters.SEARCH_RESULTS_SOURCE.map(item => item.no + ' ' + item.pl),
+        SEARCH_INDEXED_WORDS: (state, getters) => {
+            return getters.SEARCH_RESULTS_SOURCE.map(item => {
+                return item.no + ' ' + item.pl + ' ' + replaceSpecialChars(item.no + ' ' + item.pl)
+            })
+        },
     },
     mutations: {
         CHOOSE_CATEGORY (state, category) {
@@ -72,7 +76,7 @@ export default new Vuex.Store({
             state.searchResults = deepFreeze(arr)
         },
         HANDLE_SEARCH (state) {
-            const indexes = this.getters['SEARCH_INDEXED'].reduce((res, item, i) => {
+            const indexes = this.getters['SEARCH_INDEXED_WORDS'].reduce((res, item, i) => {
                 if (item.indexOf(state.searchQuery) > -1) {
                     res.push(i)
                 }
