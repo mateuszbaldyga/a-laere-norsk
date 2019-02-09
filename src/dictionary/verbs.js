@@ -74,11 +74,11 @@ const dict = [
         },
         {
             no: 'å steke steker',
-            pl: 'piec,smarzyć',
+            pl: 'piec, smarzyć',
         },
         {
             no: 'å smake smaker',
-            pl: 'próbować , smakować',
+            pl: 'próbować, smakować',
         },
         {
             no: 'å hjelpe hjelper',
@@ -94,7 +94,7 @@ const dict = [
         },
         {
             no: 'å dra drar',
-            pl: 'ciągnąć,przeciągnąć,jechać',
+            pl: 'ciągnąć, przeciągnąć, jechać',
         },
         {
             no: 'å hente henter',
@@ -102,15 +102,15 @@ const dict = [
         },
         {
             no: 'å kjøre kjører',
-            pl: 'jechać,prowadzić samochód',
+            pl: 'jechać, prowadzić samochód',
         },
         {
             no: 'å dekke dekker',
-            pl: 'nakryć,przykryć',
+            pl: 'nakryć, przykryć',
         },
         {
             no: 'å gi gir',
-            pl: 'dawać,podawać',
+            pl: 'dawać, podawać',
         },
         {
             no: 'å vite vet',
@@ -145,7 +145,7 @@ const dict = [
         },
         {
             'no': 'å gi, gir',
-            'pl': 'dawać,podawać',
+            'pl': 'dawać, podawać',
         },
         {
             'no': 'å låne, låner',
@@ -153,7 +153,7 @@ const dict = [
         },
         {
             'no': 'å bli, blir',
-            'pl': 'zostać,pozostać',
+            'pl': 'zostać, pozostać',
         },
         {
             'no': 'å få, får',

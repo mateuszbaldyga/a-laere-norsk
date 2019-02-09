@@ -15,13 +15,15 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/reset.scss';
 @import '@/assets/styles/shared-vars.scss';
+// @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin-ext');
 
 html, body, #app {
     width: 100%;
     height: 100%;
     margin: 0;
-    font-family: 'Noto Serif SC', serif;
-    font-weight: 700;
+    font-family: 'Lora', serif;
+    // font-family: 'Noto Serif SC', serif;
     overflow: hidden;
 }
 
