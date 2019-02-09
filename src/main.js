@@ -2,15 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './plugins'
 import './global-components'
 import './registerServiceWorker'
-
-
-import vClickOutside from 'v-click-outside'
-Vue.use(vClickOutside)
-
-import VueVisible from 'vue-visible'
-Vue.use(VueVisible)
 
 Vue.filter('capitalize', function (value) {
     if (!value) return ''
