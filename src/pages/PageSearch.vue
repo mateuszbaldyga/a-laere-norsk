@@ -1,30 +1,32 @@
 <template>
-    <LayoutDefault class="PageSearch">
-        <template slot="header">
-            <BackButton :to="{name: 'categories'}" />
-        </template>
+    <div class="PageSearch">
+        <LayoutDefault>
+            <template slot="header">
+                <BackButton :to="{name: 'categories'}" />
+            </template>
 
-        <div
-            slot="main"
-            class="PageSearch_main container"
-            >
-            <input
-                v-model="query"
-                type="text"
-                placeholder="Search"
+            <div
+                slot="main"
+                class="PageSearch_main container"
                 >
-            <ul
-                class="PageSearch_results"
-                >
-                <li
-                    v-for="(word, index) in list"
-                    :key="index"
+                <input
+                    v-model="query"
+                    type="text"
+                    placeholder="Search"
                     >
-                    <strong><i>🇳🇴</i> {{ word.no }}</strong><span><i>🇵🇱</i>{{ word.pl }}</span>
-                </li>
-            </ul>
-        </div>
-    </LayoutDefault>
+                <ul
+                    class="PageSearch_results"
+                    >
+                    <li
+                        v-for="(word, index) in list"
+                        :key="index"
+                        >
+                        <strong><i>🇳🇴</i> {{ word.no }}</strong><span><i>🇵🇱</i>{{ word.pl }}</span>
+                    </li>
+                </ul>
+            </div>
+        </LayoutDefault>
+    </div>
 </template>
 
 <script>
@@ -81,6 +83,8 @@ export default {
 .PageSearch {
     background-color: $color-flag-blue;
     color: #fff;
+    flex: 1;
+
     h1 {
         padding: 0 15px;
         margin-left: auto;
