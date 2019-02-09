@@ -9,6 +9,7 @@
         <footer>
             <slot name="footer" />
         </footer>
+        <slot></slot>
     </div>
 </template>
 

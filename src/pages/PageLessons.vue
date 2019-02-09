@@ -14,10 +14,13 @@
 
             <ul class="main_list container" ref="list">
                 <li
-                    v-for="(lesson, index) in lessons.length"
+                    v-for="(lesson, index) in lessons"
                     :key="index"
                     >
                     <BaseCheckbox
+                        @mousedown.native="onMousedown(lesson)"
+                        @mouseup.native="clearTimeout()"
+                        @mouseleave.native="clearTimeout()"
                         :value="chosenLessons"
                         :optionValue="index"
                         @input="onInput"
@@ -44,6 +47,8 @@
                 GÅ!
             </StartButton>
         </div>
+
+        <LessonPreview></LessonPreview>
     </LayoutDefault>
 </template>
 
@@ -51,16 +56,24 @@
 import { mapState } from 'vuex'
 import BaseCheckbox from '@/components/BaseCheckbox'
 import StartButton from '@/components/StartButton'
+import LessonPreview from '@/components/LessonPreview'
 
 export default {
     components: {
         BaseCheckbox,
         StartButton,
+        LessonPreview,
     },
 
     props: {
         lessons: Array,
         categoryName: String,
+    },
+
+    data () {
+      return {
+        timeoutId: null,
+      }
     },
 
     computed: {
@@ -72,6 +85,16 @@ export default {
     methods: {
         onInput (val) {
             this.$store.commit('CHOOSE_LESSONS', val)
+        },
+        previewLesson (lesson) {
+            console.log('🦄 lesson', lesson)
+            this.$store.commit('PREVIEW_LESSON', lesson)
+        },
+        onMousedown (lesson) {
+            this.timeoutId = setTimeout(() => this.previewLesson(lesson), 650);
+        },
+        clearTimeout() {
+            clearTimeout(this.timeoutId)
         },
         start () {
             this.$router.push({ name: 'flashcards' })

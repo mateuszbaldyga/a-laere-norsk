@@ -23,6 +23,7 @@ export default new Vuex.Store({
         chosenCategory: {},
         chosenLessons: [],
         chosenPageFlashCards: [],
+        lessonPreview: [],
     },
     getters: {
         chosenPageFlashCards: state => {
@@ -38,6 +39,9 @@ export default new Vuex.Store({
         },
         CHOOSE_LESSONS (state, lessons) {
             state.chosenLessons = lessons
+        },
+        PREVIEW_LESSON (state, lesson) {
+            state.lessonPreview = lesson
         },
     },
 })
