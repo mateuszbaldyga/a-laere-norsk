@@ -1,8 +1,8 @@
 // https://webpack.js.org/guides/dependency-management/#require-context
 const requireContext = require.context(
-  '.',
-  false,
-  /[a-z]\w+\.(js)$/
+    '.',
+    false,
+    /[a-z]\w+\.(js)$/
 )
 
 requireContext.keys().forEach(file => requireContext(file))

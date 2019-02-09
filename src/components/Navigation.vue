@@ -14,12 +14,17 @@
             <ul class="container">
                 <li>
                     <RouterLink :to="{ name: 'search' }">
-                        Search
+                        Wyszukiwarka
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink :to="{ name: 'mastered-flashcards' }">
+                        Opanowany materiał
                     </RouterLink>
                 </li>
                 <li>
                     <RouterLink :to="{ name: 'create-dict' }">
-                        Create dict
+                        Stwórz słownik
                     </RouterLink>
                 </li>
             </ul>

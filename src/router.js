@@ -33,6 +33,11 @@ const routes = [
         name: 'search',
         component: () => import(/* webpackChunkName: "search" */ './views/search.vue'),
     },
+    {
+        path: '/mastered-flashcards',
+        name: 'mastered-flashcards',
+        component: () => import(/* webpackChunkName: "mastered-flashcards" */ './views/mastered-flashcards.vue'),
+    },
 ]
 
 const router = new Router({

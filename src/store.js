@@ -3,10 +3,11 @@ import Vuex from 'vuex'
 import { flatten, flattenDepth } from 'lodash'
 import { deepFreeze, replaceSpecialChars } from '@/helpers'
 import { nounsAndOthers, verbs } from '@/dictionary'
+import ls from 'local-storage'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state: {
         database: Object.freeze([
             {
@@ -22,16 +23,17 @@ export default new Vuex.Store({
         ]),
         chosenCategory: {},
         chosenLessons: [],
-        chosenPageFlashCards: [],
+        chosenFlashCards: [],
         lessonPreview: {
             lesson: [],
             index: null,
         },
         searchQuery: '',
         searchResults: [],
+        masteredFlashCards: new Set(),
     },
     getters: {
-        chosenPageFlashCards: state => {
+        chosenFlashCards: state => {
             if (!state.chosenLessons.length) return
 
             const { lessons } = state.chosenCategory
@@ -86,8 +88,26 @@ export default new Vuex.Store({
 
             this.commit('SET_SEARCH_RESULTS', indexes.map(i => this.getters['SEARCH_RESULTS_SOURCE'][i] ))
         },
+        UPDATE_MASTERED_FLASHCARD (state, { flashcard, method }) {
+            if (method === 'delete') {
+                state.masteredFlashCards.delete(flashcard)
+            } else {
+                state.masteredFlashCards.add(flashcard)
+            }
+            ls.set('MASTERED_FLASHCARDS', state.masteredFlashCards)
+            console.log('🦄 state.masteredFlashCards', state.masteredFlashCards)
+        },
+        INIT_MASTERED_FLASHCARDS (state) {
+            const lsStorage = ls.get('MASTERED_FLASHCARDS')
+
+            if (lsStorage) {
+                state.masteredFlashCards = new Set(lsStorage)
+                console.log('🦄 state.masteredFlashCards', state.masteredFlashCards)
+            }
+        },
     },
 })
-// const chosenCategory = this.categories[this.formData.category].lessons.filter((item, i) => {
-//   this.formData.lessons.includes(i)
-// })
+
+store.commit('INIT_MASTERED_FLASHCARDS')
+
+export default store

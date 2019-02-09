@@ -13,7 +13,7 @@
                 v-for="(item, index) in lessonPreview.lesson"
                 :key="index"
                 >
-                <strong>{{ item.no }}</strong>'&nbsp;–&nbsp;{{ item.pl }}
+                <strong>{{ item.no }}</strong>&nbsp;–&nbsp;{{ item.pl }}
             </li>
         </ul>
     </div>
@@ -66,11 +66,11 @@ export default {
     }
 
     > button {
-        align-items: center;
-        justify-content: center;
         position: absolute;
         top: 0;
         right: 0;
+        align-items: center;
+        justify-content: center;
         width: $header-footer-height;
         height: $header-footer-height;
         font-size: 16px;

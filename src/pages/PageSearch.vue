@@ -14,16 +14,8 @@
                     type="text"
                     placeholder="Search"
                     >
-                <ul
-                    class="PageSearch_results"
-                    >
-                    <li
-                        v-for="(word, index) in list"
-                        :key="index"
-                        >
-                        <strong><i>🇳🇴</i> {{ word.no }}</strong><span><i>🇵🇱</i>{{ word.pl }}</span>
-                    </li>
-                </ul>
+
+                <DictListing :list="list" />
             </div>
         </LayoutDefault>
     </div>
@@ -32,8 +24,13 @@
 <script>
 import { debounce } from 'lodash'
 import { mapState, mapGetters } from 'vuex'
+import DictListing from '@/components/DictListing'
 
 export default {
+    components: {
+        DictListing,
+    },
+
     computed: {
         ...mapState([
             'searchQuery',
@@ -81,9 +78,9 @@ export default {
 @import '@/assets/styles/shared-vars.scss';
 
 .PageSearch {
+    flex: 1;
     background-color: $color-flag-blue;
     color: #fff;
-    flex: 1;
 
     h1 {
         padding: 0 15px;
@@ -104,36 +101,6 @@ export default {
 
     &_main {
         flex: 1;
-    }
-
-    &_results {
-        flex: 1;
-        padding: 30px 0;
-        overflow-x: hidden;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-
-        > li {
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ffffff80;
-            margin-bottom: 10px;
-            font-size: 13px;
-            font-weight: 300;
-            border-style: dashed;
-            line-height: 1.6;
-            border-style: dashed;
-        }
-
-        span, strong {
-            flex-direction: row;
-            align-items: center;
-        }
-
-        i {
-            display: inline;
-            margin-right: 5px;
-            font-size: 20px;
-        }
     }
 
     footer {

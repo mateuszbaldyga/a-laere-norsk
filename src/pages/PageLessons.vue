@@ -23,11 +23,11 @@
                     <BaseCheckbox
                         :value="chosenLessons"
                         :optionValue="index"
-                        @mousedown.native="onMousedown(lesson, index)"
-                        @touchstart.native="onMousedown(lesson, index)"
-                        @mouseup.native="clearTimeout()"
-                        @touchend.native="clearTimeout()"
-                        @mouseleave.native="clearTimeout()"
+                        @mousedown.native="onTouchStart(lesson, index)"
+                        @touchstart.native="onTouchStart(lesson, index)"
+                        @mouseup.native="onTouchEnd()"
+                        @touchend.native="onTouchEnd()"
+                        @mouseleave.native="onTouchEnd()"
                         @input="onInput"
                         >
                         {{ index + 1 + ' Lekcja' }}
@@ -96,10 +96,10 @@ export default {
             console.log('🦄 lesson', lesson)
             this.$store.commit('PREVIEW_LESSON', lesson)
         },
-        onMousedown (lesson, index) {
+        onTouchStart (lesson, index) {
             this.timeoutId = setTimeout(() => this.previewLesson({ lesson, index }), 450)
         },
-        clearTimeout () {
+        onTouchEnd () {
             clearTimeout(this.timeoutId)
         },
         start () {

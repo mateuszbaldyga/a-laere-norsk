@@ -8,6 +8,12 @@
                 >
                 &#x1f500;
             </button>
+            <button
+                class="PageFlashCards_markBtn"
+                @click="showConfirmDialog = true"
+                >
+                &#x2713;
+            </button>
             <p
                 class="PageFlashCards_lap"
                 >
@@ -32,12 +38,28 @@
             <button @click="unrevealCard() + goNext() ">
                 ⇨
             </button>
+
+            <div
+                v-if="showConfirmDialog"
+                class="ConfirmDialog container"
+                >
+                <p>Oznaczyć jako opanowany materiał?</p>
+                <div class="ConfirmDialog_actions">
+                    <button @click="agree()">
+                        TAK
+                    </button>
+                    <button @click="cancel()">
+                        NIE
+                    </button>
+                </div>
+            </div>
         </template>
     </LayoutDefault>
 </template>
 
 <script>
 import { shuffle } from 'lodash'
+import { mapState } from 'vuex'
 
 export default {
     props: {
@@ -46,16 +68,23 @@ export default {
 
     data () {
         return {
-            index: 0,
+            currentIndex: 0,
             isCardRevealed: false,
             lap: 0,
             flashcardsInGame: [],
+            showConfirmDialog: false,
         }
     },
 
     computed: {
+        ...mapState([
+            'masteredFlashCards',
+        ]),
+        flashcardsWithoutMastered () {
+            return this.flashcards.filter(card => !Array.from(this.masteredFlashCards).some(mastered => card.id === mastered.id))
+        },
         word () {
-            return this.flashcardsInGame[this.index][this.isCardRevealed ? 'no' : 'pl']
+            return this.flashcardsInGame[this.currentIndex][this.isCardRevealed ? 'no' : 'pl']
         },
         className () {
             return {
@@ -77,18 +106,18 @@ export default {
         goBack () {
             if (this.isCardRevealed) {
                 this.unrevealCard()
-            } else if (this.index === 0) {
+            } else if (this.currentIndex === 0) {
                 return
             } else {
-                this.index--
+                this.currentIndex--
             }
         },
         goNext () {
-            if (this.index === this.flashcardsInGame.length - 1) {
+            if (this.currentIndex === this.flashcardsInGame.length - 1) {
                 this.lap++
-                this.index = 0
+                this.currentIndex = 0
             } else {
-                this.index++
+                this.currentIndex++
             }
         },
         onCardClick () {
@@ -105,8 +134,20 @@ export default {
             }
         },
         shuffle () {
-            this.flashcardsInGame = shuffle(this.flashcards)
-            this.index = 0
+            this.flashcardsInGame = shuffle(this.flashcardsWithoutMastered)
+            this.currentIndex = 0
+        },
+        markAsMastered () {
+            const flashcard = this.flashcardsInGame[this.currentIndex]
+            this.$store.commit('UPDATE_MASTERED_FLASHCARD', { flashcard })
+            this.flashcardsInGame.splice(this.currentIndex, 1)
+        },
+        agree () {
+            this.markAsMastered()
+            this.showConfirmDialog = false
+        },
+        cancel () {
+            this.showConfirmDialog = false
         },
     },
 
@@ -131,7 +172,7 @@ export default {
 .PageFlashCards {
     flex: 1;
 
-    &_shuffleBtn {
+    &_shuffleBtn, &_markBtn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -139,6 +180,10 @@ export default {
         height: $header-footer-height;
         margin-right: 20px;
         font-size: 25px;
+    }
+
+    &_markBtn {
+        color: $color-screamin-green;
     }
 
     &_lap {
@@ -214,12 +259,38 @@ export default {
     }
 
     footer {
+        position: relative;
         font-size: 20px;
 
         > button {
             align-items: center;
             justify-content: center;
             width: 50%;
+        }
+    }
+
+    .ConfirmDialog {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid #000;
+        line-height: 1.5;
+
+        p {
+            padding: 20px 0;
+        }
+
+        &_actions {
+            flex-direction: row;
+
+            > button {
+                align-items: center;
+                justify-content: center;
+                width: 50%;
+                height: $header-footer-height;
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <PageFlashCards :flashcards="chosenPageFlashCards" />
+    <PageFlashCards :flashcards="chosenFlashCards" />
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
 
     computed: {
         ...mapGetters([
-            'chosenPageFlashCards',
+            'chosenFlashCards',
         ]),
     },
 }
