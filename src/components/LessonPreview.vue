@@ -1,17 +1,19 @@
 <template>
     <div
-        v-if="lessonPreview.length"
+        v-if="lessonPreview.lesson.length"
         class="LessonPreview"
+        style="user-select: none;"
         >
         <button @click="close()">
             ❌
         </button>
+        <h1>{{ lessonPreview.index + 1 + ' Lekcja' }}</h1>
         <ul>
             <li
-                v-for="(item, index) in lessonPreview"
+                v-for="(item, index) in lessonPreview.lesson"
                 :key="index"
                 >
-                {{ item.no }} - {{ item.pl }}
+                <strong>{{ item.no }}</strong> - {{ item.pl }}
             </li>
         </ul>
     </div>
@@ -29,8 +31,14 @@ export default {
 
     methods: {
         close () {
-            this.$store.commit('PREVIEW_LESSON', [])
+            this.$store.commit('RESET_PREVIEW_LESSON')
         },
+    },
+
+    mounted () {
+        setTimeout(() => {
+            this.$el.style.userSelect = null
+        }, 2000)
     },
 }
 </script>
@@ -48,6 +56,13 @@ export default {
     font-weight: 500;
     line-height: 1.4;
 
+    > h1 {
+        margin-bottom: 15px;
+        font-size: 25px;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
     > button {
         position: absolute;
         top: 0;
@@ -58,6 +73,8 @@ export default {
     }
 
     > ul {
+        height: 100%;
+        padding-bottom: 200px;
         overflow-x: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;

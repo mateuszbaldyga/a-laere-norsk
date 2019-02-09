@@ -8,7 +8,7 @@
             slot="main"
             class="PageLessons_main"
             >
-            <h1 class="container">
+            <h1 class="PageLessons_categoryName container">
                 {{ categoryName }}
             </h1>
 
@@ -23,8 +23,10 @@
                     <BaseCheckbox
                         :value="chosenLessons"
                         :optionValue="index"
-                        @mousedown.native="onMousedown(lesson)"
+                        @mousedown.native="onMousedown(lesson, index)"
+                        @touchstart.native="onMousedown(lesson, index)"
                         @mouseup.native="clearTimeout()"
+                        @touchend.native="clearTimeout()"
                         @mouseleave.native="clearTimeout()"
                         @input="onInput"
                         >
@@ -51,7 +53,7 @@
             </StartButton>
         </div>
 
-        <LessonPreview />
+        <LessonPreview v-if="lessonPreview.lesson.length" />
     </LayoutDefault>
 </template>
 
@@ -82,6 +84,7 @@ export default {
     computed: {
         ...mapState([
             'chosenLessons',
+            'lessonPreview',
         ]),
     },
 
@@ -93,8 +96,8 @@ export default {
             console.log('🦄 lesson', lesson)
             this.$store.commit('PREVIEW_LESSON', lesson)
         },
-        onMousedown (lesson) {
-            this.timeoutId = setTimeout(() => this.previewLesson(lesson), 650)
+        onMousedown (lesson, index) {
+            this.timeoutId = setTimeout(() => this.previewLesson({ lesson, index }), 450)
         },
         clearTimeout () {
             clearTimeout(this.timeoutId)
@@ -131,7 +134,7 @@ export default {
 
 .PageLessons {
 
-    h1 {
+    &_categoryName {
         margin-bottom: 20px;
         font-size: 40px;
     }
@@ -142,6 +145,7 @@ export default {
         height: 100%;
 
         .main_list {
+            padding-bottom: 100px;
             margin-bottom: 10px;
             overflow-x: hidden;
             overflow-y: auto;

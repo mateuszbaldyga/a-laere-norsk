@@ -23,7 +23,10 @@ export default new Vuex.Store({
         chosenCategory: {},
         chosenLessons: [],
         chosenPageFlashCards: [],
-        lessonPreview: [],
+        lessonPreview: {
+            lesson: [],
+            index: null,
+        },
     },
     getters: {
         chosenPageFlashCards: state => {
@@ -40,8 +43,14 @@ export default new Vuex.Store({
         CHOOSE_LESSONS (state, lessons) {
             state.chosenLessons = lessons
         },
-        PREVIEW_LESSON (state, lesson) {
-            state.lessonPreview = lesson
+        PREVIEW_LESSON (state, { lesson, index }) {
+            Object.assign(state.lessonPreview, { lesson, index })
+        },
+        RESET_PREVIEW_LESSON (state) {
+            Object.assign(state.lessonPreview, {
+                lesson: [],
+                index: null,
+            })
         },
     },
 })

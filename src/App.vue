@@ -25,6 +25,10 @@ html, body, #app {
     overflow: hidden;
 }
 
+strong {
+    font-weight: 700;
+}
+
 .container {
     padding-right: 20px;
     padding-left: 15px;
