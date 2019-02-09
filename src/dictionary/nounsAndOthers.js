@@ -40,7 +40,7 @@ const dict = [
         },
         {
             'no': 'ha det bra',
-            'pl': 'część na pożegnanie',
+            'pl': 'cześć na pożegnanie',
         },
         {
             'no': 'takk',

@@ -22,7 +22,7 @@ const dict = [
             'pl': 'patrzyć',
         },
         {
-            'no': 'å tenke, tekner',
+            'no': 'å tenke, tenker',
             'pl': 'myśleć',
         },
         {
