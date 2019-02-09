@@ -36,7 +36,11 @@ strong {
 }
 
 .container {
-    padding-right: 20px;
+    padding-right: 15px;
     padding-left: 15px;
+    max-width: $grid-width;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 </style>

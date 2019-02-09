@@ -1,6 +1,7 @@
 <template>
     <LayoutDefault class="PageCategories">
         <template slot="header">
+            <Navigation></Navigation>
             <h1 class="PageCategories_counter">
                 {{ wordsAmount }} words
             </h1>
@@ -16,6 +17,7 @@
                 :style="{ background: category.color }"
                 :class="{ '-selected': category.title === chosenCategory.title }"
                 @click="chooseCategory(category)"
+                @dblclick="chooseCategory(category) + start()"
                 >
                 {{ category.title }}
             </h2>
@@ -34,11 +36,13 @@
 
 <script>
 import StartButton from '@/components/StartButton'
+import Navigation from '@/components/Navigation'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
     components: {
         StartButton,
+        Navigation,
     },
 
     props: {
@@ -86,7 +90,7 @@ export default {
         cursor: pointer;
         line-height: .8;
         text-align: center;
-        line-height: $header-footer-height;
+        line-height: $header-footer-height + 10px;
 
         &.-selected {
             background-color: $color-accent-start !important;
@@ -95,10 +99,10 @@ export default {
     }
 
     &_counter {
-        width: 100%;
         padding: 15px;
         font-size: 12px;
         text-align: right;
+        margin-left: auto;
     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="LayoutDefault">
+    <div class="LayoutDefault container">
         <header>
             <slot name="header" />
         </header>
@@ -10,7 +10,6 @@
             <slot name="footer" />
         </footer>
         <slot />
-        <Navigation />
     </div>
 </template>
 
@@ -31,9 +30,10 @@ export default {
     position: relative;
     align-items: stretch;
     flex: 1;
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
+
+    &.container {
+        padding: 0;
+    }
 
     > header {
         flex-direction: row;

@@ -10,6 +10,7 @@ $color-flag-blue: #002669;
 
 
 $color-accent-start: $color-flag-blue;
+$color-border: $color-alto;
 
 $color-male: #c5e8ff;
 $color-female: #ffd1d9;
@@ -17,4 +18,9 @@ $color-neuter: #fff8c2;
 
 
 // Dimensions
+$grid-width: 700px;
 $header-footer-height: 50px;
+
+
+// Z-indexes
+$z-id-modal: 9999;

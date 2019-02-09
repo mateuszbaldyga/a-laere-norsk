@@ -3,9 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './global-components'
+import './registerServiceWorker'
+
+
+import vClickOutside from 'v-click-outside'
+Vue.use(vClickOutside)
 
 import VueVisible from 'vue-visible'
-import './registerServiceWorker'
 Vue.use(VueVisible)
 
 Vue.filter('capitalize', function (value) {

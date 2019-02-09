@@ -1,13 +1,14 @@
 <template>
-    <div class="CreateDict container">
+    <div class="CreateDict">
         <LayoutDefault>
             <template slot="header">
+                <BackButton :to="{name: 'categories'}" />
                 <h1>Format your dict</h1>
             </template>
 
             <div
                 slot="main"
-                class="CreateDict_main"
+                class="CreateDict_main container"
                 >
                 <textarea
                     v-model="unformatted"
@@ -96,6 +97,8 @@ export default {
     h1 {
         font-size: 25px;
         line-height: 50px;
+        margin-left: auto;
+        padding-right: 15px;
     }
 
     &_main {
