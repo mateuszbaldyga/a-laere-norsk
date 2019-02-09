@@ -1,6 +1,6 @@
 <template>
     <LayoutDefault class="PageFlashCards">
-        <div slot="header">
+        <template slot="header">
             <BackButton :to="{name: 'lessons'}" />
             <button
                 class="PageFlashCards_shuffleBtn"
@@ -13,7 +13,7 @@
                 >
                 {{ lap }}
             </p>
-        </div>
+        </template>
         <div
             slot="main"
             class="PageFlashCards_card container"
@@ -23,9 +23,8 @@
                 {{ word | capitalize }}
             </h1>
         </div>
-        <div
+        <template
             slot="footer"
-            class="PageFlashCards_actions"
             >
             <button @click="goBack()">
                 ⇦
@@ -33,7 +32,7 @@
             <button @click="unrevealCard() + goNext() ">
                 ⇨
             </button>
-        </div>
+        </template>
     </LayoutDefault>
 </template>
 
@@ -130,10 +129,7 @@ export default {
 @import '@/assets/styles/shared-vars.scss';
 
 .PageFlashCards {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+    flex: 1;
 
     &_shuffleBtn {
         display: inline-flex;
@@ -156,7 +152,6 @@ export default {
     }
 
     &_card {
-        display: flex;
         flex: 1;
         width: 100%;
         padding: 10px;
@@ -171,7 +166,6 @@ export default {
 
         > h1 {
             position: relative;
-            display: flex;
             align-items: center;
             justify-content: center;
             flex: 1;
@@ -219,13 +213,12 @@ export default {
         }
     }
 
-    &_actions {
-        display: flex;
-        align-items: stretch;
-        height: 100%;
+    footer {
         font-size: 20px;
 
         > button {
+            align-items: center;
+            justify-content: center;
             width: 50%;
         }
     }

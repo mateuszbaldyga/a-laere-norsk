@@ -1,8 +1,8 @@
 <template>
     <LayoutDefault class="PageLessons">
-        <div slot="header">
+        <template slot="header">
             <BackButton :to="{name: 'categories'}" />
-        </div>
+        </template>
 
         <div
             slot="main"
@@ -43,7 +43,7 @@
             </StartButton>
         </div>
 
-        <div slot="footer">
+        <template slot="footer">
             <StartButton
                 v-visible="chosenLessons.length"
                 class="PageLessons_goBtn"
@@ -51,7 +51,7 @@
                 >
                 GÅ!
             </StartButton>
-        </div>
+        </template>
 
         <LessonPreview v-if="lessonPreview.lesson.length" />
     </LayoutDefault>
@@ -140,11 +140,10 @@ export default {
     }
 
     &_main {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+        flex: 1;
 
         .main_list {
+            flex: 1;
             padding-bottom: 100px;
             margin-bottom: 10px;
             overflow-x: hidden;
@@ -155,7 +154,7 @@ export default {
 
     & &_allBtn {
         width: 100%;
-        background-color: #ff6896;
+        background-color: $color-flag-red;
         margin-top: auto;
     }
 

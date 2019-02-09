@@ -10,12 +10,17 @@
             <slot name="footer" />
         </footer>
         <slot />
+        <Navigation />
     </div>
 </template>
 
 <script>
-export default {
+import Navigation from '@/components/Navigation'
 
+export default {
+    components: {
+        Navigation,
+    },
 }
 </script>
 
@@ -24,26 +29,25 @@ export default {
 
 .LayoutDefault {
     position: relative;
-    display: flex;
-    flex-direction: column;
     align-items: stretch;
+    flex: 1;
+    width: 100%;
     max-width: 700px;
-    height: 100%;
     margin: 0 auto;
 
     > header {
+        flex-direction: row;
         height: $header-footer-height;
         overflow: hidden;
     }
 
     > main {
-        display: flex;
-        flex-direction: column;
         flex: 1;
         overflow: hidden;
     }
 
     > footer {
+        flex-direction: row;
         height: $header-footer-height;
         overflow: hidden;
     }

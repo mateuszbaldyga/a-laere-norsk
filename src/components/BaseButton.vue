@@ -27,12 +27,11 @@ export default {
 <style lang="scss">
 
 .BaseButton {
-    display: flex;
     align-items: center;
     justify-content: center;
     height: 50px;
     padding: 10px 30px;
-    background: $color-screamin-green;
+    background: $color-accent-start;
     color: white;
     font-size: 20px;
     user-select: none;

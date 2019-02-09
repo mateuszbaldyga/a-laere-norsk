@@ -25,6 +25,12 @@ html, body, #app {
     overflow: hidden;
 }
 
+body, body * {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
 strong {
     font-weight: 700;
 }

@@ -29,14 +29,13 @@ export default {
 @import '@/assets/styles/shared-vars.scss';
 
 .StartButton {
-    display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     width: 100%;
     height: $header-footer-height;
     padding: 0;
-    background: $color-screamin-green;
+    background: $color-accent-start;
     color: white;
     font-size: $header-footer-height;
     user-select: none;

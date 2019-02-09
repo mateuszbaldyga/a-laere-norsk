@@ -1,6 +1,10 @@
 <template>
     <LayoutDefault class="PageCategories">
-        <div slot="header" />
+        <template slot="header">
+            <h1 class="PageCategories_counter">
+                {{ wordsAmount }} words
+            </h1>
+        </template>
 
         <div
             slot="main"
@@ -17,20 +21,20 @@
             </h2>
         </div>
 
-        <div slot="footer">
+        <template slot="footer">
             <StartButton
                 v-visible="chosenCategory.title"
                 @click.native="start()"
                 >
                 GÅ!
             </StartButton>
-        </div>
+        </template>
     </LayoutDefault>
 </template>
 
 <script>
 import StartButton from '@/components/StartButton'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -43,6 +47,7 @@ export default {
 
     computed: {
         ...mapState([ 'chosenCategory' ]),
+        ...mapGetters([ 'wordsAmount' ]),
     },
 
     methods: {
@@ -64,10 +69,10 @@ export default {
 @import '@/assets/styles/shared-vars.scss';
 
 .PageCategories {
-    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    flex: 1;
+    width: 100%;
     color: #222;
 
     &_main {
@@ -84,13 +89,16 @@ export default {
         line-height: $header-footer-height;
 
         &.-selected {
-            background-color: $color-screamin-green !important;
+            background-color: $color-accent-start !important;
             color: #fff;
         }
     }
 
-    .StartButton {
-
+    &_counter {
+        width: 100%;
+        padding: 15px;
+        font-size: 12px;
+        text-align: right;
     }
 }
 </style>

@@ -2,14 +2,18 @@
 
 // Color
 $color-screamin-green: #68ff93;
-$color-onahau: #c5e8ff;
-$color-pastel-pink: #ffd1d9;
 $color-alto: #dedede;
-$color-egg-white: #fff8c2;
 
-$color-male: $color-onahau;
-$color-female: $color-pastel-pink;
-$color-neuter: $color-egg-white;
+// Norway flag colors
+$color-flag-red: #f22823;
+$color-flag-blue: #002669;
+
+
+$color-accent-start: $color-flag-blue;
+
+$color-male: #c5e8ff;
+$color-female: #ffd1d9;
+$color-neuter: #fff8c2;
 
 
 // Dimensions

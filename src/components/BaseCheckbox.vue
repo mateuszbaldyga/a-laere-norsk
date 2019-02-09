@@ -55,6 +55,7 @@ export default {
 .BaseCheckbox {
     position: relative;
     display: inline-flex;
+    flex-direction: row;
     align-items: center;
     padding-left: 45px;
     margin: 10px 0;
@@ -71,14 +72,14 @@ export default {
         width: 30px;
         height: 30px;
         background-color: #fff;
-        border: 1px solid $color-screamin-green;
+        border: 1px solid $color-accent-start;
     }
 }
 
 .BaseCheckbox.-checked {
 
     &:before {
-        background-color: $color-screamin-green;
+        background-color: $color-accent-start;
     }
 }
 </style>

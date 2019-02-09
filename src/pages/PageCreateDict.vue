@@ -1,9 +1,10 @@
 <template>
     <div class="CreateDict container">
         <LayoutDefault>
-            <div slot="header">
+            <template slot="header">
                 <h1>Format your dict</h1>
-            </div>
+            </template>
+
             <div
                 slot="main"
                 class="CreateDict_main"
@@ -27,13 +28,13 @@
                 </div>
             </div>
 
-            <div slot="footer">
+            <template slot="footer">
                 <StartButton
                     @click.native="handleFormat()"
                     >
                     Format
                 </StartButton>
-            </div>
+            </template>
         </LayoutDefault>
     </div>
 </template>
@@ -119,7 +120,7 @@ export default {
         position: absolute;
         top: 50%;
         left: 50%;
-        color: $color-screamin-green;
+        color: $color-accent-start;
         font-size: 50px;
         pointer-events: none;
         transform: translate(-50%, -50%);
