@@ -13,7 +13,7 @@
                 v-for="(item, index) in lessonPreview.lesson"
                 :key="index"
                 >
-                <strong>{{ item.no }}</strong> - {{ item.pl }}
+                <strong>{{ item.no }}</strong>'&nbsp;–&nbsp;{{ item.pl }}
             </li>
         </ul>
     </div>
@@ -44,6 +44,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/styles/shared-vars.scss';
+
 .LessonPreview {
     position: absolute;
     top: 0;
@@ -64,11 +66,13 @@ export default {
     }
 
     > button {
+        align-items: center;
+        justify-content: center;
         position: absolute;
         top: 0;
         right: 0;
-        width: 45px;
-        height: 45px;
+        width: $header-footer-height;
+        height: $header-footer-height;
         font-size: 16px;
     }
 
@@ -78,6 +82,10 @@ export default {
         overflow-x: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+
+        > li {
+            flex-direction: row;
+        }
     }
 }
 </style>
