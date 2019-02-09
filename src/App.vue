@@ -7,7 +7,7 @@
 <script>
 export default {
     beforeCreate () {
-        // this.$router.push({ name: 'categories' })
+        this.$router.push({ name: 'categories' })
     },
 }
 </script>

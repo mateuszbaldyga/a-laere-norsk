@@ -56,8 +56,8 @@ export default {
     position: relative;
     display: inline-flex;
     align-items: center;
-    padding-left: 50px;
-    margin: 10px;
+    padding-left: 45px;
+    margin: 10px 0;
     font-size: 30px;
     font-weight: 300;
     cursor: pointer;

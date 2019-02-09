@@ -12,7 +12,7 @@
                 {{ categoryName }}
             </h1>
 
-            <ul class="main_list container">
+            <ul class="main_list container" ref="list">
                 <li
                     v-for="(lesson, index) in lessons.length"
                     :key="index"
@@ -84,10 +84,18 @@ export default {
                 this.$store.commit('CHOOSE_LESSONS', val)
             }
         },
+        scrollToBottom () {
+            const { list } = this.$refs
+            list.scrollTo(0, list.scrollHeight)
+        }
     },
 
     created () {
         console.log('🦄 this.categories', this.lessons)
+    },
+
+    mounted () {
+        this.scrollToBottom()
     },
 }
 </script>
@@ -111,6 +119,7 @@ export default {
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            margin-bottom: 10px;
         }
     }
 

@@ -39,6 +39,7 @@ export default {
     color: white;
     font-size: $header-footer-height;
     user-select: none;
+    flex-shrink: 0;
 
     .BaseSvg {
         width: 26px;

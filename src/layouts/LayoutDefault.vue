@@ -32,16 +32,19 @@ export default {
 
     > header {
         height: $header-footer-height;
+        overflow: hidden;
     }
 
     > main {
         display: flex;
         flex-direction: column;
         flex: 1;
+        overflow: hidden;
     }
 
     > footer {
         height: $header-footer-height;
+        overflow: hidden;
     }
 }
 </style>
