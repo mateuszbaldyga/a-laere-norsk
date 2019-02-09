@@ -12,17 +12,20 @@
                 {{ categoryName }}
             </h1>
 
-            <ul class="main_list container" ref="list">
+            <ul
+                ref="list"
+                class="main_list container"
+                >
                 <li
                     v-for="(lesson, index) in lessons"
                     :key="index"
                     >
                     <BaseCheckbox
+                        :value="chosenLessons"
+                        :optionValue="index"
                         @mousedown.native="onMousedown(lesson)"
                         @mouseup.native="clearTimeout()"
                         @mouseleave.native="clearTimeout()"
-                        :value="chosenLessons"
-                        :optionValue="index"
                         @input="onInput"
                         >
                         {{ index + 1 + ' Lekcja' }}
@@ -48,7 +51,7 @@
             </StartButton>
         </div>
 
-        <LessonPreview></LessonPreview>
+        <LessonPreview />
     </LayoutDefault>
 </template>
 
@@ -71,9 +74,9 @@ export default {
     },
 
     data () {
-      return {
-        timeoutId: null,
-      }
+        return {
+            timeoutId: null,
+        }
     },
 
     computed: {
@@ -91,9 +94,9 @@ export default {
             this.$store.commit('PREVIEW_LESSON', lesson)
         },
         onMousedown (lesson) {
-            this.timeoutId = setTimeout(() => this.previewLesson(lesson), 650);
+            this.timeoutId = setTimeout(() => this.previewLesson(lesson), 650)
         },
-        clearTimeout() {
+        clearTimeout () {
             clearTimeout(this.timeoutId)
         },
         start () {
@@ -110,7 +113,7 @@ export default {
         scrollToBottom () {
             const { list } = this.$refs
             list.scrollTo(0, list.scrollHeight)
-        }
+        },
     },
 
     created () {
@@ -139,10 +142,10 @@ export default {
         height: 100%;
 
         .main_list {
+            margin-bottom: 10px;
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            margin-bottom: 10px;
         }
     }
 

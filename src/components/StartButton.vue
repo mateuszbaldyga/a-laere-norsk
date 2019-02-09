@@ -32,6 +32,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 100%;
     height: $header-footer-height;
     padding: 0;
@@ -39,7 +40,6 @@ export default {
     color: white;
     font-size: $header-footer-height;
     user-select: none;
-    flex-shrink: 0;
 
     .BaseSvg {
         width: 26px;
