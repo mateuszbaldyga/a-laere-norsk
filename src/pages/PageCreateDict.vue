@@ -1,31 +1,41 @@
 <template>
-    <LayoutDefault class="CreateDict">
-        <div slot="header">
-            <h1>Format your dict</h1>
-        </div>
-        <div
-            class="CreateDict_main"
-            slot="main"
-            >
-            <textarea
-                v-model="unformatted"
-                />
-            <input
-                ref="copyInput"
-                class="CreateDict_hidden"
-                :value="JSON.stringify(formatted)"
+    <div class="CreateDict container">
+        <LayoutDefault>
+            <div slot="header">
+                <h1>Format your dict</h1>
+            </div>
+            <div
+                slot="main"
+                class="CreateDict_main"
                 >
-            <pre>{{ formatted }}</pre>
-        </div>
+                <textarea
+                    v-model="unformatted"
+                    />
+                <input
+                    ref="copyInput"
+                    class="CreateDict_hidden"
+                    :value="JSON.stringify(formatted)"
+                    >
+                <div class="CreateDict_preWrap">
+                    <pre>{{ formatted }}</pre>
+                    <p
+                        v-if="showToast"
+                        class="CreateDict_toast"
+                        >
+                        Coppied
+                    </p>
+                </div>
+            </div>
 
-        <div slot="footer">
-            <StartButton
-                @click.native="handleFormat()"
-                >
-                Format
-            </StartButton>
-        </div>
-    </LayoutDefault>
+            <div slot="footer">
+                <StartButton
+                    @click.native="handleFormat()"
+                    >
+                    Format
+                </StartButton>
+            </div>
+        </LayoutDefault>
+    </div>
 </template>
 
 <script>
@@ -35,6 +45,7 @@ export default {
         return {
             unformatted: '',
             formatted: '',
+            showToast: false,
         }
     },
 
@@ -42,13 +53,18 @@ export default {
         copyToClipboard () {
             this.$refs.copyInput.select()
             document.execCommand('copy')
+            this.showToast = true
+
+            setTimeout(() => {
+                this.showToast = false
+            }, 1000)
         },
         handleFormat () {
             const dict = []
 
             this.unformatted.split(';').forEach(item => {
-                item = item.toLowerCase().replace(/,(?=[^\s])/g, ', ')
-                const split = item.split('-')
+                item = item.toLowerCase().replace(/[ ]{2,}/g, ' ').replace(/,(?=[^\s])/g, ', ')
+                const split = item.split(/[-—–]/g)
 
                 if (split.length < 2) return
 
@@ -69,7 +85,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/styles/shared-vars.scss';
+
 .CreateDict {
+    height: 100%;
+    background-color: #131313;
+    color: #fff;
 
     h1 {
         font-size: 25px;
@@ -85,22 +106,39 @@ export default {
     }
 
     &_hidden {
-        opacity: 0;
         position: absolute;
+        opacity: 0;
         pointer-events: none;
+    }
+
+    &_preWrap {
+        position: relative;
+    }
+
+    &_toast {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: $color-screamin-green;
+        font-size: 50px;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
     }
 
     textarea, pre {
         width: 100%;
         height: 200px;
-        border: 1px solid #000;
-        margin-bottom: 10px;
         padding: 20px;
+        border: 1px solid currentColor;
+        margin-bottom: 10px;
+        color: currentColor;
+        opacity: 0.9;
         overflow-x: hidden;
         overflow-y: auto;
+        resize: none;
         -webkit-overflow-scrolling: touch;
-          tab-size: 2;
-          font: 400 16px/20px 'PT Mono', monospace;
+        tab-size: 2;
+        font: 400 16px/20px 'PT Mono', monospace;
     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <PageCreateDict/>
+    <PageCreateDict />
 </template>
 
 <script>

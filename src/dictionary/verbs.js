@@ -63,6 +63,10 @@ const dict = [
         },
     ],
     // lekcja
+    [{ 'no': 'å stave, staver', 'pl': 'literować' }, { 'no': 'å lære, lærer', 'pl': 'uczyć się' }, { 'no': 'å spørre, spør', 'pl': 'pytać' }, { 'no': 'å prøve, prøver', 'pl': 'próbować' }, { 'no': 'å si, sier', 'pl': 'mówić, powiedzieć' }, { 'no': 'å gå, går', 'pl': 'iść' }, { 'no': 'å like, liker', 'pl': 'lubić' }],
+    [{ 'no': 'å besøke', 'pl': 'odwiedzać' }, { 'no': 'å skjønne', 'pl': 'rozumieć' }, { 'no': 'å bruke', 'pl': 'używać' }, { 'no': 'å ligge', 'pl': 'leżeć' }, { 'no': 'å handle', 'pl': 'robić zakupy' }, { 'no': 'å kjøpe', 'pl': 'kupować' }, { 'no': 'å vente', 'pl': 'czekać' }, { 'no': 'å trenge', 'pl': 'potrzebować' }, { 'no': 'å smile', 'pl': 'uśmiechać się' }, { 'no': 'å betale', 'pl': 'płacić' }, { 'no': 'å finne', 'pl': 'znajdować' }],
+    [{ 'no': 'å stå opp, står op', 'pl': 'wstawać' }, { 'no': 'å gjøre, gjør', 'pl': 'robić' }, { 'no': 'å stå, står', 'pl': 'stać' }, { 'no': 'å begynne, begynner', 'pl': 'zaczynać' }, { 'no': 'å arbeide, arbeider', 'pl': 'pracować' }, { 'no': 'å slutte, slutter', 'pl': 'kończyć' }, { 'no': 'å vekke, vekker', 'pl': 'budzić' }, { 'no': 'å lage, lager', 'pl': 'przygotowywać' }, { 'no': 'å ta, tar', 'pl': 'brać' }, { 'no': 'å sove, sover', 'pl': 'spać' }, { 'no': 'å fly, flyr', 'pl': 'latać' }, { 'no': 'å leke, leker', 'pl': 'bawić się' }, { 'no': 'å komme, kommer', 'pl': 'przychodzić, przyjeżdżać' }, { 'no': 'å gjenta, gjentar', 'pl': 'powtórzyć' }, { 'no': 'å pleie, pleier', 'pl': 'mieć w zwyczaju' }],
+    // lekcja
     [
         {
             no: 'å bake baker',
