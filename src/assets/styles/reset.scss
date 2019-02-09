@@ -52,6 +52,7 @@ button, input, textarea, select, option {
     margin: 0;
     appearance: none;
     font:inherit;
+    color: currentColor;
     &:focus, &:active {
         outline: none;
     } }

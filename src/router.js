@@ -28,6 +28,11 @@ const routes = [
         name: 'create-dict',
         component: () => import(/* webpackChunkName: "create-dict" */ './views/create-dict.vue'),
     },
+    {
+        path: '/search',
+        name: 'search',
+        component: () => import(/* webpackChunkName: "search" */ './views/search.vue'),
+    },
 ]
 
 const router = new Router({

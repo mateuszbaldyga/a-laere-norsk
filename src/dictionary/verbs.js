@@ -98,7 +98,7 @@ const dict = [
         },
         {
             no: 'å hente henter',
-            pl: 'przynosić,przywozić,przyprowadzać',
+            pl: 'przynosić, przywozić, przyprowadzać',
         },
         {
             no: 'å kjøre kjører',

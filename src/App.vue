@@ -32,15 +32,16 @@ body, body * {
 }
 
 strong {
+    display: inline;
     font-weight: 700;
 }
 
 .container {
+    width: 100%;
+    max-width: $grid-width;
     padding-right: 15px;
     padding-left: 15px;
-    max-width: $grid-width;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
 }
 </style>

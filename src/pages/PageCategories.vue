@@ -1,7 +1,7 @@
 <template>
     <LayoutDefault class="PageCategories">
         <template slot="header">
-            <Navigation></Navigation>
+            <Navigation />
             <h1 class="PageCategories_counter">
                 {{ wordsAmount }} words
             </h1>
@@ -100,9 +100,9 @@ export default {
 
     &_counter {
         padding: 15px;
+        margin-left: auto;
         font-size: 12px;
         text-align: right;
-        margin-left: auto;
     }
 }
 </style>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { flatten } from 'lodash'
+import { flatten, flattenDepth } from 'lodash'
 import { deepFreeze } from '@/helpers'
 import { nounsAndOthers, verbs } from '@/dictionary'
 
@@ -27,6 +27,8 @@ export default new Vuex.Store({
             lesson: [],
             index: null,
         },
+        searchQuery: '',
+        searchResults: [],
     },
     getters: {
         chosenPageFlashCards: state => {
@@ -44,6 +46,8 @@ export default new Vuex.Store({
 
             return res
         },
+        SEARCH_RESULTS_SOURCE: state => flattenDepth(state.database.map(item => item.lessons), 2),
+        SEARCH_INDEXED: (state, getters) => getters.SEARCH_RESULTS_SOURCE.map(item => item.no + ' ' + item.pl),
     },
     mutations: {
         CHOOSE_CATEGORY (state, category) {
@@ -60,6 +64,23 @@ export default new Vuex.Store({
                 lesson: [],
                 index: null,
             })
+        },
+        SET_SEARCH_QUERY (state, str) {
+            state.searchQuery = str
+        },
+        SET_SEARCH_RESULTS (state, arr) {
+            state.searchResults = deepFreeze(arr)
+        },
+        HANDLE_SEARCH (state) {
+            const indexes = this.getters['SEARCH_INDEXED'].reduce((res, item, i) => {
+                if (item.indexOf(state.searchQuery) > -1) {
+                    res.push(i)
+                }
+
+                return res
+            }, [])
+
+            this.commit('SET_SEARCH_RESULTS', indexes.map(i => this.getters['SEARCH_RESULTS_SOURCE'][i] ))
         },
     },
 })

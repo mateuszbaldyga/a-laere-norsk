@@ -95,10 +95,10 @@ export default {
     color: #fff;
 
     h1 {
+        padding-right: 15px;
+        margin-left: auto;
         font-size: 25px;
         line-height: 50px;
-        margin-left: auto;
-        padding-right: 15px;
     }
 
     &_main {
