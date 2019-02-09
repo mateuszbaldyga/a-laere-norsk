@@ -70,7 +70,7 @@ export default {
     }
 
     &_menu {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         z-index: $z-id-modal;
