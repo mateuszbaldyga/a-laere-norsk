@@ -69,8 +69,8 @@ export default {
         z-index: $z-id-modal + 1;
         width: $header-footer-height;
         height: $header-footer-height;
-        padding-top: 10px;
-        padding-left: 15px;
+        align-items: center;
+        justify-content: center;
         font-size: 25px;
     }
 
