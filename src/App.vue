@@ -18,6 +18,7 @@ export default {
 
 <style lang="scss">
 @import '@/assets/styles/reset.scss';
+@import '@/assets/styles/transitions.scss';
 @import '@/assets/styles/shared-vars.scss';
 // @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin-ext');
@@ -34,6 +35,10 @@ html, body, #app {
     font-family: 'Lora', serif;
     // font-family: 'Noto Serif SC', serif;
     overflow: hidden;
+}
+
+i {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Avenir Next', 'Avenir', 'Segoe UI', 'Lucida Grande', 'Helvetica Neue', 'Helvetica', 'Fira Sans', 'Roboto', 'Noto', 'Droid Sans', 'Cantarell', 'Oxygen', 'Ubuntu', 'Franklin Gothic Medium', 'Century Gothic', 'Liberation Sans', sans-serif;
 }
 
 body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, main, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {

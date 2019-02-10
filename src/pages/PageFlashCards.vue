@@ -6,13 +6,13 @@
                 class="PageFlashCards_shuffleBtn"
                 @click="shuffle()"
                 >
-                &#x1f500;
+                <i>&#x1f500;</i>
             </button>
             <button
                 class="PageFlashCards_markBtn"
                 @click="showConfirmDialog = true"
                 >
-                &#x2713;
+                <i>&#x2713;</i>
             </button>
             <p
                 class="PageFlashCards_lap"
@@ -20,6 +20,7 @@
                 {{ lap }}
             </p>
 
+            <!-- <transition name="TransitionOpacity"> -->
             <div
                 v-if="showConfirmDialog"
                 class="ConfirmDialog container"
@@ -33,7 +34,12 @@
                         NIE
                     </button>
                 </div>
+                <div
+                    class="ConfirmDialog_backdrop"
+                    @click="cancel()"
+                    />
             </div>
+            <!-- </transition> -->
         </template>
         <div
             slot="main"
@@ -43,15 +49,28 @@
             <h1 :class="className">
                 {{ word | capitalize }}
             </h1>
+            <!-- <transition name="TransitionOpacity"> -->
+            <div
+                v-if="showTick"
+                class="card_toast"
+                >
+                <i>
+                    &#x2713;
+                </i>
+                <span>
+                    {{ markedWord }}
+                </span>
+            </div>
+            <!-- </transition> -->
         </div>
         <template
             slot="footer"
             >
             <button @click="goBack()">
-                ⇦
+                <i>⇦</i>
             </button>
             <button @click="unrevealCard() + goNext() ">
-                ⇨
+                <i>⇨</i>
             </button>
         </template>
     </LayoutDefault>
@@ -73,6 +92,8 @@ export default {
             lap: 0,
             flashcardsInGame: [],
             showConfirmDialog: false,
+            showTick: false,
+            markedWord: '',
         }
     },
 
@@ -143,8 +164,15 @@ export default {
             this.flashcardsInGame.splice(this.currentIndex, 1)
         },
         agree () {
-            this.markAsMastered()
             this.showConfirmDialog = false
+            this.markedWord = this.word
+            this.showTick = true
+            this.isCardRevealed = false
+            this.markAsMastered()
+
+            setTimeout(() => {
+                this.showTick = false
+            }, 1000)
         },
         cancel () {
             this.showConfirmDialog = false
@@ -256,6 +284,27 @@ export default {
                 }
             }
         }
+
+        .card_toast {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: calc(100% - 20px);
+            height: calc(100% - 100px);
+            background: $color-screamin-green;
+            color: #fff;
+            font-weight: 700;
+            transform: translate(-50%, -50%);
+
+            > i {
+                font-size: 250px;
+            }
+
+            > span {
+                margin-top: -63px;
+                line-height: 1;
+            }
+        }
     }
 
     footer {
@@ -266,6 +315,7 @@ export default {
             align-items: center;
             justify-content: center;
             width: 50%;
+            font-weight: 700;
         }
     }
 
@@ -273,11 +323,11 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
+        z-index: $z-id-confirm-dialog;
         width: 100%;
         background-color: #fff;
         border-bottom: 1px solid #000;
         line-height: 1.5;
-        z-index: $z-id-confirm-dialog;
 
         p {
             padding: 20px 0;
@@ -292,6 +342,15 @@ export default {
                 width: 50%;
                 height: $header-footer-height;
             }
+        }
+
+        &_backdrop {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
         }
     }
 }

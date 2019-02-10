@@ -28,7 +28,7 @@
                         @mouseup.native="onTouchEnd()"
                         @touchend.native="onTouchEnd()"
                         @mouseleave.native="onTouchEnd()"
-                        @input="onInput"
+                        @input="selectLesson"
                         >
                         {{ index + 1 + ' Lekcja' }}
                     </BaseCheckbox>
@@ -89,7 +89,7 @@ export default {
     },
 
     methods: {
-        onInput (val) {
+        selectLesson (val) {
             this.$store.commit('CHOOSE_LESSONS', val)
         },
         previewLesson (lesson) {
@@ -120,6 +120,7 @@ export default {
     },
 
     created () {
+        this.selectLesson([this.lessons.length - 1])
         console.log('🦄 this.categories', this.lessons)
     },
 

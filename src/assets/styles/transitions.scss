@@ -1,0 +1,6 @@
+.TransitionOpacity-enter-active, .TransitionOpacity-leave-active {
+    transition: opacity .15s ease-out;
+}
+.TransitionOpacity-enter, .TransitionOpacity-leave-to {
+    opacity: 0;
+}

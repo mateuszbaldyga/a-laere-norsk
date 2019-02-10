@@ -71,6 +71,7 @@ export default {
     },
 
     created () {
+        this.$store.commit('CHOOSE_CATEGORY', this.categories[0])
         console.log('🦄 this.categories', this.categories)
     },
 }
