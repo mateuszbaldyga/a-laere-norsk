@@ -11,6 +11,7 @@
             <h1 class="PageCategories_info">
                 <p>{{ user.email }}</p>
                 <p>{{ wordsAmount }} words</p>
+                <p>{{ masteredFlashCards.size }} mastered</p>
             </h1>
         </template>
 
@@ -57,7 +58,7 @@ export default {
     },
 
     computed: {
-        ...mapState([ 'chosenCategory', 'user' ]),
+        ...mapState([ 'chosenCategory', 'user', 'masteredFlashCards' ]),
         ...mapGetters([ 'wordsAmount' ]),
     },
 
@@ -71,7 +72,6 @@ export default {
     },
 
     created () {
-        this.$store.commit('CHOOSE_CATEGORY', this.categories[0])
         console.log('🦄 this.categories', this.categories)
     },
 }
@@ -86,6 +86,10 @@ export default {
     flex: 1;
     width: 100%;
     color: #222;
+
+    header {
+        overflow: visible !important;
+    }
 
     &_main {
         margin: auto 0;

@@ -20,6 +20,11 @@ store.subscribe(mutation => {
     }
 })
 
+// Init initial state
+store.commit('CHOOSE_CATEGORY', store.state.database[0])
+store.commit('CHOOSE_LESSONS', [store.state.chosenCategory.lessons.length - 1])
+
+
 new Vue({
     router,
     store,

@@ -120,7 +120,6 @@ export default {
     },
 
     created () {
-        this.selectLesson([this.lessons.length - 1])
         console.log('🦄 this.categories', this.lessons)
     },
 
