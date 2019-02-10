@@ -11,7 +11,7 @@
             <h1 class="PageCategories_info">
                 <p>{{ user.email }}</p>
                 <p>{{ wordsAmount }} words</p>
-                <p>{{ masteredFlashCards.size }} mastered</p>
+                <p v-if="isLogged">{{ masteredFlashCards.size }} mastered</p>
             </h1>
         </template>
 
@@ -59,7 +59,7 @@ export default {
 
     computed: {
         ...mapState([ 'chosenCategory', 'user', 'masteredFlashCards' ]),
-        ...mapGetters([ 'wordsAmount' ]),
+        ...mapGetters([ 'wordsAmount', 'isLogged' ]),
     },
 
     methods: {
