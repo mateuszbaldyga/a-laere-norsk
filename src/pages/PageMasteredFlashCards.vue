@@ -8,7 +8,9 @@
             slot="main"
             class="PageMasteredFlashCards_main container"
             >
+            <h1 v-if="isLoading.masteredFlashCards">Loading...</h1>
             <DictListing
+                v-if="list.length"
                 :list="list"
                 :onDeleteClick="onDeleteClick"
                 />
@@ -36,20 +38,20 @@ export default {
     computed: {
         ...mapState([
             'masteredFlashCards',
+            'isLoading',
         ]),
     },
 
     methods: {
         onDeleteClick (flashcard) {
-            this.$store.commit('UPDATE_MASTERED_FLASHCARD', { flashcard, method: 'delete' })
+            this.$store.dispatch('UPDATE_MASTERED_FLASHCARD', { flashcard, method: 'delete' })
         },
     },
 
     created () {
         this.list = Array.from(this.masteredFlashCards)
-
         this.$store.subscribe(mutation => {
-            if (mutation.type === 'UPDATE_MASTERED_FLASHCARD') {
+            if (mutation.type === 'SET_MASTERED_FLASHCARDS') {
                 this.list = Array.from(this.masteredFlashCards)
             }
         })

@@ -4,11 +4,13 @@ import { flatten, flattenDepth } from 'lodash'
 import { deepFreeze, replaceSpecialChars } from '@/helpers'
 import { nounsAndOthers, verbs } from '@/dictionary'
 import ls from 'local-storage'
+import firebase from 'firebase'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        user: {},
         database: Object.freeze([
             {
                 title: 'Rzeczowniki + inne',
@@ -31,6 +33,9 @@ const store = new Vuex.Store({
         searchQuery: '',
         searchResults: [],
         masteredFlashCards: new Set(),
+        isLoading: {
+            masteredFlashCards: false
+        }
     },
     getters: {
         chosenFlashCards: state => {
@@ -54,6 +59,7 @@ const store = new Vuex.Store({
                 return item.no + ' ' + item.pl + ' ' + replaceSpecialChars(item.no + ' ' + item.pl)
             })
         },
+        isLogged: state => !!Object.keys(state.user).length,
     },
     mutations: {
         CHOOSE_CATEGORY (state, category) {
@@ -88,26 +94,45 @@ const store = new Vuex.Store({
 
             this.commit('SET_SEARCH_RESULTS', indexes.map(i => this.getters['SEARCH_RESULTS_SOURCE'][i] ))
         },
-        UPDATE_MASTERED_FLASHCARD (state, { flashcard, method }) {
+        SET_MASTERED_FLASHCARDS (state, cards) {
+            state.masteredFlashCards = new Set(cards)
+        },
+        SET_USER_INFO (state, user) {
+            const lsUser = ls.get('user')
+
+            if (lsUser) {
+                state.user = lsUser
+            }
+        },
+    },
+    actions: {
+        async GET_MASTERED_FLASHCARDS ({ commit, state }) {
+            state.isLoading.masteredFlashCards = true
+            const snapshot = await firebase.database().ref(`/users/${state.user.uid}/mastered-flashcards/`).once('value')
+            const cards = snapshot.val()
+
+            if (cards) {
+                commit('SET_MASTERED_FLASHCARDS', cards)
+            }
+            state.isLoading.masteredFlashCards = false
+        },
+        async UPDATE_MASTERED_FLASHCARD ({ state }, { flashcard, method }) {
             if (method === 'delete') {
                 state.masteredFlashCards.delete(flashcard)
             } else {
                 state.masteredFlashCards.add(flashcard)
             }
-            ls.set('MASTERED_FLASHCARDS', state.masteredFlashCards)
-            console.log('🦄 state.masteredFlashCards', state.masteredFlashCards)
-        },
-        INIT_MASTERED_FLASHCARDS (state) {
-            const lsStorage = ls.get('MASTERED_FLASHCARDS')
 
-            if (lsStorage) {
-                state.masteredFlashCards = new Set(lsStorage)
-                console.log('🦄 state.masteredFlashCards', state.masteredFlashCards)
-            }
+            const payload = Array.from(state.masteredFlashCards)
+            await firebase.database().ref(`/users/${state.user.uid}/mastered-flashcards/`).set(payload, function (error) {
+                if (error) {
+                    console.log('🦄 ERROR', error)
+                } else {
+                    console.log('🦄 SUCCESS', payload)
+                }
+            })
         },
     },
 })
-
-store.commit('INIT_MASTERED_FLASHCARDS')
 
 export default store

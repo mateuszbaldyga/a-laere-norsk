@@ -9,6 +9,10 @@ export default {
     beforeCreate () {
         this.$router.push({ name: 'categories' })
     },
+    created () {
+        this.$auth.getUser()
+        this.$store.commit('SET_USER_INFO')
+    },
 }
 </script>
 

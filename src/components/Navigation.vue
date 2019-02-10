@@ -12,6 +12,11 @@
             class="Navigation_menu"
             >
             <ul class="container">
+                <li v-if="!isLogged">
+                    <button @click="loginIn">
+                        Zaloguj się
+                    </button>
+                </li>
                 <li>
                     <RouterLink :to="{ name: 'search' }">
                         Wyszukiwarka
@@ -46,6 +51,7 @@ export default {
     computed: {
         ...mapGetters([
             'wordsAmount',
+            'isLogged',
         ]),
     },
 
@@ -55,6 +61,9 @@ export default {
         },
         close () {
             this.isOpened = false
+        },
+        loginIn () {
+            this.$auth.signup()
         },
     },
 }
@@ -67,10 +76,10 @@ export default {
 
     > button {
         z-index: $z-id-modal + 1;
-        width: $header-footer-height;
-        height: $header-footer-height;
         align-items: center;
         justify-content: center;
+        width: $header-footer-height;
+        height: $header-footer-height;
         font-size: 25px;
     }
 
@@ -85,6 +94,10 @@ export default {
         background-color: #fff;
         border-right: 1px solid #000;
         line-height: 50px;
+
+        a, button {
+            text-align: left;
+        }
     }
 }
 

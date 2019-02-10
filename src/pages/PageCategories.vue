@@ -8,8 +8,9 @@
                 >
                 🔍
             </RouterLink>
-            <h1 class="PageCategories_counter">
-                {{ wordsAmount }} words
+            <h1 class="PageCategories_info">
+                <p>{{ user.email }}</p>
+                <p>{{ wordsAmount }} words</p>
             </h1>
         </template>
 
@@ -56,7 +57,7 @@ export default {
     },
 
     computed: {
-        ...mapState([ 'chosenCategory' ]),
+        ...mapState([ 'chosenCategory', 'user' ]),
         ...mapGetters([ 'wordsAmount' ]),
     },
 
@@ -112,11 +113,15 @@ export default {
         }
     }
 
-    &_counter {
+    &_info {
         padding: 15px;
         margin-left: auto;
         font-size: 12px;
         text-align: right;
+
+        p + p {
+            margin-top: 10px;
+        }
     }
 }
 </style>

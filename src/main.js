@@ -14,8 +14,15 @@ Vue.filter('capitalize', function (value) {
 
 Vue.config.productionTip = false
 
+store.subscribe(mutation => {
+    if (mutation.type === 'SET_USER_INFO') {
+        store.dispatch('GET_MASTERED_FLASHCARDS')
+    }
+})
+
 new Vue({
     router,
     store,
     render: h => h(App),
 }).$mount('#app')
+

@@ -139,7 +139,7 @@ export default {
         },
         markAsMastered () {
             const flashcard = this.flashcardsInGame[this.currentIndex]
-            this.$store.commit('UPDATE_MASTERED_FLASHCARD', { flashcard })
+            this.$store.dispatch('UPDATE_MASTERED_FLASHCARD', { flashcard })
             this.flashcardsInGame.splice(this.currentIndex, 1)
         },
         agree () {
