@@ -36,6 +36,7 @@ const store = new Vuex.Store({
         isLoading: {
             masteredFlashCards: false,
         },
+        isNavigationOpened: false,
     },
     getters: {
         chosenFlashCards: state => {
@@ -100,6 +101,9 @@ const store = new Vuex.Store({
         SET_USER_INFO (state) {
             const lsUser = ls.get('user')
             state.user = lsUser || {}
+        },
+        CHANGE_NAVIGATION_VISIBILITY (state, bool) {
+            state.isNavigationOpened = bool === undefined ? !state.isNavigationOpened : bool
         },
     },
     actions: {

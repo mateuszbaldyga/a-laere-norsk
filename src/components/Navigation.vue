@@ -1,59 +1,63 @@
 <template>
     <div
-        v-click-outside="close"
         class="Navigation"
         >
-        <button @click="toggle()">
+        <button @click="toggleMenu()">
             ☰
         </button>
-        <transition name="Navigation_transition">
-        <div
-            v-if="isOpened"
-            class="Navigation_menu"
-            >
-            <ul class="container">
-                <li v-if="!isLogged">
-                    <button @click="loginIn()">
-                        Zaloguj się
-                    </button>
-                </li>
-                <li>
-                    <RouterLink :to="{ name: 'search' }">
-                        Wyszukiwarka
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink v-if="isLogged" :to="{ name: 'mastered-flashcards' }">
-                        Opanowany materiał
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink :to="{ name: 'create-dict' }">
-                        Stwórz słownik
-                    </RouterLink>
-                </li>
-                <li v-if="isLogged">
-                    <button @click="logOut()">
-                        Wyloguj się
-                    </button>
-                </li>
-            </ul>
-        </div>
-        </transition>
+        <Transition name="Navigation_transition">
+            <div
+                v-if="isNavigationOpened"
+                class="Navigation_menu"
+                >
+                <ul class="container">
+                    <li v-if="!isLogged">
+                        <button @click="loginIn()">
+                            Zaloguj się
+                        </button>
+                    </li>
+                    <li>
+                        <RouterLink :to="{ name: 'search' }">
+                            Wyszukiwarka
+                        </RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink
+                            v-if="isLogged"
+                            :to="{ name: 'mastered-flashcards' }"
+                            >
+                            Opanowany materiał
+                        </RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink :to="{ name: 'create-dict' }">
+                            Stwórz słownik
+                        </RouterLink>
+                    </li>
+                    <li v-if="isLogged">
+                        <button @click="logOut()">
+                            Wyloguj się
+                        </button>
+                    </li>
+                </ul>
+                <div
+                    class="menu_backdrop"
+                    @click="toggleMenu(false)"
+                    />
+            </div>
+        </Transition>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
-    data () {
-        return {
-            isOpened: false,
-        }
-    },
 
     computed: {
+        ...mapState([
+            'isNavigationOpened',
+        ]),
         ...mapGetters([
             'wordsAmount',
             'isLogged',
@@ -61,18 +65,15 @@ export default {
     },
 
     methods: {
-        toggle () {
-            this.isOpened = !this.isOpened
-        },
-        close () {
-            this.isOpened = false
+        toggleMenu (bool) {
+            this.$store.commit('CHANGE_NAVIGATION_VISIBILITY', bool)
         },
         loginIn () {
             this.$auth.signup()
         },
         logOut () {
             this.$auth.logout()
-        }
+        },
     },
 }
 </script>
@@ -106,6 +107,16 @@ export default {
         a, button {
             text-align: left;
         }
+    }
+
+    .menu_backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+
     }
 }
 

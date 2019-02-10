@@ -9,8 +9,8 @@
                 <i>&#x1f500;</i>
             </button>
             <button
-                class="PageFlashCards_markBtn"
                 v-if="isLogged"
+                class="PageFlashCards_markBtn"
                 @click="showConfirmDialog = true"
                 >
                 <i>&#x2713;</i>
