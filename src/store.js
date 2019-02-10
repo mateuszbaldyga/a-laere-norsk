@@ -34,8 +34,8 @@ const store = new Vuex.Store({
         searchResults: [],
         masteredFlashCards: new Set(),
         isLoading: {
-            masteredFlashCards: false
-        }
+            masteredFlashCards: false,
+        },
     },
     getters: {
         chosenFlashCards: state => {

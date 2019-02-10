@@ -8,7 +8,9 @@
             slot="main"
             class="PageMasteredFlashCards_main container"
             >
-            <h1 v-if="isLoading.masteredFlashCards">Loading...</h1>
+            <h1 v-if="isLoading.masteredFlashCards">
+                Loading...
+            </h1>
             <DictListing
                 v-if="list.length"
                 :list="list"
