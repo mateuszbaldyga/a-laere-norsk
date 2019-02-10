@@ -19,6 +19,21 @@
                 >
                 {{ lap }}
             </p>
+
+            <div
+                v-if="showConfirmDialog"
+                class="ConfirmDialog container"
+                >
+                <p>Oznaczyć jako opanowany materiał?</p>
+                <div class="ConfirmDialog_actions">
+                    <button @click="agree()">
+                        TAK
+                    </button>
+                    <button @click="cancel()">
+                        NIE
+                    </button>
+                </div>
+            </div>
         </template>
         <div
             slot="main"
@@ -38,21 +53,6 @@
             <button @click="unrevealCard() + goNext() ">
                 ⇨
             </button>
-
-            <div
-                v-if="showConfirmDialog"
-                class="ConfirmDialog container"
-                >
-                <p>Oznaczyć jako opanowany materiał?</p>
-                <div class="ConfirmDialog_actions">
-                    <button @click="agree()">
-                        TAK
-                    </button>
-                    <button @click="cancel()">
-                        NIE
-                    </button>
-                </div>
-            </div>
         </template>
     </LayoutDefault>
 </template>
@@ -270,13 +270,14 @@ export default {
     }
 
     .ConfirmDialog {
-        position: fixed;
-        bottom: 0;
+        position: absolute;
+        top: 0;
         left: 0;
         width: 100%;
         background-color: #fff;
-        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
         line-height: 1.5;
+        z-index: $z-id-confirm-dialog;
 
         p {
             padding: 20px 0;

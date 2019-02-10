@@ -47,6 +47,7 @@ export default {
     methods: {
         onDeleteClick (flashcard) {
             this.$store.dispatch('UPDATE_MASTERED_FLASHCARD', { flashcard, method: 'delete' })
+            this.list = Array.from(this.masteredFlashCards)
         },
     },
 
