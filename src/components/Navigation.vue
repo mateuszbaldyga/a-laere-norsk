@@ -11,11 +11,6 @@
                 class="Navigation_menu"
                 >
                 <ul class="container">
-                    <li v-if="!isLogged">
-                        <button @click="loginIn()">
-                            Zaloguj się
-                        </button>
-                    </li>
                     <li>
                         <RouterLink :to="{ name: 'search' }">
                             Wyszukiwarka
@@ -34,7 +29,12 @@
                             Stwórz słownik
                         </RouterLink>
                     </li>
-                    <li v-if="isLogged">
+                    <li v-if="!isLogged" class="-bottom">
+                        <button @click="loginIn()">
+                            Zaloguj się
+                        </button>
+                    </li>
+                    <li v-else class="-bottom">
                         <button @click="logOut()">
                             Wyloguj się
                         </button>
@@ -104,8 +104,18 @@ export default {
         border-right: 1px solid #000;
         line-height: 50px;
 
+        ul {
+            flex: 1;
+        }
+
         a, button {
             text-align: left;
+        }
+
+        .-bottom {
+            margin-top: auto;
+            padding-top: 40px;
+            color: $color-flag-blue;
         }
     }
 
