@@ -25,7 +25,7 @@ const store = new Vuex.Store({
         ]),
         chosenCategory: {},
         chosenLessons: [],
-        chosenFlashCards: [],
+        // chosenFlashCards: [],
         lessonPreview: {
             lesson: [],
             index: null,
@@ -39,7 +39,7 @@ const store = new Vuex.Store({
     },
     getters: {
         chosenFlashCards: state => {
-            if (!state.chosenLessons.length) return
+            if (!state.chosenLessons.length) return []
 
             const { lessons } = state.chosenCategory
             return flatten(lessons.filter((item, index) => state.chosenLessons.includes(index)))
@@ -104,6 +104,8 @@ const store = new Vuex.Store({
     },
     actions: {
         async GET_MASTERED_FLASHCARDS ({ commit, state }) {
+            if (!state.user.uid) return
+
             state.isLoading.masteredFlashCards = true
             const snapshot = await firebase.database().ref(`/users/${state.user.uid}/mastered-flashcards/`).once('value')
             const cards = snapshot.val()

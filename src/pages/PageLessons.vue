@@ -127,10 +127,6 @@ export default {
     mounted () {
         this.scrollToBottom()
     },
-
-    beforeDestroy () {
-        this.$store.commit('CHOOSE_LESSONS', [])
-    },
 }
 </script>
 
