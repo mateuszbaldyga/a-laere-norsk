@@ -212,7 +212,7 @@ const dict = [
         },
         {
             'no': 'morgen',
-            'pl': 'ranek,rano',
+            'pl': 'ranek, rano',
             'id': 'noun42',
         },
         {
@@ -222,7 +222,7 @@ const dict = [
         },
         {
             'no': 'middag',
-            'pl': 'południe ,obiad',
+            'pl': 'południe, obiad',
             'id': 'noun44',
         },
         {

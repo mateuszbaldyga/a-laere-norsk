@@ -347,7 +347,7 @@ const dict = [
         },
         {
             'no': 'å låne, låner',
-            'pl': 'pożyczyć,wypożyczyć',
+            'pl': 'pożyczyć, wypożyczyć',
             'id': 'verb67',
         },
         {
