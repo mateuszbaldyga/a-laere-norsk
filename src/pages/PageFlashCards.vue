@@ -10,6 +10,7 @@
             </button>
             <button
                 class="PageFlashCards_markBtn"
+                v-if="isLogged"
                 @click="showConfirmDialog = true"
                 >
                 <i>&#x2713;</i>
@@ -100,6 +101,7 @@ export default {
     computed: {
         ...mapState([
             'masteredFlashCards',
+            'isLogged',
         ]),
         flashcardsWithoutMastered () {
             return this.flashcards.filter(card => !Array.from(this.masteredFlashCards).some(mastered => card.id === mastered.id))

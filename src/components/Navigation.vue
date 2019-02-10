@@ -13,7 +13,7 @@
             >
             <ul class="container">
                 <li v-if="!isLogged">
-                    <button @click="loginIn">
+                    <button @click="loginIn()">
                         Zaloguj się
                     </button>
                 </li>
@@ -23,7 +23,7 @@
                     </RouterLink>
                 </li>
                 <li>
-                    <RouterLink :to="{ name: 'mastered-flashcards' }">
+                    <RouterLink v-if="isLogged" :to="{ name: 'mastered-flashcards' }">
                         Opanowany materiał
                     </RouterLink>
                 </li>
@@ -31,6 +31,11 @@
                     <RouterLink :to="{ name: 'create-dict' }">
                         Stwórz słownik
                     </RouterLink>
+                </li>
+                <li v-if="isLogged">
+                    <button @click="logOut()">
+                        Wyloguj się
+                    </button>
                 </li>
             </ul>
         </div>
@@ -65,6 +70,9 @@ export default {
         loginIn () {
             this.$auth.signup()
         },
+        logOut () {
+            this.$auth.logout()
+        }
     },
 }
 </script>

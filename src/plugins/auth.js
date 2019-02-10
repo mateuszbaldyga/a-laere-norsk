@@ -7,6 +7,11 @@ const provider = new firebase.auth.GoogleAuthProvider()
 
 const auth = {
     signup: () => firebase.auth().signInWithRedirect(provider),
+    logout: () => {
+        ls.remove('token')
+        ls.remove('user')
+        store.commit('SET_USER_INFO')
+    },
     getUser: () => {
         firebase.auth().getRedirectResult().then(function (result) {
             if (result.credential) {

@@ -97,12 +97,9 @@ const store = new Vuex.Store({
         SET_MASTERED_FLASHCARDS (state, cards) {
             state.masteredFlashCards = new Set(cards)
         },
-        SET_USER_INFO (state, user) {
+        SET_USER_INFO (state) {
             const lsUser = ls.get('user')
-
-            if (lsUser) {
-                state.user = lsUser
-            }
+            state.user = lsUser || {}
         },
     },
     actions: {
