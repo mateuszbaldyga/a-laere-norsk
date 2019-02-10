@@ -9,13 +9,17 @@
                 slot="main"
                 class="PageSearch_main container"
                 >
-                <input
-                    v-model="query"
-                    type="text"
-                    placeholder="Search"
-                    >
+                <div class="main_inputWrapper">
+                    <input
+                        v-model="query"
+                        type="text"
+                        placeholder="Search"
+                        >
+                    <button @click="handleSearch()">🔍</button>
+                </div>
 
-                <DictListing :list="list" />
+                <p v-if="!list.length" style="margin: 25px 0;">Brak wyników.</p>
+                <DictListing v-else :list="list" />
             </div>
         </LayoutDefault>
     </div>
@@ -48,7 +52,7 @@ export default {
             },
         },
         list () {
-            return this.searchResults.length && this.searchQuery ? this.searchResults : this.SEARCH_RESULTS_SOURCE
+            return this.searchResults.length || this.searchQuery ? this.searchResults : this.SEARCH_RESULTS_SOURCE
         },
     },
 
@@ -88,11 +92,25 @@ export default {
         font-size: 25px;
         line-height: 50px;
     }
+
+    .main_inputWrapper {
+        position: relative;
+        margin-top: 20px;
+
+        button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 20px;
+            width: 45px;
+            height: 100%;
+        }
+    }
+
     input {
         width: 100%;
         padding: 15px;
         border: 1px solid currentColor;
-        margin-top: 20px;
 
         &::placeholder {
             color: currentColor;
