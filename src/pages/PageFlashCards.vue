@@ -79,7 +79,7 @@
 
 <script>
 import { shuffle } from 'lodash'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
     props: {
@@ -101,6 +101,8 @@ export default {
     computed: {
         ...mapState([
             'masteredFlashCards',
+        ]),
+        ...mapGetters([
             'isLogged',
         ]),
         flashcardsWithoutMastered () {
@@ -291,6 +293,8 @@ export default {
             position: absolute;
             top: 50%;
             left: 50%;
+            align-items: center;
+            justify-content: center;
             width: calc(100% - 20px);
             height: calc(100% - 100px);
             background: $color-screamin-green;
