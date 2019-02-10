@@ -6,7 +6,7 @@
         <button @click="toggle()">
             ☰
         </button>
-        <!-- <transition name="Navigation_transition"> -->
+        <transition name="Navigation_transition">
         <div
             v-if="isOpened"
             class="Navigation_menu"
@@ -39,7 +39,7 @@
                 </li>
             </ul>
         </div>
-        <!-- </transition> -->
+        </transition>
     </div>
 </template>
 
@@ -110,10 +110,10 @@ export default {
 }
 
 .Navigation_transition-enter-active, .Navigation_transition-leave-active {
-    transition: transform .15s ease-out;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0, 1);
 }
 .Navigation_transition-enter, .Navigation_transition-leave-to {
-    transform: translateX(-100%);
+    transform: translate(-100%, 0);
 }
 
 </style>

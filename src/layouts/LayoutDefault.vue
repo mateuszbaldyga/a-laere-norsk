@@ -25,6 +25,7 @@ export default {
     position: relative;
     align-items: stretch;
     flex: 1;
+    overflow: hidden;
 
     &.container {
         padding: 0;

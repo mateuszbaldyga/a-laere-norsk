@@ -2,6 +2,7 @@
     <LayoutDefault class="PageMasteredFlashCards">
         <template slot="header">
             <BackButton :to="{name: 'categories'}" />
+            <h1>Opanowany materiał</h1>
         </template>
 
         <div
@@ -69,6 +70,12 @@ export default {
 
     &_main {
         flex: 1;
+    }
+
+    h1 {
+        padding-right: 15px;
+        font-size: 25px;
+        line-height: 50px;
     }
 
     footer {
