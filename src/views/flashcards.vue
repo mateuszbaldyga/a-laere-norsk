@@ -4,7 +4,7 @@
 
 <script>
 import PageFlashCards from '@/pages/PageFlashCards'
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     components: {
@@ -12,7 +12,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters([
+        ...mapState([
             'chosenFlashCards',
         ]),
     },

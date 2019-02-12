@@ -1,7 +1,7 @@
 <template>
     <LayoutDefault class="PageFlashCards">
         <template slot="header">
-            <BackButton :to="{name: 'lessons'}" />
+            <BackButton @click.native="$router.go(-1)" />
             <button
                 class="PageFlashCards_shuffleBtn"
                 @click="shuffle()"
@@ -13,7 +13,7 @@
                 class="PageFlashCards_markBtn"
                 @click="showConfirmDialog = true"
                 >
-                <i>&#x2713;</i>
+                <i>❌</i>
             </button>
             <p
                 class="PageFlashCards_lap"
@@ -26,7 +26,7 @@
                 v-if="showConfirmDialog"
                 class="ConfirmDialog container"
                 >
-                <p>Oznaczyć jako opanowany materiał?</p>
+                <p>Oznaczyć jako trudny materiał?</p>
                 <div class="ConfirmDialog_actions">
                     <button @click="agree()">
                         TAK
@@ -99,14 +99,15 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            'masteredFlashCards',
-        ]),
+        // ...mapState([
+        //     'masteredFlashCards',
+        // ]),
         ...mapGetters([
             'isLogged',
         ]),
         flashcardsWithoutMastered () {
-            return this.flashcards.filter(card => !Array.from(this.masteredFlashCards).some(mastered => card.id === mastered.id))
+            // return this.flashcards.filter(card => !Array.from(this.masteredFlashCards).some(mastered => card.id === mastered.id))
+            return this.flashcards
         },
         word () {
             return this.flashcardsInGame[this.currentIndex][this.isCardRevealed ? 'no' : 'pl']
@@ -167,12 +168,19 @@ export default {
             this.$store.dispatch('UPDATE_MASTERED_FLASHCARD', { flashcard })
             this.flashcardsInGame.splice(this.currentIndex, 1)
         },
+        markAsHard () {
+            const card = this.flashcardsInGame[this.currentIndex]
+            this.$store.dispatch('UPDATE_HARD_CARDS', { card })
+            // this.flashcardsInGame.splice(this.currentIndex, 1)
+            // TODO append
+        },
         agree () {
             this.showConfirmDialog = false
             this.markedWord = this.word
             this.showTick = true
             this.isCardRevealed = false
-            this.markAsMastered()
+            // this.markAsMastered()
+            this.markAsHard()
 
             setTimeout(() => {
                 this.showTick = false
@@ -297,12 +305,13 @@ export default {
             justify-content: center;
             width: calc(100% - 20px);
             height: calc(100% - 100px);
-            background: $color-screamin-green;
+            background: $color-flag-red;
             color: #fff;
             font-weight: 700;
             transform: translate(-50%, -50%);
 
             > i {
+                display: none;
                 font-size: 250px;
             }
 

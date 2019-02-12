@@ -47,7 +47,7 @@
             <StartButton
                 v-visible="chosenLessons.length"
                 class="PageLessons_goBtn"
-                :to="{ name: 'flashcards' }"
+                @click.native="start()"
                 >
                 GÅ!
             </StartButton>
@@ -62,6 +62,7 @@ import { mapState } from 'vuex'
 import BaseCheckbox from '@/components/BaseCheckbox'
 import StartButton from '@/components/StartButton'
 import LessonPreview from '@/components/LessonPreview'
+import { flatten } from 'lodash'
 
 export default {
     components: {
@@ -83,6 +84,7 @@ export default {
 
     computed: {
         ...mapState([
+            'chosenCategory',
             'chosenLessons',
             'lessonPreview',
         ]),
@@ -103,6 +105,13 @@ export default {
             clearTimeout(this.timeoutId)
         },
         start () {
+            console.log('🦄 XXX')
+            if (!this.chosenLessons.length) return
+
+            const { lessons } = this.chosenCategory
+            const cards = flatten(lessons.filter((item, index) => this.chosenLessons.includes(index)))
+            console.log('🦄 cards', cards)
+            this.$store.commit('SET_FLASHCARDS', cards)
             this.$router.push({ name: 'flashcards' })
         },
         selectAll () {

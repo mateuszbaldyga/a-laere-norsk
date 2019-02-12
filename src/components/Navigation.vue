@@ -16,12 +16,20 @@
                             Wyszukiwarka
                         </RouterLink>
                     </li>
-                    <li>
+<!--                     <li>
                         <RouterLink
                             v-if="isLogged"
                             :to="{ name: 'mastered-flashcards' }"
                             >
                             Opanowany materiał
+                        </RouterLink>
+                    </li> -->
+                    <li>
+                        <RouterLink
+                            v-if="isLogged"
+                            :to="{ name: 'hard-to-remember' }"
+                            >
+                            Trudne
                         </RouterLink>
                     </li>
                     <li>

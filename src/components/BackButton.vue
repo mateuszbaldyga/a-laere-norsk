@@ -1,10 +1,11 @@
 <template>
-    <RouterLink
+    <Component
+        :is="$attrs.to ? 'router-link' : 'button'"
         class="BackButton"
         v-bind="$attrs"
         >
         ➦
-    </RouterLink>
+    </Component>
 </template>
 
 <script>

@@ -16,7 +16,8 @@ Vue.config.productionTip = false
 
 store.subscribe(mutation => {
     if (mutation.type === 'SET_USER_INFO') {
-        store.dispatch('GET_MASTERED_FLASHCARDS')
+        // store.dispatch('GET_MASTERED_FLASHCARDS')
+        store.dispatch('GET_HARD_CARDS')
     }
 })
 

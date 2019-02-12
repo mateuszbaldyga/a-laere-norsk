@@ -38,6 +38,11 @@ const routes = [
         name: 'mastered-flashcards',
         component: () => import(/* webpackChunkName: "mastered-flashcards" */ './views/mastered-flashcards.vue'),
     },
+    {
+        path: '/hard-to-remember',
+        name: 'hard-to-remember',
+        component: () => import(/* webpackChunkName: "hard-to-remember" */ './views/hard-to-remember.vue'),
+    },
 ]
 
 const router = new Router({
