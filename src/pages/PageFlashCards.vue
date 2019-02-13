@@ -15,11 +15,19 @@
                 >
                 <i>❌</i>
             </button>
-            <p
-                class="PageFlashCards_lap"
+            <div class="PageFlashCards_counter">
+                <p
+                    class="counter_lap"
+                    v-visible="lap"
+                    >
+                    {{ lap }}
+                </p>
+                <p
+                    class="counter_card"
+                    v-html="progress"
                 >
-                {{ lap }}
-            </p>
+                </p>
+            </div>
 
             <!-- <transition name="TransitionOpacity"> -->
             <div
@@ -120,6 +128,9 @@ export default {
                 '-neuter': this.word.indexOf('et ') === 0,
             }
         },
+        progress () {
+            return this.currentIndex + 1 + '<br>' + this.flashcardsInGame.length
+        }
     },
 
     methods: {
@@ -226,14 +237,23 @@ export default {
         color: $color-screamin-green;
     }
 
-    &_lap {
+    &_counter {
         position: absolute;
+        min-width: 50px;
+        flex-direction: row;
         top: 0;
-        right: 0;
-        width: 50px;
-        font-size: 20px;
-        line-height: 50px;
-        text-align: center;
+        right: 10px;
+        align-items: center;
+
+        .counter_lap {
+            font-size: 37px;
+            line-height: 50px;
+        }
+
+        .counter_card {
+            font-size: 16px;
+            margin-left: 5px;
+        }
     }
 
     &_card {
