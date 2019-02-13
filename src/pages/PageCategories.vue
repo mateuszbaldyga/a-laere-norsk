@@ -65,6 +65,7 @@ export default {
     methods: {
         chooseCategory (category) {
             this.$store.commit('CHOOSE_CATEGORY', category)
+            this.$store.commit('CHOOSE_LESSONS', [ category.lessons.length - 1 ])
         },
         start () {
             this.$router.push({ name: 'lessons' })

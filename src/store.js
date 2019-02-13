@@ -39,7 +39,7 @@ const store = new Vuex.Store({
             hardCards: false,
         },
         isNavigationOpened: false,
-        chosenFlashCards: []
+        chosenFlashCards: [],
     },
     getters: {
         wordsAmount: state => {
@@ -58,13 +58,16 @@ const store = new Vuex.Store({
             })
         },
         isLogged: state => !!Object.keys(state.user).length,
+        chosenCategory: state => Object.keys(state.chosenCategory).length ? state.chosenCategory : ls.get('SELECTED_CATEGORY'),
     },
     mutations: {
         CHOOSE_CATEGORY (state, category) {
             state.chosenCategory = category
+            ls.set('SELECTED_CATEGORY', category)
         },
         CHOOSE_LESSONS (state, lessons) {
             state.chosenLessons = lessons
+            ls.set('SELECTED_LESSONS', lessons)
         },
         PREVIEW_LESSON (state, { lesson, index }) {
             Object.assign(state.lessonPreview, { lesson, index })

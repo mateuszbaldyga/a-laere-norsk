@@ -173,6 +173,7 @@ export default {
         shuffle () {
             this.flashcardsInGame = shuffle(this.flashcardsWithoutMastered)
             this.currentIndex = 0
+            this.isCardRevealed = false
         },
         markAsMastered () {
             const flashcard = this.flashcardsInGame[this.currentIndex]

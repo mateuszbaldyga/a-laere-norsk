@@ -1077,14 +1077,9 @@ const dict = [
             'id': 'noun211',
         },
         {
-            'no': 'om kvelden',
+            'no': 'om kvelden, hver kveld',
             'pl': 'każdego wieczora',
             'id': 'noun212',
-        },
-        {
-            'no': 'hver kveld',
-            'pl': 'każdego wieczora',
-            'id': 'noun213',
         },
         {
             'no': 'en penn',
@@ -1196,7 +1191,7 @@ const dict = [
             'id': 'noun234',
         },
         {
-            'no': 'cirka, ca',
+            'no': 'cirka, ca.',
             'pl': 'około',
             'id': 'noun235',
         },

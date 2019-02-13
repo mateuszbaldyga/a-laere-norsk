@@ -51,8 +51,8 @@ const dict = [
             'id': 'verb9',
         },
         {
-            'no': 'å fortelle, forteller',
-            'pl': 'opowiadać',
+            'no': 'å fortelle om, forteller om',
+            'pl': 'opowiadać o',
             'id': 'verb10',
         },
         {
@@ -163,11 +163,6 @@ const dict = [
             'no': 'å betale',
             'pl': 'płacić',
             'id': 'verb31',
-        },
-        {
-            'no': 'å finne',
-            'pl': 'znajdować',
-            'id': 'verb32',
         },
     ],
     [
@@ -326,7 +321,7 @@ const dict = [
             'id': 'verb62',
         },
         {
-            'no': 'å veksle, veksler',
+            'no': 'å veksle, veksler (exchange)',
             'pl': 'wymieniać',
             'id': 'verb63',
         },

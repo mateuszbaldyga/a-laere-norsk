@@ -6,6 +6,7 @@ import './filters'
 import './plugins'
 import './global-components'
 import './registerServiceWorker'
+import ls from 'local-storage'
 
 Vue.config.productionTip = false
 
@@ -17,13 +18,8 @@ store.subscribe(mutation => {
 })
 
 // Init initial state
-store.subscribe(mutation => {
-    if (mutation.type === 'CHOOSE_CATEGORY') {
-        store.commit('CHOOSE_LESSONS', [store.state.chosenCategory.lessons.length - 1])
-    }
-})
-
-store.commit('CHOOSE_CATEGORY', store.state.database[0])
+store.commit('CHOOSE_CATEGORY', ls.get('SELECTED_CATEGORY') || store.state.database[0])
+store.commit('CHOOSE_LESSONS', ls.get('SELECTED_LESSONS') || [ store.state.chosenCategory.lessons.length - 1 ])
 
 
 new Vue({
