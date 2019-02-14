@@ -40,6 +40,7 @@ const store = new Vuex.Store({
         },
         isNavigationOpened: false,
         chosenFlashCards: [],
+        isModePlToNo: true,
     },
     getters: {
         wordsAmount: state => {
@@ -110,7 +111,11 @@ const store = new Vuex.Store({
         },
         SET_FLASHCARDS (state, list) {
             state.chosenFlashCards = list
-        }
+        },
+        SET_MODE (state, bool) {
+            state.isModePlToNo = bool === undefined ? !state.isModePlToNo : bool
+            ls.set('IS_MODE_PL_TO_NO', state.isModePlToNo)
+        },
     },
     actions: {
         async GET_MASTERED_FLASHCARDS ({ commit, state }) {

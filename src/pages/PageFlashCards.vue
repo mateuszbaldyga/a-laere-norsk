@@ -100,9 +100,9 @@ export default {
     },
 
     computed: {
-        // ...mapState([
-        //     'masteredFlashCards',
-        // ]),
+        ...mapState([
+            'isModePlToNo',
+        ]),
         ...mapGetters([
             'isLogged',
         ]),
@@ -111,7 +111,8 @@ export default {
             return this.flashcards
         },
         word () {
-            return this.flashcardsInGame[this.currentIndex][this.isCardRevealed ? 'no' : 'pl']
+            const langOrder = this.isModePlToNo ? ['pl', 'no'] : ['no', 'pl']
+            return this.flashcardsInGame[this.currentIndex][!this.isCardRevealed ? langOrder[0] : langOrder[1]]
         },
         className () {
             return {

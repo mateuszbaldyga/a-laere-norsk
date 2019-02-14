@@ -20,6 +20,7 @@ store.subscribe(mutation => {
 // Init initial state
 store.commit('CHOOSE_CATEGORY', ls.get('SELECTED_CATEGORY') || store.state.database[0])
 store.commit('CHOOSE_LESSONS', ls.get('SELECTED_LESSONS') || [ store.state.chosenCategory.lessons.length - 1 ])
+store.commit('SET_MODE', ls.get('IS_MODE_PL_TO_NO') !== undefined ? ls.get('IS_MODE_PL_TO_NO') : true)
 
 
 new Vue({

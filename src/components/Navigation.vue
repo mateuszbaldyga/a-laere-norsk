@@ -37,6 +37,16 @@
                             Stwórz słownik
                         </RouterLink>
                     </li>
+                    <li>
+                        <button class="Navigation_langSwitch" @click="SET_MODE()">
+                            <span>{{ isModePlToNo ? '🇵🇱' : '🇳🇴' }}</span>
+                            ➡️
+                            <span>{{ isModePlToNo ? '🇳🇴' : '🇵🇱' }}</span>
+                        </button>
+                    </li>
+
+
+
                     <li v-if="!isLogged" class="-bottom">
                         <button @click="loginIn()">
                             Zaloguj się
@@ -58,13 +68,14 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations } from 'vuex'
 
 export default {
 
     computed: {
         ...mapState([
             'isNavigationOpened',
+            'isModePlToNo'
         ]),
         ...mapGetters([
             'wordsAmount',
@@ -73,6 +84,9 @@ export default {
     },
 
     methods: {
+        ...mapMutations([
+            'SET_MODE',
+        ]),
         toggleMenu (bool) {
             this.$store.commit('CHANGE_NAVIGATION_VISIBILITY', bool)
         },
@@ -135,6 +149,17 @@ export default {
         left: 0;
         z-index: -1;
 
+    }
+
+    &_langSwitch {
+        margin-top: 20px;
+        align-items: center;
+        display: flex;
+        font-size: 30px;
+
+        > span {
+            margin: 0 10px;
+        }
     }
 }
 
