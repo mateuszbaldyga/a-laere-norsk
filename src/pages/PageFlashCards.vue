@@ -30,24 +30,12 @@
             </div>
 
             <!-- <transition name="TransitionOpacity"> -->
-            <div
-                v-if="showConfirmDialog"
-                class="ConfirmDialog container"
-                >
-                <p>Oznaczyć jako trudny materiał?</p>
-                <div class="ConfirmDialog_actions">
-                    <button @click="agree()">
-                        TAK
-                    </button>
-                    <button @click="cancel()">
-                        NIE
-                    </button>
-                </div>
-                <div
-                    class="ConfirmDialog_backdrop"
-                    @click="cancel()"
-                    />
-            </div>
+            <ConfirmDialog
+                :isOpened="showConfirmDialog"
+                :message="'Oznaczyć jako trudne?'"
+                :onAgree="agree"
+                :onCancel="cancel"
+                ></ConfirmDialog>
             <!-- </transition> -->
         </template>
         <div
@@ -88,8 +76,13 @@
 <script>
 import { shuffle } from 'lodash'
 import { mapState, mapGetters } from 'vuex'
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 export default {
+
+    components: {
+        ConfirmDialog,
+    },
     props: {
         flashcards: Array,
     },
@@ -352,41 +345,6 @@ export default {
             justify-content: center;
             width: 50%;
             font-weight: 700;
-        }
-    }
-
-    .ConfirmDialog {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: $z-id-confirm-dialog;
-        width: 100%;
-        background-color: #fff;
-        border-bottom: 1px solid #000;
-        line-height: 1.5;
-
-        p {
-            padding: 20px 0;
-        }
-
-        &_actions {
-            flex-direction: row;
-
-            > button {
-                align-items: center;
-                justify-content: center;
-                width: 50%;
-                height: $header-footer-height;
-            }
-        }
-
-        &_backdrop {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: -1;
         }
     }
 }
