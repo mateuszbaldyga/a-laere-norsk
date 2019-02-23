@@ -60,6 +60,26 @@ const dict = [
         'no': 'trenger',
         'pl': 'potrzebować',
     },
+    {
+        'no': 'for eksempel',
+        'pl': 'na przykład',
+    },
+    {
+        'no': 'en fest',
+        'pl': 'impreza',
+    },
+    {
+        'no': 'ren',
+        'pl': 'czysty',
+    },
+    {
+        'no': 'jeg har dessverre ikke det',
+        'pl': 'nie mam niestety tego',
+    },
+    {
+        'no': 'jeg har dessverre ikke det',
+        'pl': 'nie mam niestety tego',
+    },
 ]
 
 export default dict

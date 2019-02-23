@@ -356,6 +356,7 @@ const dict = [
             'id': 'verb69',
         },
     ],
+    [{ 'no': 'å passe seg', 'pl': 'uważać się' }, { 'no': 'å vaske seg', 'pl': 'myć się' }, { 'no': 'å gifte seg', 'pl': 'żenić się' }, { 'no': 'å legge seg', 'pl': 'kłaść się' }, { 'no': 'å glede seg', 'pl': 'cieszyć się' }, { 'no': 'å sette seg', 'pl': 'siadać' }, { 'no': 'å ønske seg', 'pl': 'życzyć' }, { 'no': 'å hvile seg', 'pl': 'odpoczywać' }, { 'no': 'å sole seg', 'pl': 'opalać się' }, { 'no': 'å slanke seg /szlanke/', 'pl': 'odchudzać się' }, { 'no': 'å skynde seg /szyne/', 'pl': 'śpieszyć się' }, { 'no': 'å lønne seg', 'pl': 'opłacać się' }, { 'no': 'å kle på seg', 'pl': 'ubierać się' }, { 'no': 'å kle av seg', 'pl': 'rozbierać się' }],
 ]
 
 export default dict
