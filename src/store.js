@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { flatten, flattenDepth } from 'lodash'
 import { deepFreeze, replaceSpecialChars } from '@/helpers'
-import { nounsAndOthers, verbs } from '@/dictionary'
+import { nounsAndOthers, verbs, bonus } from '@/dictionary'
 import ls from 'local-storage'
 import firebase from 'firebase'
 
@@ -20,6 +20,11 @@ const store = new Vuex.Store({
             {
                 title: 'Czasowniki',
                 lessons: deepFreeze(verbs),
+                // color: '#ffd9d9',
+            },
+            {
+                title: 'Bonus',
+                lessons: deepFreeze(bonus),
                 // color: '#ffd9d9',
             },
         ]),
