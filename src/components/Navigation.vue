@@ -16,7 +16,7 @@
                             Wyszukiwarka
                         </RouterLink>
                     </li>
-<!--                     <li>
+                    <!--                     <li>
                         <RouterLink
                             v-if="isLogged"
                             :to="{ name: 'mastered-flashcards' }"
@@ -38,7 +38,10 @@
                         </RouterLink>
                     </li>
                     <li>
-                        <button class="Navigation_langSwitch" @click="SET_MODE()">
+                        <button
+                            class="Navigation_langSwitch"
+                            @click="SET_MODE()"
+                            >
                             <span>{{ isModePlToNo ? '🇵🇱' : '🇳🇴' }}</span>
                             ➡️
                             <span>{{ isModePlToNo ? '🇳🇴' : '🇵🇱' }}</span>
@@ -47,12 +50,18 @@
 
 
 
-                    <li v-if="!isLogged" class="-bottom">
+                    <li
+                        v-if="!isLogged"
+                        class="-bottom"
+                        >
                         <button @click="loginIn()">
                             Zaloguj się
                         </button>
                     </li>
-                    <li v-else class="-bottom">
+                    <li
+                        v-else
+                        class="-bottom"
+                        >
                         <button @click="logOut()">
                             Wyloguj się
                         </button>
@@ -75,7 +84,7 @@ export default {
     computed: {
         ...mapState([
             'isNavigationOpened',
-            'isModePlToNo'
+            'isModePlToNo',
         ]),
         ...mapGetters([
             'wordsAmount',
@@ -135,8 +144,8 @@ export default {
         }
 
         .-bottom {
-            margin-top: auto;
             padding-top: 40px;
+            margin-top: auto;
             color: $color-flag-blue;
         }
     }
@@ -152,9 +161,9 @@ export default {
     }
 
     &_langSwitch {
-        margin-top: 20px;
-        align-items: center;
         display: flex;
+        align-items: center;
+        margin-top: 20px;
         font-size: 30px;
 
         > span {

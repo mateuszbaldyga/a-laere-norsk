@@ -11,7 +11,9 @@
             <h1 class="PageCategories_info">
                 <p>{{ user.email }}</p>
                 <p>{{ wordsAmount }} words</p>
-                <p v-if="isLogged">{{ masteredFlashCards.size }} mastered</p>
+                <p v-if="isLogged">
+                    {{ masteredFlashCards.size }} mastered
+                </p>
             </h1>
         </template>
 

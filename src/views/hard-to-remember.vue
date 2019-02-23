@@ -1,6 +1,5 @@
 <template>
-    <PageHardToRemember
-        />
+    <PageHardToRemember />
 </template>
 
 <script>

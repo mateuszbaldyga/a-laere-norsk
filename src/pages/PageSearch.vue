@@ -15,11 +15,21 @@
                         type="text"
                         placeholder="Search"
                         >
-                    <button @click="handleSearch()">🔍</button>
+                    <button @click="handleSearch()">
+                        🔍
+                    </button>
                 </div>
 
-                <p v-if="!list.length" style="margin: 25px 0;">Brak wyników.</p>
-                <DictListing v-else :list="list" />
+                <p
+                    v-if="!list.length"
+                    style="margin: 25px 0;"
+                    >
+                    Brak wyników.
+                </p>
+                <DictListing
+                    v-else
+                    :list="list"
+                    />
             </div>
         </LayoutDefault>
     </div>
@@ -101,9 +111,9 @@ export default {
             position: absolute;
             top: 0;
             right: 0;
-            font-size: 20px;
             width: 45px;
             height: 100%;
+            font-size: 20px;
         }
     }
 

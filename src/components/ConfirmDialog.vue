@@ -1,31 +1,32 @@
 <template>
-  <div class="ConfirmDialog container"
-                v-if="isOpened"
-                >
-                <p>{{ message }}</p>
-                <div class="ConfirmDialog_actions">
-                    <button @click="onAgree">
-                        TAK
-                    </button>
-                    <button @click="onCancel">
-                        NIE
-                    </button>
-                </div>
-                <div
-                    class="ConfirmDialog_backdrop"
-                    @click="onCancel"
-                    />
-            </div>
+    <div
+        v-if="isOpened"
+        class="ConfirmDialog container"
+        >
+        <p>{{ message }}</p>
+        <div class="ConfirmDialog_actions">
+            <button @click="onAgree">
+                TAK
+            </button>
+            <button @click="onCancel">
+                NIE
+            </button>
+        </div>
+        <div
+            class="ConfirmDialog_backdrop"
+            @click="onCancel"
+            />
+    </div>
 </template>
 
 <script>
 export default {
-  props: {
-      isOpened: Boolean,
-      message: String,
-      onAgree: Function,
-      onCancel: Function,
-  }
+    props: {
+        isOpened: Boolean,
+        message: String,
+        onAgree: Function,
+        onCancel: Function,
+    },
 }
 </script>
 

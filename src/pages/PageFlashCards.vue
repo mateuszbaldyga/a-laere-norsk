@@ -17,16 +17,15 @@
             </button>
             <div class="PageFlashCards_counter">
                 <p
-                    class="counter_lap"
                     v-visible="lap"
+                    class="counter_lap"
                     >
                     {{ lap }}
                 </p>
                 <p
                     class="counter_card"
                     v-html="progress"
-                >
-                </p>
+                    />
             </div>
 
             <!-- <transition name="TransitionOpacity"> -->
@@ -35,7 +34,7 @@
                 :message="'Oznaczyć jako trudne?'"
                 :onAgree="agree"
                 :onCancel="cancel"
-                ></ConfirmDialog>
+                />
             <!-- </transition> -->
         </template>
         <div
@@ -76,7 +75,7 @@
 <script>
 import { shuffle } from 'lodash'
 import { mapState, mapGetters } from 'vuex'
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from '@/components/ConfirmDialog'
 
 export default {
 
@@ -124,7 +123,7 @@ export default {
         },
         progress () {
             return this.currentIndex + 1 + '<br>' + this.flashcardsInGame.length
-        }
+        },
     },
 
     methods: {
@@ -234,11 +233,11 @@ export default {
 
     &_counter {
         position: absolute;
-        min-width: 50px;
-        flex-direction: row;
         top: 0;
         right: 10px;
+        flex-direction: row;
         align-items: center;
+        min-width: 50px;
 
         .counter_lap {
             font-size: 37px;
@@ -246,8 +245,8 @@ export default {
         }
 
         .counter_card {
-            font-size: 16px;
             margin-left: 5px;
+            font-size: 16px;
         }
     }
 
