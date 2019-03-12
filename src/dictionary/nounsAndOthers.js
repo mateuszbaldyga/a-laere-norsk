@@ -1418,11 +1418,180 @@ const dict = [
             'id': 'noun279',
         },
     ],
+    [
+        {
+            'no': 'en by',
+            'pl': 'miasto',
+            'id': 'noun280',
+        },
+        {
+            'no': 'en innsjø /inśe/',
+            'pl': 'jezioro',
+            'id': 'noun281',
+        },
+        {
+            'no': 'en/ei elv',
+            'pl': 'rzeka',
+            'id': 'noun282',
+        },
+        {
+            'no': 'en skog /skug/',
+            'pl': 'las',
+            'id': 'noun283',
+        },
+        {
+            'no': 'et fjell',
+            'pl': 'góra',
+            'id': 'noun284',
+        },
+        {
+            'no': 'en/ei luft',
+            'pl': 'powietrze',
+            'id': 'noun285',
+        },
+        {
+            'no': 'et hav',
+            'pl': 'morze',
+            'id': 'noun286',
+        },
+        {
+            'no': 'en natur',
+            'pl': 'przyroda',
+            'id': 'noun287',
+        },
+        {
+            'no': 'en restaurant',
+            'pl': 'restaracja',
+            'id': 'noun288',
+        },
+        {
+            'no': 'en/ei sol /sol/',
+            'pl': 'słońce',
+            'id': 'noun289',
+        },
+        {
+            'no': 'en fiord /fiurd/',
+            'pl': 'fjord',
+            'id': 'noun290',
+        },
+        {
+            'no': 'ei hytte',
+            'pl': 'hytta',
+            'id': 'noun291',
+        },
+        {
+            'no': 'en/ei helg',
+            'pl': 'weekend',
+            'id': 'noun292',
+        },
+        {
+            'no': 'en hovedstad /huwesta/',
+            'pl': 'stolica',
+            'id': 'noun293',
+        },
+        {
+            'no': 'en/ei kirke',
+            'pl': 'kościół',
+            'id': 'noun294',
+        },
+        {
+            'no': 'et land (l.mn: land, landene)',
+            'pl': 'kraj',
+            'id': 'noun295',
+        },
+        {
+            'no': 'en kyst /śist/',
+            'pl': 'brzeg, wybrzeże',
+            'id': 'noun296',
+        },
+        {
+            'no': 'et sted',
+            'pl': 'miejsce',
+            'id': 'noun297',
+        },
+        {
+            'no': 'en/ei øy',
+            'pl': 'wyspa',
+            'id': 'noun298',
+        },
+        {
+            'no': 'frisk',
+            'pl': 'świeży, zdrowy',
+            'id': 'noun299',
+        },
+        {
+            'no': 'fantastisk',
+            'pl': 'fantastyczny',
+            'id': 'noun300',
+        },
+        {
+            'no': 'å nyte /nyte/',
+            'pl': 'rozkoszować się',
+            'id': 'noun301',
+        },
+        {
+            'no': 'deilig /dajli/ (koncówki ‘g’ nie wymawiamy)',
+            'pl': 'smaczny(o jedzeniu), piękny',
+            'id': 'noun302',
+        },
+        {
+            'no': 'hel',
+            'pl': 'cały, całkowity',
+            'id': 'noun303',
+        },
+        {
+            'no': 'makt',
+            'pl': 'moc, władza, potęga',
+            'id': 'noun304',
+        },
+        {
+            'no': 'langstrakt',
+            'pl': 'wydłużony, rozciągnięty',
+            'id': 'noun305',
+        },
+        {
+            'no': 'over',
+            'pl': 'ponad',
+            'id': 'noun306',
+        },
+        {
+            'no': 'under',
+            'pl': 'pod',
+            'id': 'noun307',
+        },
+        {
+            'no': 'trivelig /triweli/',
+            'pl': 'miły, przyjemny',
+            'id': 'noun308',
+        },
+        {
+            'no': 'nord',
+            'pl': 'północ',
+            'id': 'noun309',
+        },
+        {
+            'no': 'sør',
+            'pl': 'południe',
+            'id': 'noun310',
+        },
+        {
+            'no': 'vest',
+            'pl': 'zachód',
+            'id': 'noun311',
+        },
+        {
+            'no': 'øst',
+            'pl': 'wschód',
+            'id': 'noun312',
+        },
+    ],
 ]
 
 export default dict
 
-// let uid = 0
+
+
+// let uid = 279
 // dict.forEach(item => item.forEach(item => {
-//     item.id = 'verb' + uid++
+//     item.id = 'noun' + uid++
 // }))
