@@ -61,7 +61,7 @@ const dict = [
             'id': 'verb11',
         },
         {
-            'no': 'å lengte, lengter',
+            'no': 'å lengte etter, lengter etter',
             'pl': 'tęsknić',
             'id': 'verb12',
         },

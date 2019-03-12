@@ -918,12 +918,12 @@ const dict = [
             'id': 'noun180',
         },
         {
-            'no': 'loff',
+            'no': 'et loff',
             'pl': 'biały chleb',
             'id': 'noun181',
         },
         {
-            'no': 'grovbrød',
+            'no': 'et grovbrød',
             'pl': 'chleb razowy',
             'id': 'noun182',
         },
@@ -995,7 +995,7 @@ const dict = [
             'id': 'noun195',
         },
         {
-            'no': 'en butikk',
+            'no': 'en butikk, butikken',
             'pl': 'sklep',
             'id': 'noun196',
         },
