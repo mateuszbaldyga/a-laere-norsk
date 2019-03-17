@@ -43,6 +43,7 @@ const store = new Vuex.Store({
         isLoading: {
             masteredFlashCards: false,
             hardCards: false,
+            auth: false,
         },
         isNavigationOpened: false,
         chosenFlashCards: [],
@@ -120,6 +121,9 @@ const store = new Vuex.Store({
         SET_MODE (state, bool) {
             state.isModePlToNo = bool === undefined ? !state.isModePlToNo : bool
             ls.set('IS_MODE_PL_TO_NO', state.isModePlToNo)
+        },
+        SET_LOADING (state, { type, status }) {
+            state.isLoading[type] = status
         },
     },
     actions: {

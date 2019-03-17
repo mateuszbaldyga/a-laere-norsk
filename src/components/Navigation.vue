@@ -53,18 +53,18 @@
                         v-if="!isLogged"
                         class="-bottom"
                     >
-                        <form @submit.prevent>
-                            <input type="text" v-model="form.email">
-                            <input type="password" v-model="form.password">
+                        <form @submit.prevent="loginIn()" :style="{ opacity: isLoading.auth ? .2 : null }">
+                            <input placeholder="email" type="text" v-model="form.email">
+                            <input placeholder="password" type="password" v-model="form.password">
+
+                            <button type="submit">
+                                Zaloguj/Zarejestruj się
+                            </button>
                         </form>
                     </li>
                     <li
                         v-if="!isLogged"
-                        class="-bottom"
                         >
-                        <button @click="loginIn()">
-                            Zaloguj/Zarejestruj się
-                        </button>
                     </li>
                     <li
                         v-else
@@ -102,6 +102,7 @@ export default {
         ...mapState([
             'isNavigationOpened',
             'isModePlToNo',
+            'isLoading',
         ]),
         ...mapGetters([
             'wordsAmount',
