@@ -113,6 +113,18 @@ const dict = [
             'no': '1. sigge 2. legge seg',
             'pl': '1. lezeć (dokonany) 2. kłaść się (n.dok.)',
         },
+        {
+            'no': 'fineste i hele Norden',
+            'pl': 'Najładniejszy w całej Norwegii',
+        },
+        {
+            'no': 'nesten',
+            'pl': 'prawie',
+        },
+        {
+            'no': 'neste',
+            'pl': 'następny',
+        },
     ],
 ]
 
