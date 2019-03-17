@@ -49,13 +49,21 @@
                     </li>
 
 
-
+                    <li
+                        v-if="!isLogged"
+                        class="-bottom"
+                    >
+                        <form @submit.prevent>
+                            <input type="text" v-model="form.email">
+                            <input type="password" v-model="form.password">
+                        </form>
+                    </li>
                     <li
                         v-if="!isLogged"
                         class="-bottom"
                         >
                         <button @click="loginIn()">
-                            Zaloguj się
+                            Zaloguj/Zarejestruj się
                         </button>
                     </li>
                     <li
@@ -81,6 +89,15 @@ import { mapGetters, mapState, mapMutations } from 'vuex'
 
 export default {
 
+    data () {
+        return {
+            form: {
+                email: '',
+                password: '',
+            }
+        }
+    },
+
     computed: {
         ...mapState([
             'isNavigationOpened',
@@ -100,7 +117,9 @@ export default {
             this.$store.commit('CHANGE_NAVIGATION_VISIBILITY', bool)
         },
         loginIn () {
-            this.$auth.signup()
+            const { email, password } = this.form
+            if (!email || !password) return
+            this.$auth.signup({ email, password })
         },
         logOut () {
             this.$auth.logout()
@@ -169,6 +188,12 @@ export default {
         > span {
             margin: 0 10px;
         }
+    }
+
+    input {
+        border: 1px solid black;
+        margin-top: 10px;
+        padding: 0 5px;
     }
 }
 

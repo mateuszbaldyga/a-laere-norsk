@@ -4,42 +4,46 @@ import 'firebase/auth'
 import ls from 'local-storage'
 import store from '@/store'
 
-const provider = new firebase.auth.GoogleAuthProvider()
+function getUser () {
+    const user = firebase.auth().currentUser
+    const lsUser = ls.get('user')
 
-const auth = {
-    signup: () => firebase.auth().signInWithRedirect(provider),
-    logout: () => {
-        ls.remove('token')
-        ls.remove('user')
-        store.commit('SET_USER_INFO')
-    },
-    getUser: () => {
-        firebase.auth().getRedirectResult().then(function (result) {
-            if (result.credential) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-                const token = result.credential.accessToken
-                ls.set('token', token)
-            // ...
-            }
-            // The signed-in user info.
-            const user = result.user
+    if (user) {
+        ls.set('user', { email: user.email, uid: user.uid })
+        store.commit('SET_USER_INFO', user)
+    }
 
-            if (user) {
-                ls.set('user', { email: user.email, uid: user.uid })
-                store.commit('SET_USER_INFO')
-            }
-
-        }).catch(function (error) {
-            // Handle Errors here.
-            const errorCode = error.code
-            const errorMessage = error.message
-            // The email of the user's account used.
-            const email = error.email
-            // The firebase.auth.AuthCredential type that was used.
-            const credential = error.credential
-            // ...
-        })
-    },
+    if (lsUser) {
+        store.commit('SET_USER_INFO', lsUser)
+    }
 }
 
+function signup ({ email, password }) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(r => {
+            getUser()
+        })
+        .catch(e => {
+            console.log('🦄 e', e)
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(r => {
+                    getUser()
+                })
+                .catch(e => {
+                    console.log('🦄 auth.js error', e)
+                })
+        })
+}
+
+function logout () {
+    firebase.auth().signOut().then(function () {
+        ls.remove('user')
+        store.commit('SET_USER_INFO')
+    })
+}
+
+const auth = { signup, logout, getUser }
+
 Vue.prototype.$auth = auth
+
+export default auth

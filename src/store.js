@@ -108,9 +108,8 @@ const store = new Vuex.Store({
         SET_HARD_CARDS (state, cards) {
             state.hardCards = new Set(cards)
         },
-        SET_USER_INFO (state) {
-            const lsUser = ls.get('user')
-            state.user = lsUser || {}
+        SET_USER_INFO (state, user) {
+            state.user = user || {}
         },
         CHANGE_NAVIGATION_VISIBILITY (state, bool) {
             state.isNavigationOpened = bool === undefined ? !state.isNavigationOpened : bool
