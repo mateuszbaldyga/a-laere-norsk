@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { flatten, flattenDepth } from 'lodash'
+import { flattenDepth } from 'lodash'
 import { deepFreeze, replaceSpecialChars } from '@/helpers'
 import { nounsAndOthers, verbs, bonus } from '@/dictionary'
 import ls from 'local-storage'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/database'
 
 Vue.use(Vuex)
 
