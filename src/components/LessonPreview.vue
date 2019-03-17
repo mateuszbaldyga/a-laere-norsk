@@ -84,7 +84,7 @@ export default {
         -webkit-overflow-scrolling: touch;
 
         > li {
-            flex-direction: row;
+            display: inline-block;
         }
     }
 }
