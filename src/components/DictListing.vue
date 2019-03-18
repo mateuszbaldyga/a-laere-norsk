@@ -1,8 +1,8 @@
 <template>
     <ul class="DictListing">
         <li
-            v-for="word in list"
-            :key="word.id"
+            v-for="(word, index) in list"
+            :key="index"
             >
             <strong><i>🇳🇴</i> {{ word.no }}</strong><span><i>🇵🇱</i>{{ word.pl }}</span>
             <button
