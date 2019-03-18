@@ -5,7 +5,7 @@ import store from './store'
 import './filters'
 import './plugins'
 import './global-components'
-import './registerServiceWorker'
+// import './registerServiceWorker'
 import ls from 'local-storage'
 import auth from './plugins/auth'
 
