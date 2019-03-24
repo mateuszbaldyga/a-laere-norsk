@@ -21,14 +21,14 @@ function getUser () {
 function signup ({ email, password }) {
     store.commit('SET_LOADING', { type: 'auth', status: true })
     firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(r => {
+        .then(() => {
             getUser()
             store.commit('SET_LOADING', { type: 'auth', status: false })
         })
         .catch(e => {
             console.log('🦄 e', e)
             firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(r => {
+                .then(() => {
                     getUser()
                 })
                 .catch(e => {

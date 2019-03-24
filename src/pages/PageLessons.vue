@@ -177,8 +177,8 @@ export default {
         }
 
         em {
-            font-size: 0.6em;
             margin-left: 15px;
+            font-size: 0.6em;
         }
     }
 }

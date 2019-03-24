@@ -74,6 +74,7 @@ module.exports = {
         'no-useless-escape': 'off',
         'no-control-regex': 'off',
         'no-empty': 'off',
+        'no-irregular-whitespace': 'off',
         'no-unused-vars': 'warn',
         'no-unreachable': 'warn',
     },

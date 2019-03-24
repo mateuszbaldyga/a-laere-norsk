@@ -26,7 +26,9 @@
                     class="counter_card"
                     v-html="progress"
                     />
-                <p class="counter_side">{{ cardSide }}</p>
+                <p class="counter_side">
+                    {{ cardSide }}
+                </p>
             </div>
 
             <!-- <transition name="TransitionOpacity"> -->
@@ -256,9 +258,9 @@ export default {
         }
 
         .counter_side {
-            font-size: 18px;
             margin-top: -15px;
             margin-left: 10px;
+            font-size: 18px;
         }
     }
 

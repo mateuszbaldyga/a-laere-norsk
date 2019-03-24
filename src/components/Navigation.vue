@@ -52,10 +52,21 @@
                     <li
                         v-if="!isLogged"
                         class="-bottom"
-                    >
-                        <form @submit.prevent="loginIn()" :style="{ opacity: isLoading.auth ? .2 : null }">
-                            <input placeholder="email" type="text" v-model="form.email">
-                            <input placeholder="password" type="password" v-model="form.password">
+                        >
+                        <form
+                            :style="{ opacity: isLoading.auth ? .2 : null }"
+                            @submit.prevent="loginIn()"
+                            >
+                            <input
+                                v-model="form.email"
+                                placeholder="email"
+                                type="text"
+                                >
+                            <input
+                                v-model="form.password"
+                                placeholder="password"
+                                type="password"
+                                >
 
                             <button type="submit">
                                 Zaloguj/Zarejestruj się
@@ -64,8 +75,7 @@
                     </li>
                     <li
                         v-if="!isLogged"
-                        >
-                    </li>
+                        />
                     <li
                         v-else
                         class="-bottom"
@@ -94,7 +104,7 @@ export default {
             form: {
                 email: '',
                 password: '',
-            }
+            },
         }
     },
 
@@ -192,9 +202,9 @@ export default {
     }
 
     input {
+        padding: 0 5px;
         border: 1px solid black;
         margin-top: 10px;
-        padding: 0 5px;
     }
 }
 
