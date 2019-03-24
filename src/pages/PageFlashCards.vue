@@ -205,6 +205,10 @@ export default {
     },
 
     created () {
+        if (!this.flashcards.length) {
+            return this.$router.push({ name: 'categories' })
+        }
+
         this.shuffle()
         console.log('🦄 this.flashcards', this.flashcards)
     },
