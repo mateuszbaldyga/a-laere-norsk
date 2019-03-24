@@ -100,7 +100,7 @@ const store = new Vuex.Store({
         },
         HANDLE_SEARCH (state) {
             const indexes = this.getters['SEARCH_INDEXED_WORDS'].reduce((res, item, i) => {
-                if (item.indexOf(state.searchQuery) > -1) {
+                if (item.indexOf(state.searchQuery.toLowerCase()) > -1) {
                     res.push(i)
                 }
 
