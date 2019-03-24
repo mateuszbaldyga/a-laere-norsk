@@ -29,6 +29,9 @@ html, body, #app {
 }
 
 body {
+    position: fixed;
+    top: 0;
+    left: 0;
     touch-action: manipulation;
 }
 
