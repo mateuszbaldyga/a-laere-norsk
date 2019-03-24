@@ -30,7 +30,7 @@
                         @mouseleave.native="onTouchEnd()"
                         @input="selectLesson"
                         >
-                        {{ index + 1 + ' Lekcja' }}
+                        {{ `${index + 1} Lekcja ` }}<em>{{ `${lesson.length} Cards` }}</em>
                     </BaseCheckbox>
                 </li>
             </ul>
@@ -170,6 +170,16 @@ export default {
     .BaseCheckbox {
         width: 100%;
         user-select: none;
+
+        span {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        em {
+            font-size: 0.6em;
+            margin-left: 15px;
+        }
     }
 }
 </style>
