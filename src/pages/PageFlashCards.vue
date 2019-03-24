@@ -3,6 +3,7 @@
         <template slot="header">
             <BackButton @click.native="$router.go(-1)" />
             <button
+                v-if="!isShuffleBlocked"
                 class="PageFlashCards_shuffleBtn"
                 @click="shuffle()"
                 >
@@ -15,7 +16,10 @@
                 >
                 <i>❌</i>
             </button>
-            <div class="PageFlashCards_counter">
+            <button
+                class="PageFlashCards_counter"
+                @click="goToCard"
+                >
                 <p
                     v-visible="lap"
                     class="counter_lap"
@@ -29,7 +33,7 @@
                 <p class="counter_side">
                     {{ cardSide }}
                 </p>
-            </div>
+            </button>
 
             <!-- <transition name="TransitionOpacity"> -->
             <ConfirmDialog
@@ -105,6 +109,7 @@ export default {
     computed: {
         ...mapState([
             'isModePlToNo',
+            'isShuffleBlocked',
         ]),
         ...mapGetters([
             'isLogged',
@@ -202,6 +207,13 @@ export default {
         cancel () {
             this.showConfirmDialog = false
         },
+        goToCard () {
+            const num = prompt('Go to card number:')
+
+            if (typeof +num === 'number') {
+                this.currentIndex = num - 1
+            }
+        },
     },
 
     created () {
@@ -209,7 +221,11 @@ export default {
             return this.$router.push({ name: 'categories' })
         }
 
-        this.shuffle()
+        if (!this.isShuffleBlocked) {
+            this.shuffle()
+        } else {
+            this.flashcardsInGame = this.flashcardsWithoutMastered
+        }
         console.log('🦄 this.flashcards', this.flashcards)
     },
 
@@ -247,6 +263,7 @@ export default {
         position: absolute;
         top: 0;
         right: 10px;
+        display: flex;
         flex-direction: row;
         align-items: center;
         min-width: 50px;

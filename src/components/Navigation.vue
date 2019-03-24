@@ -46,6 +46,13 @@
                             ➡️
                             <span>{{ isModePlToNo ? '🇳🇴' : '🇵🇱' }}</span>
                         </button>
+                        <button
+                            class="Navigation_shuffleSwitch"
+                            @click="TOGGLE_SUFFLE_BLOCK()"
+                            >
+                            <i>&#x1f500;</i>
+                            Shuffle? {{ isShuffleBlocked ? 'NO!' : 'YES :)' }}
+                        </button>
                     </li>
 
 
@@ -113,6 +120,7 @@ export default {
             'isNavigationOpened',
             'isModePlToNo',
             'isLoading',
+            'isShuffleBlocked',
         ]),
         ...mapGetters([
             'wordsAmount',
@@ -123,6 +131,7 @@ export default {
     methods: {
         ...mapMutations([
             'SET_MODE',
+            'TOGGLE_SUFFLE_BLOCK',
         ]),
         toggleMenu (bool) {
             this.$store.commit('CHANGE_NAVIGATION_VISIBILITY', bool)
@@ -199,6 +208,10 @@ export default {
         > span {
             margin: 0 10px;
         }
+    }
+
+    &_shuffleSwitch {
+        display: flex;
     }
 
     input {

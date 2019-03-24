@@ -53,6 +53,7 @@ const store = new Vuex.Store({
         isNavigationOpened: false,
         chosenFlashCards: [],
         isModePlToNo: true,
+        isShuffleBlocked: false,
     },
     getters: {
         wordsAmount: state => {
@@ -126,6 +127,10 @@ const store = new Vuex.Store({
         SET_MODE (state, bool) {
             state.isModePlToNo = bool === undefined ? !state.isModePlToNo : bool
             ls.set('IS_MODE_PL_TO_NO', state.isModePlToNo)
+        },
+        TOGGLE_SUFFLE_BLOCK (state, bool) {
+            state.isShuffleBlocked = bool === undefined ? !state.isShuffleBlocked : bool
+            ls.set('IS_SUFFLE_BLOCKED', state.isShuffleBlocked)
         },
         SET_LOADING (state, { type, status }) {
             state.isLoading[type] = status
