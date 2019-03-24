@@ -26,6 +26,7 @@
                     class="counter_card"
                     v-html="progress"
                     />
+                <p class="counter_side">{{ cardSide }}</p>
             </div>
 
             <!-- <transition name="TransitionOpacity"> -->
@@ -37,6 +38,7 @@
                 />
             <!-- </transition> -->
         </template>
+
         <div
             slot="main"
             class="PageFlashCards_card container"
@@ -123,6 +125,9 @@ export default {
         },
         progress () {
             return this.currentIndex + 1 + '<br>' + this.flashcardsInGame.length
+        },
+        cardSide () {
+            return this.isCardRevealed ? 'B' : 'A'
         },
     },
 
@@ -247,6 +252,12 @@ export default {
         .counter_card {
             margin-left: 5px;
             font-size: 16px;
+        }
+
+        .counter_side {
+            font-size: 18px;
+            margin-top: -15px;
+            margin-left: 10px;
         }
     }
 
