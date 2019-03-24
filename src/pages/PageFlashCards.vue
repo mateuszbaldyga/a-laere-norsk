@@ -117,6 +117,7 @@ export default {
         },
         className () {
             return {
+                '-card-revealed': this.isCardRevealed,
                 '-male': this.word.indexOf('en ') === 0,
                 '-female': this.word.indexOf('ei ') === 0,
                 '-male-female': this.word.indexOf('ei/en') === 0 || this.word.indexOf('en/ei') === 0,
@@ -293,16 +294,23 @@ export default {
                 transition: opacity .3s;
             }
 
+            &.-card-revealed {
+                &:before {
+                    border: 3px solid $color-bg-card-without-article;
+                    opacity: 1;
+                }
+            }
+
             &.-male {
                 &:before {
-                    background-color: $color-male;
+                    background-color: $color-bg-card-male;
                     opacity: 1;
                 }
             }
 
             &.-female {
                 &:before {
-                    background-color: $color-female;
+                    background-color: $color-bg-card-female;
                     opacity: 1;
                 }
             }
@@ -310,13 +318,13 @@ export default {
             &.-male-female {
                 &:before {
                     opacity: 1;
-                    background-image: linear-gradient(15deg, $color-male 50%, $color-female 50%);
+                    background-image: linear-gradient(15deg, $color-bg-card-male 50%, $color-bg-card-female 50%);
                 }
             }
 
             &.-neuter {
                 &:before {
-                    background-color: $color-neuter;
+                    background-color: $color-bg-card-neuter;
                     opacity: 1;
                 }
             }
