@@ -229,7 +229,7 @@ export default {
         width: $header-footer-height;
         height: $header-footer-height;
         margin-right: 20px;
-        font-size: 25px;
+        font-size: 15px;
     }
 
     &_markBtn {
@@ -355,8 +355,12 @@ export default {
             align-items: center;
             justify-content: center;
             width: 50%;
-            font-weight: 700;
+            font-size: 15px;
         }
+    }
+
+    header, footer {
+        opacity: 0.8;
     }
 }
 </style>
