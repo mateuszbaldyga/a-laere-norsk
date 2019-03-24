@@ -6,7 +6,7 @@
     "build": "vue-cli-service build",
     "lint": "yarn lint:css && yarn lint:js",
     "deploy:gh-pages": "yarn build && push-dir --dir=dist --branch=gh-pages --cleanup",
-    "dev": "vue-cli-service serve",
+    "dev": "vue-cli-service serve --hostname=0.0.0.0",
     "lint:css": "stylelint '**/*.vue'",
     "lint:fix": "yarn lint:css --fix && yarn lint:js --fix",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore ."
