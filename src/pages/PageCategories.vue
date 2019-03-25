@@ -64,14 +64,14 @@ export default {
         ConfirmDialog,
     },
 
-    data () {
-        return {
-            showConfirmDialog: false
-        }
-    },
-
     props: {
         categories: Array,
+    },
+
+    data () {
+        return {
+            showConfirmDialog: false,
+        }
     },
 
     computed: {
