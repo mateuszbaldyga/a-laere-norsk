@@ -55,6 +55,7 @@ const store = new Vuex.Store({
         isModePlToNo: true,
         isShuffleBlocked: false,
     },
+
     getters: {
         wordsAmount: state => {
             let res = 0
@@ -74,6 +75,7 @@ const store = new Vuex.Store({
         isLogged: state => !!Object.keys(state.user).length,
         chosenCategory: state => Object.keys(state.chosenCategory).length ? state.chosenCategory : ls.get('SELECTED_CATEGORY'),
     },
+
     mutations: {
         CHOOSE_CATEGORY (state, category) {
             state.chosenCategory = category
@@ -122,6 +124,7 @@ const store = new Vuex.Store({
             state.isNavigationOpened = bool === undefined ? !state.isNavigationOpened : bool
         },
         SET_FLASHCARDS (state, list) {
+            console.log('🦄 chosenFlashCards', list)
             state.chosenFlashCards = list
         },
         SET_MODE (state, bool) {
@@ -136,6 +139,7 @@ const store = new Vuex.Store({
             state.isLoading[type] = status
         },
     },
+
     actions: {
         async GET_MASTERED_FLASHCARDS ({ commit, state }) {
             if (!state.user.uid) return

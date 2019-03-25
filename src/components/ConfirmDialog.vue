@@ -43,6 +43,18 @@ export default {
     border-bottom: 1px solid #000;
     line-height: 1.5;
 
+    &:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.6;
+        z-index: -1;
+    }
+
     p {
         padding: 20px 0;
     }

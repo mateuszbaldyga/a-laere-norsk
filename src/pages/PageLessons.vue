@@ -63,6 +63,7 @@ import BaseCheckbox from '@/components/BaseCheckbox'
 import StartButton from '@/components/StartButton'
 import LessonPreview from '@/components/LessonPreview'
 import { flatten } from 'lodash'
+import ls from 'local-storage'
 
 export default {
     components: {
@@ -113,6 +114,7 @@ export default {
             console.log('🦄 cards', cards)
             this.$store.commit('SET_FLASHCARDS', cards)
             this.$router.push({ name: 'flashcards' })
+            ls.set('CURRENT_CARD_INDEX', 0)
         },
         selectAll () {
             if (this.chosenLessons.length === this.lessons.length) {

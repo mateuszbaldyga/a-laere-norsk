@@ -15,6 +15,12 @@
                     {{ masteredFlashCards.size }} mastered
                 </p>
             </h1>
+            <ConfirmDialog
+                :isOpened="showConfirmDialog"
+                :message="'Przywrócić ostatnią sesję?'"
+                :onAgree="onAgree"
+                :onCancel="onCancel"
+                />
         </template>
 
         <div
@@ -48,11 +54,20 @@
 import StartButton from '@/components/StartButton'
 import Navigation from '@/components/Navigation'
 import { mapState, mapGetters } from 'vuex'
+import ConfirmDialog from '@/components/ConfirmDialog'
+import ls from 'local-storage'
 
 export default {
     components: {
         StartButton,
         Navigation,
+        ConfirmDialog,
+    },
+
+    data () {
+        return {
+            showConfirmDialog: false
+        }
     },
 
     props: {
@@ -72,9 +87,19 @@ export default {
         start () {
             this.$router.push({ name: 'lessons' })
         },
+        onAgree () {
+            this.showConfirmDialog = false
+            this.$router.push({ name: 'flashcards' })
+        },
+        onCancel () {
+            this.showConfirmDialog = false
+        },
     },
 
     created () {
+        if (ls.get('LAST_FLASHCARDS')) {
+            this.showConfirmDialog = true
+        }
         console.log('🦄 this.categories', this.categories)
     },
 }

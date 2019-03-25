@@ -84,6 +84,7 @@
 import { shuffle } from 'lodash'
 import { mapState, mapGetters } from 'vuex'
 import ConfirmDialog from '@/components/ConfirmDialog'
+import ls from 'local-storage'
 
 export default {
 
@@ -114,10 +115,6 @@ export default {
         ...mapGetters([
             'isLogged',
         ]),
-        flashcardsWithoutMastered () {
-            // return this.flashcards.filter(card => !Array.from(this.masteredFlashCards).some(mastered => card.id === mastered.id))
-            return this.flashcards
-        },
         word () {
             const langOrder = this.isModePlToNo ? ['pl', 'no'] : ['no', 'pl']
             return this.flashcardsInGame[this.currentIndex][!this.isCardRevealed ? langOrder[0] : langOrder[1]]
@@ -136,6 +133,12 @@ export default {
         },
         cardSide () {
             return this.isCardRevealed ? 'B' : 'A'
+        },
+    },
+
+    watch: {
+        currentIndex (newVal) {
+            ls.set('CURRENT_CARD_INDEX', newVal)
         },
     },
 
@@ -177,7 +180,7 @@ export default {
             }
         },
         shuffle () {
-            this.flashcardsInGame = shuffle(this.flashcardsWithoutMastered)
+            this.flashcardsInGame = shuffle(this.flashcards)
             this.currentIndex = 0
             this.isCardRevealed = false
         },
@@ -221,12 +224,14 @@ export default {
             return this.$router.push({ name: 'categories' })
         }
 
-        if (!this.isShuffleBlocked) {
-            this.shuffle()
+        if (this.isShuffleBlocked || ls.get('LAST_FLASHCARDS')) {
+            this.flashcardsInGame = this.flashcards
         } else {
-            this.flashcardsInGame = this.flashcardsWithoutMastered
+            this.shuffle()
         }
-        console.log('🦄 this.flashcards', this.flashcards)
+
+        ls.set('LAST_FLASHCARDS', this.flashcardsInGame)
+        this.currentIndex = ls.get('CURRENT_CARD_INDEX') || 0
     },
 
     mounted () {
