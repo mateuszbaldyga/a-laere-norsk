@@ -13,7 +13,7 @@
                 v-for="(item, index) in lessonPreview.lesson"
                 :key="index"
                 >
-                <strong>{{ item.no }}</strong>&nbsp;–&nbsp;{{ item.pl }}
+                <strong>{{ index + 1 }}.&nbsp;&nbsp;{{ item.no }}</strong>&nbsp;–&nbsp;{{ item.pl }}
             </li>
         </ul>
     </div>
