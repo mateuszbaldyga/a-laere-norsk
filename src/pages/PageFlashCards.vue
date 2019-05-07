@@ -48,35 +48,22 @@
         <div
             slot="main"
             class="PageFlashCards_card container"
-            @click="onCardClick()"
             >
             <h1 :class="className">
-                {{ word | capitalize }}
+                <template v-if="word[0]">
+                    <span>{{ word[0] | capitalize }}</span>
+                </template>
+                {{ word[1] | capitalize }}
             </h1>
-            <!-- <transition name="TransitionOpacity"> -->
-            <div
-                v-if="showTick"
-                class="card_toast"
-                >
-                <i>
-                    &#x2713;
-                </i>
-                <span>
-                    {{ markedWord }}
-                </span>
+            <div v-if="showTick" class="card_toast" >
+                <i> &#x2713; </i>
+                <span> {{ markedWord }} </span>
             </div>
-            <!-- </transition> -->
+            <button class="PageFlashCards_prevBtn" @click="goBack">
+            </button>
+            <button class="PageFlashCards_nextBtn" @click="onCardClick">
+            </button>
         </div>
-        <template
-            slot="footer"
-            >
-            <button @click="goBack()">
-                <i>⇦</i>
-            </button>
-            <button @click="unrevealCard() + goNext() ">
-                <i>⇨</i>
-            </button>
-        </template>
     </LayoutDefault>
 </template>
 
@@ -117,7 +104,11 @@ export default {
         ]),
         word () {
             const langOrder = this.isModePlToNo ? ['pl', 'no'] : ['no', 'pl']
-            return this.flashcardsInGame[this.currentIndex][!this.isCardRevealed ? langOrder[0] : langOrder[1]]
+            if (this.isCardRevealed) {
+                return [ this.flashcardsInGame[this.currentIndex][langOrder[0]], this.flashcardsInGame[this.currentIndex][langOrder[1]] ]
+            } else {
+                return [ null, this.flashcardsInGame[this.currentIndex][langOrder[0]] ]
+            }
         },
         className () {
             return {
@@ -298,6 +289,7 @@ export default {
         user-select: none;
         text-align: center;
         line-height: 1.4;
+        position: relative;
 
         @include media(ltMobile) {
             font-size: 40px;
@@ -309,6 +301,23 @@ export default {
             justify-content: center;
             flex: 1;
             padding: 5px;
+
+            > span {
+                position: relative;
+                margin-bottom: 20px;
+                opacity: 0.4;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 110%;
+                    height: 3px;
+                    background-color: #000;
+                }
+            }
 
             &:before {
                 content: '';
@@ -383,20 +392,27 @@ export default {
         }
     }
 
-    footer {
-        position: relative;
-        font-size: 20px;
-
-        > button {
-            align-items: center;
-            justify-content: center;
-            width: 50%;
-            font-size: 15px;
-        }
+    &_nextBtn, &_prevBtn {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
     }
 
-    header, footer {
+    &_nextBtn {
+        right: 0;
+    }
+
+    &_prevBtn {
+        left: 0;
+    }
+
+    header {
         opacity: 0.8;
+    }
+
+    footer {
+        display: none;
     }
 }
 </style>
