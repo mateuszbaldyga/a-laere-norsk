@@ -45,7 +45,7 @@ export default {
 
     data () {
         return {
-            unformatted: ` Billig - tani;\n Dyr - drogi;\n Kikke litt - rozejrzeć się trochę;\n Å fryse - marznąć;\n Et regntøy - odzież przeciwdeszczowa;\n En gummistøvl - kalosz;`,
+            unformatted: ` Billig | tani;\n Dyr | drogi;\n Kikke litt | rozejrzeć się trochę;\n Å fryse | marznąć;\n Et regntøy | odzież przeciwdeszczowa;\n En gummistøvl | kalosz;`,
             formatted: '',
             showToast: false,
         }
@@ -66,7 +66,7 @@ export default {
 
             this.unformatted.split(';').forEach(item => {
                 item = item.toLowerCase().replace(/[ ]{2,}/g, ' ').replace(/,(?=[^\s])/g, ', ')
-                const split = item.split(/[-—–]/g)
+                const split = item.split(/[|]/g)
 
                 if (split.length < 2) return
 
