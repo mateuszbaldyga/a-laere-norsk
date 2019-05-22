@@ -34,7 +34,6 @@ export default {
     > header {
         flex-direction: row;
         height: $header-footer-height;
-        overflow: hidden;
     }
 
     > main {

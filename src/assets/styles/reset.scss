@@ -63,7 +63,7 @@ a {
     &:focus, &:hover, &:active {
         text-decoration: none;
     } }
-a, button {
+a, button:not(:disabled) {
     cursor: pointer;
 }
 

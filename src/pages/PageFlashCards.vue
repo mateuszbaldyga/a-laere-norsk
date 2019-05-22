@@ -18,7 +18,7 @@
             </button>
             <button
                 class="PageFlashCards_counter"
-                @click="goToCard"
+                @click="promptCardNumber"
                 >
                 <p
                     v-visible="lap"
@@ -42,6 +42,7 @@
                 :onAgree="agree"
                 :onCancel="cancel"
                 />
+
             <!-- </transition> -->
         </template>
 
@@ -63,6 +64,16 @@
             </button>
             <button class="PageFlashCards_nextBtn" @click="onCardClick">
             </button>
+
+            <form v-if="isPromptOpened" class="CardNumberPrompt" @submit.prevent="goToCard(form.cardNumber)">
+                <h1> Przejdź do karty: </h1>
+                <input type="number" v-model="form.cardNumber" ref="CardNumberPrompt" placeholder="0" />
+                <ul>
+                    <li v-for="item in 13" v-if="item > 1" :key="item">
+                        <button type="button" @click="goToCard(item * 5) + promptCardNumber(false)" :disabled="flashcardsInGame.length < item * 5">{{ item * 5 }}</button>
+                    </li>
+                </ul>
+            </form>
         </div>
     </LayoutDefault>
 </template>
@@ -91,6 +102,10 @@ export default {
             showConfirmDialog: false,
             showTick: false,
             markedWord: '',
+            form: {
+                cardNumber: null
+            },
+            isPromptOpened: false
         }
     },
 
@@ -102,6 +117,9 @@ export default {
         ...mapGetters([
             'isLogged',
         ]),
+        currentNorskWord () {
+            return this.flashcardsInGame[this.currentIndex].no
+        },
         word () {
             const langOrder = this.isModePlToNo ? ['pl', 'no'] : ['no', 'pl']
             if (this.isCardRevealed) {
@@ -111,13 +129,20 @@ export default {
             }
         },
         className () {
-            return {
-                '-card-revealed': this.isCardRevealed,
-                '-male': this.word.indexOf('en ') === 0,
-                '-female': this.word.indexOf('ei ') === 0,
-                '-male-female': this.word.indexOf('ei/en') === 0 || this.word.indexOf('en/ei') === 0,
-                '-neuter': this.word.indexOf('et ') === 0,
+            const res = {
+                '-card-revealed': this.isCardRevealed
             }
+
+            if (this.isCardRevealed) {
+                Object.assign(res, {
+                    '-male': this.currentNorskWord.indexOf('en ') === 0,
+                    '-female': this.currentNorskWord.indexOf('ei ') === 0,
+                    '-male-female': this.currentNorskWord.indexOf('ei/en') === 0 || this.currentNorskWord.indexOf('en/ei') === 0,
+                    '-neuter': this.currentNorskWord.indexOf('et ') === 0
+                })
+            }
+
+            return res
         },
         progress () {
             return this.currentIndex + 1 + '<br>' + this.flashcardsInGame.length
@@ -201,12 +226,20 @@ export default {
         cancel () {
             this.showConfirmDialog = false
         },
-        goToCard () {
-            const num = prompt('Go to card number:')
+        promptCardNumber (bool) {
+            this.isPromptOpened = bool === undefined ? !this.isPromptOpened : bool
 
-            if (typeof +num === 'number') {
-                this.currentIndex = num - 1
-            }
+            // if (this.isPromptOpened) {
+            //     this.$nextTick(() => {
+            //         this.$refs.CardNumberPrompt.focus()
+            //     })
+            // }
+        },
+        goToCard (num) {
+            if (num > this.flashcardsInGame.length) return
+            this.currentIndex = num - 1
+            this.isCardRevealed = false
+
         },
     },
 
@@ -413,6 +446,54 @@ export default {
 
     footer {
         display: none;
+    }
+}
+
+.CardNumberPrompt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: #f7feff;
+    z-index: 100;
+    height: 100%;
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    input {
+        border: 1px solid black;
+        padding: 10px;
+        height: 50px;
+        border-radius: 0;
+        font-size: 22px;
+    }
+
+    ul {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        flex-grow: 1;
+
+        li {
+            width: 33.33%;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            border: 1px solid black;
+
+            &:disabled {
+                color: #e7fbff;
+            }
+        }
     }
 }
 </style>
