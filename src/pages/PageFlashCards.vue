@@ -16,6 +16,7 @@
                 >
                 <i>❌</i>
             </button>
+            <button class="PageFlashCards_markBtn" @click="speak">🔊</button>
             <button
                 class="PageFlashCards_counter"
                 @click="promptCardNumber"
@@ -159,6 +160,9 @@ export default {
     },
 
     methods: {
+        speak () {
+            responsiveVoice.speak(this.currentNorskWord, "Norwegian Female");
+        },
         revealCard () {
             this.isCardRevealed = true
         },
