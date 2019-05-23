@@ -378,10 +378,10 @@ const dict = [
         'no': 'å sole seg',
         'pl': 'opalać się',
     }, {
-        'no': 'å slanke seg /szlanke/',
+        'no': 'å slanke seg',
         'pl': 'odchudzać się',
     }, {
-        'no': 'å skynde seg /szyne/',
+        'no': 'å skynde seg',
         'pl': 'śpieszyć się',
     }, {
         'no': 'å lønne seg',

@@ -1,6 +1,5 @@
 const dict = [
     [
-        // lekcja
         {
             'no': 'men',
             'pl': 'ale',

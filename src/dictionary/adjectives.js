@@ -48,7 +48,7 @@ const dict = [
         'no': 'lang, lengre, lengst',
         'pl': 'długi, dłuższy, najdłuższy',
     }, {
-        'no': 'stor /stur/, større, størst',
+        'no': 'stor, større, størst',
         'pl': 'duży, większy, największy',
     }, {
         'no': 'tung, tyngre, tyngst',
@@ -60,7 +60,7 @@ const dict = [
         'no': 'gammel, eldre, eldst',
         'pl': 'stary, starszy, najstarszy',
     }, {
-        'no': 'god /gu/, bedre, best',
+        'no': 'god, bedre, best',
         'pl': 'dobry, lepszy, najlepszy',
     }, {
         'no': 'liten, mindre, minst',

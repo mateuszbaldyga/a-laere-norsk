@@ -1412,7 +1412,7 @@ const dict = [
         'id': 'noun280',
     },
     {
-        'no': 'en innsjø /inśe/',
+        'no': 'en innsjø',
         'pl': 'jezioro',
         'id': 'noun281',
     },
@@ -1422,7 +1422,7 @@ const dict = [
         'id': 'noun282',
     },
     {
-        'no': 'en skog /skug/',
+        'no': 'en skog',
         'pl': 'las',
         'id': 'noun283',
     },
@@ -1452,12 +1452,12 @@ const dict = [
         'id': 'noun288',
     },
     {
-        'no': 'en/ei sol /sol/',
+        'no': 'en/ei sol',
         'pl': 'słońce',
         'id': 'noun289',
     },
     {
-        'no': 'en fiord /fiurd/',
+        'no': 'en fiord',
         'pl': 'fjord',
         'id': 'noun290',
     },
@@ -1472,7 +1472,7 @@ const dict = [
         'id': 'noun292',
     },
     {
-        'no': 'en hovedstad /huwesta/',
+        'no': 'en hovedstad',
         'pl': 'stolica',
         'id': 'noun293',
     },
@@ -1487,7 +1487,7 @@ const dict = [
         'id': 'noun295',
     },
     {
-        'no': 'en kyst /śist/',
+        'no': 'en kyst',
         'pl': 'brzeg, wybrzeże',
         'id': 'noun296',
     },
@@ -1512,12 +1512,12 @@ const dict = [
         'id': 'noun300',
     },
     {
-        'no': 'å nyte /nyte/',
+        'no': 'å nyte',
         'pl': 'rozkoszować się',
         'id': 'noun301',
     },
     {
-        'no': 'deilig /dajli/ (koncówki ‘g’ nie wymawiamy)',
+        'no': 'deilig (koncówki ‘g’ nie wymawiamy)',
         'pl': 'smaczny(o jedzeniu), piękny',
         'id': 'noun302',
     },
@@ -1547,7 +1547,7 @@ const dict = [
         'id': 'noun307',
     },
     {
-        'no': 'trivelig /triweli/',
+        'no': 'trivelig',
         'pl': 'miły, przyjemny',
         'id': 'noun308',
     },
@@ -1582,19 +1582,19 @@ const dict = [
         'no': 'en bris',
         'pl': 'słaby wiatr do 10 m/s',
     }, {
-        'no': 'en/ei sky /szi/',
+        'no': 'en/ei sky',
         'pl': 'chmura',
     }, {
         'no': 'en vind',
         'pl': 'wiatr',
     }, {
-        'no': 'et sludd /szlud/',
+        'no': 'et sludd',
         'pl': 'śnieg z deszczem',
     }, {
-        'no': 'en/ei byge /byge/',
+        'no': 'en/ei byge',
         'pl': 'przelotne opady',
     }, {
-        'no': 'en nedbør /nedber/',
+        'no': 'en nedbør',
         'pl': 'opady',
     }, {
         'no': 'en foss',
@@ -1603,13 +1603,13 @@ const dict = [
         'no': 'en topp',
         'pl': 'wieżchołek , szczyt',
     }, {
-        'no': 'en/ei strand /sztrand/',
+        'no': 'en/ei strand',
         'pl': 'plaża',
     }, {
         'no': 'en/ei sikt',
         'pl': 'widzialność , widok',
     }, {
-        'no': 'en storm /sztorm/',
+        'no': 'en storm',
         'pl': 'burza',
     }, {
         'no': 'et yr',
@@ -1618,10 +1618,10 @@ const dict = [
         'no': 'et snøfokk',
         'pl': 'śnieżyca, zamieć',
     }, {
-        'no': 'en torden /turden/',
+        'no': 'en torden',
         'pl': 'grzmot, grom',
     }, {
-        'no': 'et lyn /lin/',
+        'no': 'et lyn',
         'pl': 'piorun',
     }, {
         'no': 'en fjellovergang',
@@ -1636,7 +1636,7 @@ const dict = [
         'no': 'en fare',
         'pl': 'niebezpieczeństwo',
     }, {
-        'no': 'en regnbue /rajnbue/',
+        'no': 'en regnbue',
         'pl': 'tęcza',
     }, {
         'no': 'en sølepytt',
@@ -1675,10 +1675,10 @@ const dict = [
         'no': 'mild',
         'pl': 'łagodny, potulny',
     }, {
-        'no': 'en hete /hjete/',
+        'no': 'en hete',
         'pl': 'upał, skwar',
     }, {
-        'no': 'het /hjet/',
+        'no': 'het',
         'pl': 'upalny, gorący',
     }, {
         'no': 'sterk',
@@ -1693,7 +1693,7 @@ const dict = [
         'no': 'klær',
         'pl': 'ubrania (tylko l.mn)',
     }, {
-        'no': 'fortsatt /foczsat/',
+        'no': 'fortsatt',
         'pl': 'nadal',
     }, {
         'no': 'stengt',
@@ -1705,7 +1705,7 @@ const dict = [
         'no': 'på grunn av',
         'pl': 'z przyczyny , z powodu',
     }, {
-        'no': 'redusert /redusecz/',
+        'no': 'redusert',
         'pl': 'zmniejszona',
     }, {
         'no': 'en flyplass',
@@ -1723,7 +1723,7 @@ const dict = [
         'no': 'et hegl',
         'pl': 'grad',
     }, {
-        'no': 'en frost /frost/',
+        'no': 'en frost',
         'pl': 'mróz',
     }, {
         'no': 'frost',
@@ -1741,7 +1741,7 @@ const dict = [
         'no': 'en himmel',
         'pl': 'niebo',
     }, {
-        'no': 'et stjerne /stjaarne/',
+        'no': 'et stjerne',
         'pl': 'gwiazda',
     }, {
         'no': 'det blåser',
@@ -1753,7 +1753,7 @@ const dict = [
         'no': 'en solnedgang',
         'pl': 'zachód słońca',
     }, {
-        'no': 'et regn /rajn/',
+        'no': 'et regn',
         'pl': 'deszcz',
     }, {
         'no': 'en snøfnugg',
@@ -1771,7 +1771,7 @@ const dict = [
         'no': 'et polarlys',
         'pl': 'zorza polarna',
     }, {
-        'no': 'en paraply /parapli/',
+        'no': 'en paraply',
         'pl': 'parasol',
     }],
     [{
@@ -2013,7 +2013,7 @@ const dict = [
         'no': 'et belte',
         'pl': 'pasek',
     }, {
-        'no': 'et skjørt /siecz/',
+        'no': 'et skjørt',
         'pl': 'spódnica',
     }, {
         'no': 'en/ei jakke',
@@ -2028,7 +2028,7 @@ const dict = [
         'no': 'en/ei truse',
         'pl': 'majtki',
     }, {
-        'no': 'en bh /beho/',
+        'no': 'en bh',
         'pl': 'biustonosz',
     }, {
         'no': 'en/ei t-skjorte',
@@ -2037,7 +2037,7 @@ const dict = [
         'no': 'en/ei skjorte',
         'pl': 'koszula',
     }, {
-        'no': 'et slips /szlips/',
+        'no': 'et slips',
         'pl': 'krawat',
     }, {
         'no': 'en/ei dongeribukse',
@@ -2055,16 +2055,16 @@ const dict = [
         'no': 'brun',
         'pl': 'brązowy',
     }, {
-        'no': 'hvit /vit/',
+        'no': 'hvit',
         'pl': 'biały',
     }, {
-        'no': 'svart /swacz/',
+        'no': 'svart',
         'pl': 'czarny',
     }, {
         'no': 'blå',
         'pl': 'niebieski',
     }, {
-        'no': 'vi vil bare kikke litt /kikke czyt. sike/',
+        'no': 'vi vil bare kikke litt',
         'pl': 'my chcemy tylko rozejrzeć się trochę',
     }, {
         'no': 'kan jeg få prøve',
@@ -2073,7 +2073,7 @@ const dict = [
         'no': 'tar ut',
         'pl': 'wypłacać (np. pieniądze z bankomatu)',
     }, {
-        'no': 'bort /bucz/',
+        'no': 'bort',
         'pl': 'daleko',
     }, {
         'no': 'tøff',
