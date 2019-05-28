@@ -53,9 +53,9 @@
             >
             <h1 :class="className">
                 <template v-if="word[0]">
-                    <span>{{ word[0] | capitalize }}</span>
+                    <span>{{ word[0] }}</span>
                 </template>
-                {{ word[1] | capitalize }}
+                {{ word[1] }}
             </h1>
             <div v-if="showTick" class="card_toast" >
                 <i> &#x2713; </i>

@@ -2028,7 +2028,7 @@ const dict = [
         'no': 'en/ei truse',
         'pl': 'majtki',
     }, {
-        'no': 'en bh',
+        'no': 'en BH',
         'pl': 'biustonosz',
     }, {
         'no': 'en/ei t-skjorte',
