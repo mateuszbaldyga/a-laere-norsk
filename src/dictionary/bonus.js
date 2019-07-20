@@ -124,6 +124,10 @@ const dict = [
             'no': 'neste',
             'pl': 'następny',
         },
+        {
+            'no': 'neste',
+            'pl': 'następny',
+        },
     ],
 ]
 
