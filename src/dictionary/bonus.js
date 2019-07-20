@@ -109,7 +109,7 @@ const dict = [
             'pl': '1. siedzieć (dokonany) 2. siadać (n.dok.)',
         },
         {
-            'no': '1. sigge 2. legge seg',
+            'no': '1. ligge 2. legge seg',
             'pl': '1. lezeć (dokonany) 2. kłaść się (n.dok.)',
         },
         {
