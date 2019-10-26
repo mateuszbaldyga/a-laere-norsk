@@ -300,11 +300,11 @@ export default {
     },
 
     mounted () {
-        document.addEventListener('keydown', this.handleKeyEvent)
+        document.addEventListener('keyup', this.handleKeyEvent)
     },
 
     beforeDestroy () {
-        document.removeEventListener('keydown', this.handleKeyEvent)
+        document.removeEventListener('keyup', this.handleKeyEvent)
     },
 }
 </script>
