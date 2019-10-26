@@ -92,16 +92,15 @@
                     >
                 <ul>
                     <li
-                        v-for="item in 13"
-                        v-if="item > 1"
+                        v-for="item in numbers"
                         :key="item"
                         >
                         <button
                             type="button"
-                            :disabled="flashcardsInGame.length < item * 5"
-                            @click="goToCard(item * 5) + promptCardNumber(false)"
+                            :disabled="flashcardsInGame.length < item"
+                            @click="goToCard(item) + promptCardNumber(false)"
                             >
-                            {{ item * 5 }}
+                            {{ item }}
                         </button>
                     </li>
                 </ul>
@@ -149,6 +148,13 @@ export default {
         ...mapGetters([
             'isLogged',
         ]),
+        numbers () {
+            const res = []
+            for (let i = 1; i < 13; i++) {
+                res.push(i * 5)
+            }
+            return res
+        },
         currentNorskWord () {
             return this.flashcardsInGame[this.currentIndex].no
         },
