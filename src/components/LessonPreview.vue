@@ -57,6 +57,7 @@ export default {
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
+    z-index: 99;
 
     > h1 {
         margin-bottom: 15px;
