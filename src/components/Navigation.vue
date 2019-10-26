@@ -173,9 +173,12 @@ export default {
         background-color: #fff;
         border-right: 1px solid #000;
         line-height: 50px;
+        overflow-x: hidden;
+        overflow-y: auto;
 
         ul {
             flex: 1;
+            padding-bottom: 500px;
         }
 
         a, button {

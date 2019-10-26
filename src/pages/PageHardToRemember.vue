@@ -1,7 +1,7 @@
 <template>
     <LayoutDefault class="PageHardToRemember">
         <template slot="header">
-            <BackButton :to="{name: 'categories'}" />
+            <BackButton :to="{name: 'categories', params: {back: true}}" />
             <h1>Trudne do zapamiętania</h1>
         </template>
 
@@ -61,7 +61,7 @@ export default {
         },
         start () {
             this.$store.commit('SET_FLASHCARDS', this.list)
-            this.$router.push({ name: 'flashcards' })
+            this.$router.push({ name: 'flashcards', params: {hard: true} })
         },
     },
 

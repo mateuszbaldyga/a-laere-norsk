@@ -34,6 +34,7 @@ export default {
     > header {
         flex-direction: row;
         height: $header-footer-height;
+        z-index: 10;
     }
 
     > main {

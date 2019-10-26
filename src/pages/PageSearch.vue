@@ -2,7 +2,7 @@
     <div class="PageSearch">
         <LayoutDefault>
             <template slot="header">
-                <BackButton :to="{name: 'categories'}" />
+                <BackButton :to="{name: 'categories', params: {back: true}}" />
             </template>
 
             <div

@@ -10,7 +10,7 @@
                 <i>&#x1f500;</i>
             </button>
             <button
-                v-if="isLogged"
+                v-if="isLogged && !$route.params.hard"
                 class="PageFlashCards_markBtn"
                 @click="showConfirmDialog = true"
                 >
@@ -442,10 +442,6 @@ export default {
 
     &_prevBtn {
         left: 0;
-    }
-
-    header {
-        opacity: 0.8;
     }
 
     footer {

@@ -40,7 +40,7 @@ export default {
     z-index: $z-id-confirm-dialog;
     width: 100%;
     background-color: #fff;
-    border-bottom: 1px solid #000;
+    border: 1px solid #000;
     line-height: 1.5;
 
     &:before {

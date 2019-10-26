@@ -2,7 +2,7 @@
     <div class="CreateDict">
         <LayoutDefault>
             <template slot="header">
-                <BackButton :to="{name: 'categories'}" />
+                <BackButton :to="{name: 'categories', params: {back: true}}" />
                 <h1>Format your dict</h1>
             </template>
 

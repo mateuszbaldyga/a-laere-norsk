@@ -16,6 +16,7 @@
                 </p>
             </h1>
             <ConfirmDialog
+                v-if="!$route.params.back"
                 :isOpened="showConfirmDialog"
                 :message="'Przywrócić ostatnią sesję?'"
                 :onAgree="onAgree"
