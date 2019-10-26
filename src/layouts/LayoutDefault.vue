@@ -32,9 +32,9 @@ export default {
     }
 
     > header {
+        z-index: 10;
         flex-direction: row;
         height: $header-footer-height;
-        z-index: 10;
     }
 
     > main {

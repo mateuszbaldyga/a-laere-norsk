@@ -61,7 +61,7 @@ export default {
         },
         start () {
             this.$store.commit('SET_FLASHCARDS', this.list)
-            this.$router.push({ name: 'flashcards', params: {hard: true} })
+            this.$router.push({ name: 'flashcards', params: { hard: true } })
         },
     },
 

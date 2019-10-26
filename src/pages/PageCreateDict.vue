@@ -45,7 +45,7 @@ export default {
 
     data () {
         return {
-            unformatted: ` Billig | tani;\n Dyr | drogi;\n Kikke litt | rozejrzeć się trochę;\n Å fryse | marznąć;\n Et regntøy | odzież przeciwdeszczowa;\n En gummistøvl | kalosz;`,
+            unformatted: ' Billig | tani;\n Dyr | drogi;\n Kikke litt | rozejrzeć się trochę;\n Å fryse | marznąć;\n Et regntøy | odzież przeciwdeszczowa;\n En gummistøvl | kalosz;',
             formatted: '',
             showToast: false,
         }

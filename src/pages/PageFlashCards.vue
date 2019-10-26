@@ -16,7 +16,12 @@
                 >
                 <i>❌</i>
             </button>
-            <button class="PageFlashCards_markBtn" @click="speak">🔊</button>
+            <button
+                class="PageFlashCards_markBtn"
+                @click="speak"
+                >
+                🔊
+            </button>
             <button
                 class="PageFlashCards_counter"
                 @click="promptCardNumber"
@@ -57,21 +62,47 @@
                 </template>
                 {{ word[1] }}
             </h1>
-            <div v-if="showTick" class="card_toast" >
+            <div
+                v-if="showTick"
+                class="card_toast"
+                >
                 <i> &#x2713; </i>
                 <span> {{ markedWord }} </span>
             </div>
-            <button class="PageFlashCards_prevBtn" @click="goBack">
-            </button>
-            <button class="PageFlashCards_nextBtn" @click="onCardClick">
-            </button>
+            <button
+                class="PageFlashCards_prevBtn"
+                @click="goBack"
+                />
+            <button
+                class="PageFlashCards_nextBtn"
+                @click="onCardClick"
+                />
 
-            <form v-if="isPromptOpened" class="CardNumberPrompt" @submit.prevent="goToCard(form.cardNumber)">
+            <form
+                v-if="isPromptOpened"
+                class="CardNumberPrompt"
+                @submit.prevent="goToCard(form.cardNumber)"
+                >
                 <h1> Przejdź do karty: </h1>
-                <input type="number" v-model="form.cardNumber" ref="CardNumberPrompt" placeholder="0" />
+                <input
+                    ref="CardNumberPrompt"
+                    v-model="form.cardNumber"
+                    type="number"
+                    placeholder="0"
+                    >
                 <ul>
-                    <li v-for="item in 13" v-if="item > 1" :key="item">
-                        <button type="button" @click="goToCard(item * 5) + promptCardNumber(false)" :disabled="flashcardsInGame.length < item * 5">{{ item * 5 }}</button>
+                    <li
+                        v-for="item in 13"
+                        v-if="item > 1"
+                        :key="item"
+                        >
+                        <button
+                            type="button"
+                            :disabled="flashcardsInGame.length < item * 5"
+                            @click="goToCard(item * 5) + promptCardNumber(false)"
+                            >
+                            {{ item * 5 }}
+                        </button>
                     </li>
                 </ul>
             </form>
@@ -104,9 +135,9 @@ export default {
             showTick: false,
             markedWord: '',
             form: {
-                cardNumber: null
+                cardNumber: null,
             },
-            isPromptOpened: false
+            isPromptOpened: false,
         }
     },
 
@@ -131,7 +162,7 @@ export default {
         },
         className () {
             const res = {
-                '-card-revealed': this.isCardRevealed
+                '-card-revealed': this.isCardRevealed,
             }
 
             if (this.isCardRevealed) {
@@ -139,7 +170,7 @@ export default {
                     '-male': this.currentNorskWord.indexOf('en ') === 0,
                     '-female': this.currentNorskWord.indexOf('ei ') === 0,
                     '-male-female': this.currentNorskWord.indexOf('ei/en') === 0 || this.currentNorskWord.indexOf('en/ei') === 0,
-                    '-neuter': this.currentNorskWord.indexOf('et ') === 0
+                    '-neuter': this.currentNorskWord.indexOf('et ') === 0,
                 })
             }
 
@@ -161,7 +192,7 @@ export default {
 
     methods: {
         speak () {
-            responsiveVoice.speak(this.currentNorskWord, "Norwegian Female");
+            responsiveVoice.speak(this.currentNorskWord, 'Norwegian Female')
         },
         revealCard () {
             this.isCardRevealed = true
@@ -319,6 +350,7 @@ export default {
     }
 
     &_card {
+        position: relative;
         flex: 1;
         width: 100%;
         padding: 10px;
@@ -326,7 +358,6 @@ export default {
         user-select: none;
         text-align: center;
         line-height: 1.4;
-        position: relative;
 
         @include media(ltMobile) {
             font-size: 40px;
@@ -349,10 +380,10 @@ export default {
                     position: absolute;
                     bottom: -5px;
                     left: 50%;
-                    transform: translateX(-50%);
                     width: 110%;
                     height: 3px;
                     background-color: #000;
+                    transform: translateX(-50%);
                 }
             }
 
@@ -453,31 +484,31 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100;
     width: 100%;
+    height: 100%;
     padding: 20px;
     background: #f7feff;
-    z-index: 100;
-    height: 100%;
 
     h1 {
-        font-size: 20px;
         margin-bottom: 10px;
+        font-size: 20px;
     }
 
     input {
-        border: 1px solid black;
-        padding: 10px;
         height: 50px;
+        padding: 10px;
+        border: 1px solid black;
         border-radius: 0;
         font-size: 22px;
     }
 
     ul {
-        margin-top: 20px;
         display: flex;
-        flex-wrap: wrap;
         flex-direction: row;
+        flex-wrap: wrap;
         flex-grow: 1;
+        margin-top: 20px;
 
         li {
             width: 33.33%;
