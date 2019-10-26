@@ -152,6 +152,7 @@ export default {
 
     &_main {
         flex: 1;
+        height: 100%;
 
         .main_list {
             flex: 1;
