@@ -254,7 +254,7 @@ export default {
         },
         agree () {
             this.showConfirmDialog = false
-            this.markedWord = this.word
+            this.markedWord = this.word[1]
             this.showTick = true
             this.isCardRevealed = false
             // this.markAsMastered()
