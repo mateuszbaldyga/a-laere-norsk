@@ -81,7 +81,7 @@
             <form
                 v-if="isPromptOpened"
                 class="CardNumberPrompt"
-                @submit.prevent="goToCard(form.cardNumber)"
+                @submit.prevent="goToCard(form.cardNumber) + promptCardNumber(false)"
                 >
                 <h1> Przejdź do karty: </h1>
                 <input
@@ -263,7 +263,7 @@ export default {
         },
         promptCardNumber (bool) {
             this.isPromptOpened = bool === undefined ? !this.isPromptOpened : bool
-
+            this.form.cardNumber = null
             // if (this.isPromptOpened) {
             //     this.$nextTick(() => {
             //         this.$refs.CardNumberPrompt.focus()
