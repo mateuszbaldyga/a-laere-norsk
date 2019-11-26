@@ -2100,6 +2100,12 @@ const dict = [
 
 export default dict
 
+// aktiviteter
+// eller begger deler
+// der borte - tam daleko
+// der er for liten - to jest za małe
+// i tilleg - w dodatku
+// !på! klær, jakkene - w ubraniach
 
 // let uid = 279
 // dict.forEach(item => item.forEach(item => {
