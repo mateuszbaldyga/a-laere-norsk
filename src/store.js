@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { flattenDepth } from 'lodash'
 import { deepFreeze, replaceSpecialChars } from '@/helpers'
-import { nounsAndOthers, verbs, bonus, adjectives } from '@/dictionary'
+import { nounsAndOthers, verbs, bonus, adjectives, czasownikiCzasPrzeszly } from '@/dictionary'
 import ls from 'local-storage'
 import firebase from 'firebase/app'
 import 'firebase/database'
@@ -21,6 +21,11 @@ const store = new Vuex.Store({
             {
                 title: 'Czasowniki',
                 lessons: deepFreeze(verbs),
+                // color: '#ffd9d9',
+            },
+            {
+                title: 'Cz. przeszły (czasowniki)',
+                lessons: deepFreeze(czasownikiCzasPrzeszly),
                 // color: '#ffd9d9',
             },
             {
@@ -102,7 +107,8 @@ const store = new Vuex.Store({
         },
         HANDLE_SEARCH (state) {
             const indexes = this.getters['SEARCH_INDEXED_WORDS'].reduce((res, item, i) => {
-                if (item.indexOf(state.searchQuery.toLowerCase()) > -1) {
+                const foundIndex = item.indexOf(state.searchQuery.toLowerCase())
+                if (foundIndex > -1) {
                     res.push(i)
                 }
 
