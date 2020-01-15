@@ -1,5 +1,8 @@
 {
     "editor.formatOnSave": false,
     "eslint.autoFixOnSave": true,
-	"search.usePCRE2": true,
+    "search.usePCRE2": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
 }
