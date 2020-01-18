@@ -341,7 +341,7 @@ const dict = [
     },
     {
         'no': 'å bli, blir',
-        'pl': 'zostać, pozostać',
+        'pl': 'zostać, pozostać (become)',
         'id': 'verb68',
     },
     {
