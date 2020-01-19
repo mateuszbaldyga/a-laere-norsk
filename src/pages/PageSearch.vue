@@ -95,6 +95,7 @@ export default {
     flex: 1;
     background-color: $color-flag-blue;
     color: #fff;
+    height: 100vh;
 
     h1 {
         padding: 0 15px;
@@ -129,6 +130,7 @@ export default {
 
     &_main {
         flex: 1;
+        height: 100%;
     }
 
     footer {
