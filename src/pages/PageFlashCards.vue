@@ -88,7 +88,7 @@
                     ref="CardNumberPrompt"
                     v-model="form.cardNumber"
                     type="number"
-                    placeholder="0"
+                    placeholder="1"
                     >
                 <ul>
                     <li
@@ -149,7 +149,7 @@ export default {
             'isLogged',
         ]),
         numbers () {
-            const res = []
+            const res = [1]
             for (let i = 1; i < 13; i++) {
                 res.push(i * 5)
             }
