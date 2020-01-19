@@ -24,7 +24,7 @@
             </button>
             <button
                 class="PageFlashCards_counter"
-                @click="promptCardNumber"
+                @click="promptCardNumber()"
                 >
                 <p
                     v-visible="lap"
