@@ -30,8 +30,10 @@ function signup ({ email, password }) {
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
                     getUser()
+                    store.commit('SET_TOAST', { type: 'auth', message: '' })
                 })
                 .catch(e => {
+                    store.commit('SET_TOAST', { type: 'auth', message: e.message })
                     console.log('🦄 auth.js error', e)
                 })
                 .finally(() => {

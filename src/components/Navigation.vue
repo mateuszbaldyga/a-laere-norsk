@@ -79,6 +79,12 @@
                                 Zaloguj/Zarejestruj się
                             </button>
                         </form>
+                        <p
+                            v-if="toast.auth"
+                            class="Navigation_authToast"
+                            >
+                            {{ toast.auth }}
+                        </p>
                     </li>
                     <li
                         v-if="!isLogged"
@@ -121,6 +127,7 @@ export default {
             'isModePlToNo',
             'isLoading',
             'isShuffleBlocked',
+            'toast',
         ]),
         ...mapGetters([
             'wordsAmount',
@@ -221,6 +228,12 @@ export default {
         padding: 0 5px;
         border: 1px solid black;
         margin-top: 10px;
+    }
+
+    &_authToast {
+        font-size: 0.8em;
+        line-height: 1.3;
+        font-style: italic;
     }
 }
 

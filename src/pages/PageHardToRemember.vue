@@ -41,38 +41,24 @@ export default {
         StartButton,
     },
 
-    data () {
-        return {
-            list: [],
-        }
-    },
-
     computed: {
         ...mapState([
             'hardCards',
             'isLoading',
         ]),
+        list () {
+            return Array.from(this.hardCards)
+        },
     },
 
     methods: {
         onDeleteClick (card) {
             this.$store.dispatch('UPDATE_HARD_CARDS', { card, method: 'delete' })
-            this.list = Array.from(this.hardCards)
         },
         start () {
             this.$store.commit('SET_FLASHCARDS', this.list)
             this.$router.push({ name: 'flashcards', params: { hard: true } })
         },
-    },
-
-    created () {
-        this.list = Array.from(this.hardCards)
-
-        this.$store.subscribe(mutation => {
-            if (mutation.type === 'SET_HARD_CARDS') {
-                this.list = Array.from(this.hardCards)
-            }
-        })
     },
 }
 </script>

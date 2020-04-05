@@ -55,6 +55,9 @@ const store = new Vuex.Store({
             hardCards: false,
             auth: false,
         },
+        toast: {
+            auth: '',
+        },
         isNavigationOpened: false,
         chosenFlashCards: [],
         isModePlToNo: true,
@@ -141,6 +144,9 @@ const store = new Vuex.Store({
             state.isShuffleBlocked = bool === undefined ? !state.isShuffleBlocked : bool
             ls.set('IS_SUFFLE_BLOCKED', state.isShuffleBlocked)
         },
+        SET_TOAST (state, { type, message }) {
+            state.toast[type] = message
+        },
         SET_LOADING (state, { type, status }) {
             state.isLoading[type] = status
         },
@@ -189,19 +195,21 @@ const store = new Vuex.Store({
                 }
             })
         },
-        async UPDATE_HARD_CARDS ({ state }, { card, method }) {
+        async UPDATE_HARD_CARDS ({ state, commit }, { card, method }) {
+            let payload = new Set(state.hardCards)
             if (method === 'delete') {
-                state.hardCards.delete(card)
+                payload.delete(card)
             } else {
-                state.hardCards.add(card)
+                payload.add(card)
             }
 
-            const payload = Array.from(state.hardCards)
+            payload = Array.from(payload)
             await firebase.database().ref(`/users/${state.user.uid}/hard-to-remember/`).set(payload, function (error) {
                 if (error) {
                     console.log('🦄 ERROR', error)
                 } else {
                     console.log('🦄 SUCCESS', payload)
+                    commit('SET_HARD_CARDS', payload)
                 }
             })
         },
