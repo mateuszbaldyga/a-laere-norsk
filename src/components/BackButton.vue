@@ -23,7 +23,6 @@ export default {
     justify-content: center;
     width: $header-footer-height;
     height: $header-footer-height;
-    margin-right: 20px;
     font-size: 20px;
     transform: scale(-1, 1);
 }

@@ -17,6 +17,13 @@
                 <i>❌</i>
             </button>
             <button
+                v-if="!$route.params.hard"
+                class="PageFlashCards_markBtn"
+                @click="markAsMastered"
+                >
+                <i>✅</i>
+            </button>
+            <button
                 class="PageFlashCards_markBtn"
                 @click="speak"
                 >
@@ -242,8 +249,6 @@ export default {
             this.isCardRevealed = false
         },
         markAsMastered () {
-            const flashcard = this.flashcardsInGame[this.currentIndex]
-            this.$store.dispatch('UPDATE_MASTERED_FLASHCARD', { flashcard })
             this.flashcardsInGame.splice(this.currentIndex, 1)
         },
         markAsHard () {
@@ -321,7 +326,6 @@ export default {
         justify-content: center;
         width: $header-footer-height;
         height: $header-footer-height;
-        margin-right: 20px;
         font-size: 15px;
     }
 

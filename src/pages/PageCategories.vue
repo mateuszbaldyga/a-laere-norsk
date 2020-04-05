@@ -29,7 +29,9 @@
                 v-for="(category, index) in categories"
                 :key="index"
                 :style="{ background: category.color }"
-                :class="{ '-selected': category.title === chosenCategory.title }"
+                :class="{
+                    '-selected': category.title === chosenCategory.title,
+                }"
                 @click="chooseCategory(category)"
                 @dblclick="chooseCategory(category) + start()"
                 >
@@ -38,6 +40,13 @@
         </div>
 
         <template slot="footer">
+            <StartButton
+                v-if="showRestoreSessionBtn"
+                class="PageCategories_restoreBtn"
+                @click.native="$router.push({ name: 'flashcards' })"
+                >
+                FORTSETTE
+            </StartButton>
             <StartButton
                 v-visible="chosenCategory.title"
                 @click.native="start()"
@@ -69,18 +78,19 @@ export default {
     data () {
         return {
             showConfirmDialog: false,
+            showRestoreSessionBtn: false,
         }
     },
 
     computed: {
-        ...mapState([ 'chosenCategory', 'user', 'masteredFlashCards' ]),
-        ...mapGetters([ 'wordsAmount', 'isLogged' ]),
+        ...mapState(['chosenCategory', 'user', 'masteredFlashCards']),
+        ...mapGetters(['wordsAmount', 'isLogged']),
     },
 
     methods: {
         chooseCategory (category) {
             this.$store.commit('CHOOSE_CATEGORY', category)
-            this.$store.commit('CHOOSE_LESSONS', [ category.lessons.length - 1 ])
+            this.$store.commit('CHOOSE_LESSONS', [category.lessons.length - 1])
         },
         start () {
             this.$router.push({ name: 'lessons' })
@@ -96,7 +106,8 @@ export default {
 
     created () {
         if (ls.get('LAST_FLASHCARDS')) {
-            this.showConfirmDialog = true
+            // this.showConfirmDialog = true
+            this.showRestoreSessionBtn = true
         }
         console.log('🦄 this.categories', this.categories)
     },
@@ -104,7 +115,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import "@/assets/styles/shared-vars.scss";
 
 .PageCategories {
     align-items: center;
@@ -134,7 +145,7 @@ export default {
         padding: 0 15px;
         font-size: 25px;
         cursor: pointer;
-        line-height: .8;
+        line-height: 0.8;
         text-align: center;
         line-height: $header-footer-height + 10px;
 
@@ -153,6 +164,16 @@ export default {
         p + p {
             margin-top: 10px;
         }
+    }
+
+    &_restoreBtn {
+        width: 100%;
+        background-color: $color-flag-red;
+    }
+
+    footer {
+        flex-direction: column !important;
+        height: auto !important;
     }
 }
 </style>
