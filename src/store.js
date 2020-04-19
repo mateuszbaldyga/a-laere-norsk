@@ -133,7 +133,7 @@ const store = new Vuex.Store({
             state.isNavigationOpened = bool === undefined ? !state.isNavigationOpened : bool
         },
         SET_FLASHCARDS (state, list) {
-            console.log('🦄 chosenFlashCards', list)
+            // console.log('🦄 chosenFlashCards', list)
             state.chosenFlashCards = list
         },
         SET_MODE (state, bool) {
@@ -166,14 +166,14 @@ const store = new Vuex.Store({
             state.isLoading.masteredFlashCards = false
         },
         async GET_HARD_CARDS ({ commit, state }) {
-            console.log('🦄 ')
+            // console.log('🦄 ')
             if (!state.user.uid) return
 
             state.isLoading.hardCards = true
             const url = `/users/${state.user.uid}/hard-to-remember/`
             const snapshot = await firebase.database().ref(url).once('value')
             const cards = snapshot.val()
-            console.log('🦄 snapshot', url, cards)
+            // console.log('🦄 snapshot', url, cards)
             if (cards) {
                 commit('SET_HARD_CARDS', cards)
             }
@@ -189,9 +189,9 @@ const store = new Vuex.Store({
             const payload = Array.from(state.masteredFlashCards)
             await firebase.database().ref(`/users/${state.user.uid}/mastered-flashcards/`).set(payload, function (error) {
                 if (error) {
-                    console.log('🦄 ERROR', error)
+                    // console.log('🦄 ERROR', error)
                 } else {
-                    console.log('🦄 SUCCESS', payload)
+                    // console.log('🦄 SUCCESS', payload)
                 }
             })
         },
@@ -206,9 +206,9 @@ const store = new Vuex.Store({
             payload = Array.from(payload)
             await firebase.database().ref(`/users/${state.user.uid}/hard-to-remember/`).set(payload, function (error) {
                 if (error) {
-                    console.log('🦄 ERROR', error)
+                    // console.log('🦄 ERROR', error)
                 } else {
-                    console.log('🦄 SUCCESS', payload)
+                    // console.log('🦄 SUCCESS', payload)
                     commit('SET_HARD_CARDS', payload)
                 }
             })

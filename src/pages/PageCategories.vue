@@ -109,7 +109,7 @@ export default {
             // this.showConfirmDialog = true
             this.showRestoreSessionBtn = true
         }
-        console.log('🦄 this.categories', this.categories)
+        // console.log('🦄 this.categories', this.categories)
     },
 }
 </script>

@@ -26,7 +26,7 @@ function signup ({ email, password }) {
             store.commit('SET_LOADING', { type: 'auth', status: false })
         })
         .catch(e => {
-            console.log('🦄 e', e)
+            // console.log('🦄 e', e)
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
                     getUser()
@@ -34,7 +34,7 @@ function signup ({ email, password }) {
                 })
                 .catch(e => {
                     store.commit('SET_TOAST', { type: 'auth', message: e.message })
-                    console.log('🦄 auth.js error', e)
+                    // console.log('🦄 auth.js error', e)
                 })
                 .finally(() => {
                     store.commit('SET_LOADING', { type: 'auth', status: false })

@@ -96,7 +96,7 @@ export default {
             this.$store.commit('CHOOSE_LESSONS', val)
         },
         previewLesson (lesson) {
-            console.log('🦄 lesson', lesson)
+            // console.log('🦄 lesson', lesson)
             this.$store.commit('PREVIEW_LESSON', lesson)
         },
         onTouchStart (lesson, index) {
@@ -106,12 +106,12 @@ export default {
             clearTimeout(this.timeoutId)
         },
         start () {
-            console.log('🦄 XXX')
+            // console.log('🦄 XXX')
             if (!this.chosenLessons.length) return
 
             const { lessons } = this.chosenCategory
             const cards = flatten(lessons.filter((item, index) => this.chosenLessons.includes(index)))
-            console.log('🦄 cards', cards)
+            // console.log('🦄 cards', cards)
             this.$store.commit('SET_FLASHCARDS', cards)
             this.$router.push({ name: 'flashcards' })
             ls.set('CURRENT_CARD_INDEX', 0)
@@ -131,7 +131,7 @@ export default {
     },
 
     created () {
-        console.log('🦄 this.categories', this.lessons)
+        // console.log('🦄 this.categories', this.lessons)
     },
 
     mounted () {

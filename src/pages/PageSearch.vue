@@ -83,7 +83,7 @@ export default {
     },
 
     created () {
-        console.log('🦄 this.list', this.list)
+        // console.log('🦄 this.list', this.list)
     },
 }
 </script>
