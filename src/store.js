@@ -60,7 +60,7 @@ const store = new Vuex.Store({
         },
         isNavigationOpened: false,
         chosenFlashCards: [],
-        isModePlToNo: false,
+        isModePlToNo: true,
         isShuffleBlocked: true,
     },
 

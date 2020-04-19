@@ -23,9 +23,15 @@ auth.getUser()
 // Init initial state
 store.commit('CHOOSE_CATEGORY', ls.get('SELECTED_CATEGORY') || store.state.database[0])
 store.commit('CHOOSE_LESSONS', ls.get('SELECTED_LESSONS') || [ store.state.chosenCategory.lessons.length - 1 ])
-store.commit('SET_MODE', ls.get('IS_MODE_PL_TO_NO') !== undefined ? ls.get('IS_MODE_PL_TO_NO') : true)
-store.commit('TOGGLE_SUFFLE_BLOCK', ls.get('IS_SUFFLE_BLOCKED') !== undefined ? ls.get('IS_SUFFLE_BLOCKED') : true)
-if (ls.get('LAST_FLASHCARDS')) store.commit('SET_FLASHCARDS', ls.get('LAST_FLASHCARDS'))
+if (ls.get('IS_MODE_PL_TO_NO')) {
+    store.commit('SET_MODE', JSON.parse(ls.get('IS_MODE_PL_TO_NO')))
+}
+if (ls.get('IS_SUFFLE_BLOCKED')) {
+    store.commit('TOGGLE_SUFFLE_BLOCK', JSON.parse(ls.get('IS_SUFFLE_BLOCKED')))
+}
+if (ls.get('LAST_FLASHCARDS')) {
+    store.commit('SET_FLASHCARDS', ls.get('LAST_FLASHCARDS'))
+}
 
 
 new Vue({
