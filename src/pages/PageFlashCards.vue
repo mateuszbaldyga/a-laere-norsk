@@ -370,7 +370,7 @@ export default {
         line-height: 1.4;
 
         @include media(ltMobile) {
-            font-size: 40px;
+            font-size: 28px;
         }
 
         > h1 {
