@@ -45,7 +45,7 @@
                 class="PageCategories_restoreBtn"
                 @click.native="$router.push({ name: 'flashcards' })"
                 >
-                FORTSETTE
+                FORTSETT
             </StartButton>
             <StartButton
                 v-visible="chosenCategory.title"
