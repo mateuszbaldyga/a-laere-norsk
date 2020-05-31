@@ -64,10 +64,12 @@
             class="PageFlashCards_card container"
             >
             <h1 :class="className">
-                <template v-if="word[0]">
-                    <span>{{ word[0] }}</span>
-                </template>
-                {{ word[1] }}
+                <div>
+                    <template v-if="word[0]">
+                        <span>{{ word[0] }}</span>
+                    </template>
+                    {{ word[1] }}
+                </div>
             </h1>
             <div
                 v-if="showTick"
@@ -380,7 +382,7 @@ export default {
             flex: 1;
             padding: 5px;
 
-            > span {
+            span {
                 position: relative;
                 margin-bottom: 20px;
                 opacity: 0.4;
@@ -404,7 +406,6 @@ export default {
                 right: 0;
                 bottom: 0;
                 left: 0;
-                z-index: -1;
                 opacity: 0;
                 transition: opacity .3s;
             }
@@ -413,6 +414,9 @@ export default {
                 &:before {
                     border: 3px solid $color-bg-card-without-article;
                     opacity: 1;
+                }
+                >div {
+                    position: relative;
                 }
             }
 
