@@ -30,6 +30,12 @@
                 🔊
             </button>
             <button
+                class="PageFlashCards_markBtn"
+                @click="requestFullscreen"
+                >
+                &#10545;
+            </button>
+            <button
                 class="PageFlashCards_counter"
                 @click="promptCardNumber()"
                 >
@@ -206,6 +212,12 @@ export default {
     },
 
     methods: {
+        requestFullscreen () {
+            const el = document.querySelector('#app')
+            if (el) {
+                el.requestFullscreen()
+            }
+        },
         speak () {
             responsiveVoice.speak(this.currentNorskWord, 'Norwegian Female')
         },
