@@ -253,8 +253,18 @@ export default {
             }
         },
         handleKeyEvent (e) {
-            if (e.keyCode === 32) {
+            switch (e.code) {
+            case 'Space':
                 this.onCardClick()
+                break
+            case 'ArrowLeft':
+                this.goBack()
+                break
+            case 'ArrowRight':
+                this.goNext()
+                break
+            default:
+                break
             }
         },
         shuffle () {
