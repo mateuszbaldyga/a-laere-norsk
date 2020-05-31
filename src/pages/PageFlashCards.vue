@@ -84,11 +84,11 @@
                 <i> &#x2713; </i>
                 <span> {{ markedWord }} </span>
             </div>
-            <button
+            <div
                 class="PageFlashCards_prevBtn"
                 @click="goBack"
                 />
-            <button
+            <div
                 class="PageFlashCards_nextBtn"
                 @click="onCardClick"
                 />
@@ -263,6 +263,9 @@ export default {
             case 'ArrowRight':
                 this.goNext()
                 break
+            case 'KeyF':
+                this.requestFullscreen()
+                break
             default:
                 break
             }
@@ -408,6 +411,7 @@ export default {
                 position: relative;
                 margin-bottom: 20px;
                 opacity: 0.4;
+                font-size: 0.7em;
 
                 &:before {
                     content: '';
