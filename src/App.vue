@@ -26,6 +26,7 @@ html, body, #app {
     font-family: 'Lora', serif;
     // font-family: 'Noto Serif SC', serif;
     overflow: hidden;
+    background: #fff;
 }
 
 body {
