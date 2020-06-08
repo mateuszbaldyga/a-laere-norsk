@@ -41,9 +41,16 @@
 
         <template slot="footer">
             <StartButton
+                class="PageCategories_restoreBtn"
+                :style="{background: '#f25c23'}"
+                @click.native="handleReview"
+                >
+                OVERPRØV
+            </StartButton>
+            <StartButton
                 v-if="showRestoreSessionBtn"
                 class="PageCategories_restoreBtn"
-                @click.native="$router.push({ name: 'flashcards' })"
+                @click.native="handleContinue"
                 >
                 FORTSETT
             </StartButton>
@@ -63,6 +70,7 @@ import Navigation from '@/components/Navigation'
 import { mapState, mapGetters } from 'vuex'
 import ConfirmDialog from '@/components/ConfirmDialog'
 import ls from 'local-storage'
+import { random } from 'lodash'
 
 export default {
     components: {
@@ -84,10 +92,55 @@ export default {
 
     computed: {
         ...mapState(['chosenCategory', 'user', 'masteredFlashCards']),
-        ...mapGetters(['wordsAmount', 'isLogged']),
+        ...mapGetters(['wordsAmount', 'isLogged', 'SEARCH_RESULTS_SOURCE']),
     },
 
     methods: {
+        getToday () {
+            const today = new Date()
+            return today.getDate() + today.getMonth() + today.getYear()
+        },
+        setTodaysReview ({ date, words }) {
+            window.localStorage.setItem('todays_review', JSON.stringify({ date, words }))
+        },
+        getTodaysReview () {
+            return JSON.parse(window.localStorage.getItem('todays_review') || 'null')
+        },
+        generateAndSetReviewWords () {
+            const today = this.getToday()
+            const words = new Array(15).fill(null).map(item => random(0, this.SEARCH_RESULTS_SOURCE.length)).map(p => this.SEARCH_RESULTS_SOURCE[p])
+            this.setTodaysReview({ date: today, words })
+            return words
+        },
+        handleReview () {
+            const reviewLesson = this.getTodaysReview()
+            let words
+
+            if (reviewLesson) {
+                const { date } = reviewLesson
+                const today = this.getToday()
+
+                if (String(date) !== String(today)) {
+                    words = this.generateAndSetReviewWords()
+                } else {
+                    words = reviewLesson.words
+                }
+            } else {
+                words = this.generateAndSetReviewWords()
+            }
+
+            this.$store.commit('SET_FLASHCARDS', words)
+            this.$router.push({ name: 'flashcards', query: { review: true } })
+        },
+        handleNewReview () {
+            const words = this.generateAndSetReviewWords()
+            this.$store.commit('SET_FLASHCARDS', words)
+            this.$router.push({ name: 'flashcards', query: { review: true } })
+        },
+        handleContinue () {
+            this.$store.commit('SET_FLASHCARDS', ls.get('LAST_FLASHCARDS'))
+            this.$router.push({ name: 'flashcards' })
+        },
         chooseCategory (category) {
             this.$store.commit('CHOOSE_CATEGORY', category)
             this.$store.commit('CHOOSE_LESSONS', [category.lessons.length - 1])

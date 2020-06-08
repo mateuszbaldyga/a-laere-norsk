@@ -41,7 +41,6 @@ const store = new Vuex.Store({
         ]),
         chosenCategory: {},
         chosenLessons: [],
-        // chosenFlashCards: [],
         lessonPreview: {
             lesson: [],
             index: null,
@@ -133,7 +132,6 @@ const store = new Vuex.Store({
             state.isNavigationOpened = bool === undefined ? !state.isNavigationOpened : bool
         },
         SET_FLASHCARDS (state, list) {
-            // console.log('🦄 chosenFlashCards', list)
             state.chosenFlashCards = list
         },
         SET_MODE (state, bool) {

@@ -327,7 +327,9 @@ export default {
             this.shuffle()
         }
 
-        ls.set('LAST_FLASHCARDS', this.flashcardsInGame)
+        if (!this.$route.query.review) {
+            ls.set('LAST_FLASHCARDS', this.flashcardsInGame)
+        }
         this.currentIndex = ls.get('CURRENT_CARD_INDEX') || 0
     },
 
