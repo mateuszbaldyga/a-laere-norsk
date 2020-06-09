@@ -44,6 +44,10 @@
                 class="PageCategories_restoreBtn"
                 :style="{background: '#f25c23'}"
                 @click.native="handleReview"
+                @mousedown.native="handleMouseDown"
+                @touchstart.native="handleMouseDown"
+                @mouseup.native="handleMouseUp"
+                @touchend.native="handleMouseUp"
                 >
                 OVERPRØV
             </StartButton>
@@ -87,6 +91,7 @@ export default {
         return {
             showConfirmDialog: false,
             showRestoreSessionBtn: false,
+            holdTimeout: null,
         }
     },
 
@@ -134,8 +139,17 @@ export default {
         },
         handleNewReview () {
             const words = this.generateAndSetReviewWords()
+            ls.set('CURRENT_CARD_INDEX_review', 0)
             this.$store.commit('SET_FLASHCARDS', words)
             this.$router.push({ name: 'flashcards', query: { review: true } })
+        },
+        handleMouseDown () {
+            this.holdTimeout = setTimeout(() => {
+                this.handleNewReview()
+            }, 3000)
+        },
+        handleMouseUp () {
+            clearTimeout(this.holdTimeout)
         },
         handleContinue () {
             this.$store.commit('SET_FLASHCARDS', ls.get('LAST_FLASHCARDS'))
