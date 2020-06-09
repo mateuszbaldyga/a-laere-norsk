@@ -207,7 +207,11 @@ export default {
 
     watch: {
         currentIndex (newVal) {
-            ls.set('CURRENT_CARD_INDEX', newVal)
+            if (this.$route.query.review) {
+                ls.set('CURRENT_CARD_INDEX_review', newVal)
+            } else {
+                ls.set('CURRENT_CARD_INDEX', newVal)
+            }
         },
     },
 
@@ -330,7 +334,7 @@ export default {
         if (!this.$route.query.review) {
             ls.set('LAST_FLASHCARDS', this.flashcardsInGame)
         }
-        this.currentIndex = ls.get('CURRENT_CARD_INDEX') || 0
+        this.currentIndex = (this.$route.query.review ? ls.get('CURRENT_CARD_INDEX_review') : ls.get('CURRENT_CARD_INDEX')) || 0
     },
 
     mounted () {
