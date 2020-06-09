@@ -98,7 +98,7 @@ export default {
     methods: {
         getToday () {
             const today = new Date()
-            return today.getDate() + today.getMonth() + today.getYear()
+            return `${today.getDate()}${today.getMonth()}${today.getYear()}`
         },
         setTodaysReview ({ date, words }) {
             window.localStorage.setItem('todays_review', JSON.stringify({ date, words }))
