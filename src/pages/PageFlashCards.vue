@@ -227,6 +227,7 @@ export default {
         },
         revealCard () {
             this.isCardRevealed = true
+            this.speak()
         },
         unrevealCard () {
             this.isCardRevealed = false
@@ -431,7 +432,7 @@ export default {
                 }
             }
 
-            &:before {
+            /* &:before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -440,7 +441,7 @@ export default {
                 left: 0;
                 opacity: 0;
                 transition: opacity .3s;
-            }
+            } */
 
             &.-card-revealed {
                 &:before {
