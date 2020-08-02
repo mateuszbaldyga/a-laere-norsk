@@ -1,5 +1,9 @@
 <template>
-    <LayoutDefault class="PageCategories">
+    <LayoutDefault
+        class="PageCategories"
+        @mouseup.native="handleMouseUp"
+        @touchend.native="handleMouseUp"
+        >
         <template slot="header">
             <Navigation />
             <RouterLink
@@ -41,15 +45,17 @@
 
         <template slot="footer">
             <StartButton
-                class="PageCategories_restoreBtn"
-                :style="{background: '#f25c23'}"
+                class="PageCategories_repeatBtn"
                 @click.native="handleReview"
                 @mousedown.native="handleMouseDown"
                 @touchstart.native="handleMouseDown"
                 @mouseup.native="handleMouseUp"
                 @touchend.native="handleMouseUp"
                 >
-                OVERPRØV
+                <div ref="progressEl" />
+                <span>
+                    OVERPRØV
+                </span>
             </StartButton>
             <StartButton
                 v-if="showRestoreSessionBtn"
@@ -143,13 +149,28 @@ export default {
             this.$store.commit('SET_FLASHCARDS', words)
             this.$router.push({ name: 'flashcards', query: { review: true } })
         },
+        handleProgressOnButton (progressEl, progress, interval, maxW) {
+            if (!progressEl) return
+            const abc = maxW / interval / 42 * 100
+
+            this.$options.animationId = requestAnimationFrame(() => {
+                const newProgress = progress + abc
+                progressEl.style.width = newProgress + '%'
+                this.handleProgressOnButton(progressEl, newProgress, interval, maxW)
+            })
+        },
         handleMouseDown () {
+            const { progressEl } = this.$refs
+            const time = 3000
             this.holdTimeout = setTimeout(() => {
                 this.handleNewReview()
-            }, 3000)
+            }, time)
+            this.handleProgressOnButton(progressEl, 0, time, progressEl.parentElement.offsetWidth)
         },
         handleMouseUp () {
             clearTimeout(this.holdTimeout)
+            cancelAnimationFrame(this.$options.animationId)
+            this.$refs.progressEl.style.width = '0%'
         },
         handleContinue () {
             this.$store.commit('SET_FLASHCARDS', ls.get('LAST_FLASHCARDS'))
@@ -235,6 +256,25 @@ export default {
     &_restoreBtn {
         width: 100%;
         background-color: var(--color-red);
+    }
+
+    &_repeatBtn {
+        position: relative;
+        width: 100%;
+        background-color: var(--color-orange);
+
+        span {
+            position: relative;
+        }
+
+        div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--color-red);
+        }
     }
 
     footer {

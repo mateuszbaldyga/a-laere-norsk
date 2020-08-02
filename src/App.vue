@@ -22,7 +22,7 @@ export default {
 :root {
     --color-blue: #002669;
     --color-red: #f22823;
-    --color-orange: rgb(242, 92, 35);
+    --color-orange: #f25c23;
     --color-white: #fff;
     --color-black: #000;
     --color-text-light: #ddd;
