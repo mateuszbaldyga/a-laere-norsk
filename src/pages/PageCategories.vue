@@ -182,14 +182,13 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/shared-vars.scss";
+@import "@/assets/styles/vars.scss";
 
 .PageCategories {
     align-items: center;
     justify-content: center;
     flex: 1;
     width: 100%;
-    color: #222;
 
     header {
         overflow: visible !important;
@@ -217,8 +216,8 @@ export default {
         line-height: $header-footer-height + 10px;
 
         &.-selected {
-            background-color: $color-accent-start !important;
-            color: #fff;
+            background-color: var(--color-blue) !important;
+            color: var(--color-text-light);
         }
     }
 
@@ -235,7 +234,7 @@ export default {
 
     &_restoreBtn {
         width: 100%;
-        background-color: $color-flag-red;
+        background-color: var(--color-red);
     }
 
     footer {

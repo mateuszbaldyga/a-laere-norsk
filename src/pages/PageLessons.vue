@@ -141,7 +141,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .PageLessons {
 
@@ -166,7 +166,7 @@ export default {
 
     & &_allBtn {
         width: 100%;
-        background-color: $color-flag-red;
+        background-color: var(--color-red);
         margin-top: auto;
     }
 

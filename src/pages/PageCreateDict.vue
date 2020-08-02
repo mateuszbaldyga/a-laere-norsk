@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .CreateDict {
     height: 100%;
@@ -122,7 +122,7 @@ export default {
         position: absolute;
         top: 50%;
         left: 50%;
-        color: $color-accent-start;
+        color: var(--color-blue);
         font-size: 50px;
         pointer-events: none;
         transform: translate(-50%, -50%);

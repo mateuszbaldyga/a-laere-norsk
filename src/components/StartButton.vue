@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .StartButton {
     align-items: center;
@@ -35,7 +35,7 @@ export default {
     width: 100%;
     height: $header-footer-height;
     padding: 0;
-    background: $color-accent-start;
+    background: var(--color-blue);
     color: white;
     font-size: $header-footer-height;
     user-select: none;

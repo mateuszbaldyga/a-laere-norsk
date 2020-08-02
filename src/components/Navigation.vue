@@ -156,7 +156,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .Navigation {
 
@@ -177,8 +177,8 @@ export default {
         width: 200px;
         height: 100vh;
         padding: 100px 0;
-        background-color: #fff;
-        border-right: 1px solid #000;
+        background: var(--color-background-primary);
+        border-right: 1px solid var(--color-white);
         line-height: 50px;
         overflow-x: hidden;
         overflow-y: auto;
@@ -195,7 +195,6 @@ export default {
         .-bottom {
             padding-top: 40px;
             margin-top: auto;
-            color: $color-flag-blue;
         }
     }
 
@@ -226,7 +225,7 @@ export default {
 
     input {
         padding: 0 5px;
-        border: 1px solid black;
+        border: 1px solid;
         margin-top: 10px;
     }
 

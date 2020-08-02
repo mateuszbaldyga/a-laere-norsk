@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .LessonPreview {
     position: absolute;
@@ -53,7 +53,7 @@ export default {
     bottom: 0;
     left: 0;
     padding: 40px 15px;
-    background: #fff;
+    background: var(--color-background-primary);
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;

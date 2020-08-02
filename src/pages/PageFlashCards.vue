@@ -349,7 +349,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .PageFlashCards {
     flex: 1;
@@ -490,7 +490,7 @@ export default {
             justify-content: center;
             width: calc(100% - 20px);
             height: calc(100% - 100px);
-            background: $color-flag-red;
+            background: var(--color-red);
             color: #fff;
             font-weight: 700;
             transform: translate(-50%, -50%);
@@ -535,7 +535,7 @@ export default {
     width: 100%;
     height: 100%;
     padding: 20px;
-    background: #f7feff;
+    background: var(--color-background-primary);
 
     h1 {
         margin-bottom: 10px;
@@ -545,7 +545,7 @@ export default {
     input {
         height: 50px;
         padding: 10px;
-        border: 1px solid black;
+        border: 1px solid var(--color-border-light);
         border-radius: 0;
         font-size: 22px;
     }
@@ -566,10 +566,10 @@ export default {
             align-items: center;
             justify-content: center;
             height: 100%;
-            border: 1px solid black;
+            border: 1px solid var(--color-border-light);
 
             &:disabled {
-                color: #e7fbff;
+                color: var(--color-text-dimmed);
             }
         }
     }

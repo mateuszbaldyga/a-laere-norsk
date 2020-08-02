@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .BaseCheckbox {
     position: relative;
@@ -72,14 +72,14 @@ export default {
         width: 20px;
         height: 20px;
         background-color: #fff;
-        border: 1px solid $color-accent-start;
+        border: 3px solid;
     }
 }
 
 .BaseCheckbox.-checked {
 
     &:before {
-        background-color: $color-accent-start;
+        background-color: var(--color-blue);
     }
 }
 </style>

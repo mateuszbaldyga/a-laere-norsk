@@ -31,7 +31,7 @@ export default {
     justify-content: center;
     height: 50px;
     padding: 10px 30px;
-    background: $color-accent-start;
+    background: var(--color-blue);
     color: white;
     font-size: 20px;
     user-select: none;

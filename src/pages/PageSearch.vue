@@ -89,12 +89,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 
 .PageSearch {
     flex: 1;
-    background-color: $color-flag-blue;
-    color: #fff;
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-light);
     height: 100vh;
 
     h1 {

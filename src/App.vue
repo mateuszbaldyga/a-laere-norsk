@@ -15,19 +15,28 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/reset.scss';
 @import '@/assets/styles/transitions.scss';
-@import '@/assets/styles/shared-vars.scss';
+@import '@/assets/styles/vars.scss';
 // @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin-ext');
+
+:root {
+    --color-blue: #002669;
+    --color-red: #f22823;
+    --color-orange: rgb(242, 92, 35);
+    --color-white: #fff;
+    --color-black: #000;
+    --color-text-light: #ddd;
+    --color-text-dimmed: #676767;
+    --color-background-primary: var(--color-black);
+    --color-background-secondary: var(--color-blue);
+    --color-border-light: var(--color-white);
+}
 
 html, body, #app {
     width: 100%;
     height: 100%;
     margin: 0;
-    font-family: 'Lora', serif;
-    // font-family: 'Noto Serif SC', serif;
     overflow: hidden;
-    background: #000;
-    color: #ddd;
 }
 
 body {
@@ -35,6 +44,9 @@ body {
     top: 0;
     left: 0;
     touch-action: manipulation;
+    font-family: 'Lora', serif;
+    background: var(--color-background-primary);
+    color: var(--color-text-light);
 }
 
 i {
