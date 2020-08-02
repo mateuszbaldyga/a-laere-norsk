@@ -1,5 +1,8 @@
 <template>
-    <LayoutDefault class="PageFlashCards">
+    <LayoutDefault
+        class="PageFlashCards"
+        :isNavBarVisible="isNavBarVisible"
+        >
         <template slot="header">
             <BackButton @click.native="$router.go(-1)" />
             <button
@@ -152,6 +155,7 @@ export default {
                 cardNumber: null,
             },
             isPromptOpened: false,
+            isNavBarVisible: true,
         }
     },
 
@@ -220,6 +224,7 @@ export default {
             const el = document.querySelector('#app')
             if (el) {
                 el.requestFullscreen()
+                this.isNavBarVisible = false
             }
         },
         speak () {
@@ -432,7 +437,7 @@ export default {
                 }
             }
 
-            /* &:before {
+            &:before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -441,9 +446,10 @@ export default {
                 left: 0;
                 opacity: 0;
                 transition: opacity .3s;
-            } */
+            }
 
             &.-card-revealed {
+
                 &:before {
                     border: 3px solid $color-bg-card-without-article;
                     opacity: 1;
@@ -454,6 +460,8 @@ export default {
             }
 
             &.-male {
+                color: var(--color-text-dark);
+
                 &:before {
                     background-color: $color-bg-card-male;
                     opacity: 1;
@@ -461,6 +469,8 @@ export default {
             }
 
             &.-female {
+                color: var(--color-text-dark);
+
                 &:before {
                     background-color: $color-bg-card-female;
                     opacity: 1;
@@ -468,6 +478,8 @@ export default {
             }
 
             &.-male-female {
+                color: var(--color-text-dark);
+
                 &:before {
                     opacity: 1;
                     background-image: linear-gradient(15deg, $color-bg-card-male 50%, $color-bg-card-female 50%);
@@ -475,6 +487,8 @@ export default {
             }
 
             &.-neuter {
+                color: var(--color-text-dark);
+
                 &:before {
                     background-color: $color-bg-card-neuter;
                     opacity: 1;

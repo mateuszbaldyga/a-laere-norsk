@@ -1,6 +1,6 @@
 <template>
     <div class="LayoutDefault container">
-        <header>
+        <header :style="{ opacity: !isNavBarVisible ? '0' : '' }">
             <slot name="header" />
         </header>
         <main>
@@ -15,6 +15,9 @@
 
 <script>
 export default {
+    props: {
+        isNavBarVisible: { type: Boolean, default: true },
+    },
 }
 </script>
 
@@ -35,6 +38,11 @@ export default {
         z-index: 10;
         flex-direction: row;
         height: $header-footer-height;
+        transition: opacity .3s ease-out;
+
+        &:hover {
+            opacity: 1 !important;
+        }
     }
 
     > main {

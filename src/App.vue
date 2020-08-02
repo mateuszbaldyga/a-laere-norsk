@@ -27,6 +27,7 @@ export default {
     --color-black: #000;
     --color-text-light: #ddd;
     --color-text-dimmed: #676767;
+    --color-text-dark: var(--color-black);
     --color-background-primary: var(--color-black);
     --color-background-secondary: var(--color-blue);
     --color-border-light: var(--color-white);
