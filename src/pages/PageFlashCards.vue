@@ -169,8 +169,8 @@ export default {
         ]),
         numbers () {
             const res = [1]
-            for (let i = 1; i < 13; i++) {
-                res.push(i * 5)
+            for (let i = 5; i < this.flashcardsInGame.length; i += 5) {
+                res.push(i)
             }
             return res
         },
@@ -570,6 +570,10 @@ export default {
         flex-wrap: wrap;
         flex-grow: 1;
         margin-top: 20px;
+        overflow-y: auto;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        height: 50%;
 
         li {
             width: 33.33%;
