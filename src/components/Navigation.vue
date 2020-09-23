@@ -50,8 +50,15 @@
                             class="Navigation_shuffleSwitch"
                             @click="TOGGLE_SUFFLE_BLOCK()"
                             >
-                            <i>&#x1f500;</i>
+                            <i>&#x1f500;&nbsp;</i>
                             Shuffle? {{ isShuffleBlocked ? 'NO!' : 'YES :)' }}
+                        </button>
+                        <button
+                            class="Navigation_shuffleSwitch"
+                            @click="INIT_DATABASE({ refresh: true })"
+                            >
+                            <i>🔄&nbsp;</i>
+                            Załaduj świeże fiszki
                         </button>
                     </li>
 
@@ -108,7 +115,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex'
+import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
 
@@ -139,6 +146,9 @@ export default {
         ...mapMutations([
             'SET_MODE',
             'TOGGLE_SUFFLE_BLOCK',
+        ]),
+        ...mapActions([
+            'INIT_DATABASE',
         ]),
         toggleMenu (bool) {
             this.$store.commit('CHANGE_NAVIGATION_VISIBILITY', bool)
@@ -174,7 +184,7 @@ export default {
         top: 0;
         left: 0;
         z-index: $z-id-modal;
-        width: 200px;
+        width: 230px;
         height: 100vh;
         padding: 100px 0;
         background: var(--color-background-primary);
