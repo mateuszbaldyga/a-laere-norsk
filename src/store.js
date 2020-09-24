@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { flattenDepth } from 'lodash'
 import { deepFreeze, replaceSpecialChars } from '@/helpers'
+import { nounsAndOthers, verbs, bonus, adjectives, czasownikiCzasPrzeszly } from '@/dictionary'
 import ls from 'local-storage'
 import firebase from 'firebase/app'
 import 'firebase/database'
@@ -11,7 +12,33 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         user: {},
-        database: null,
+        database: Object.freeze([
+            {
+                title: 'Rzeczowniki + inne',
+                lessons: deepFreeze(nounsAndOthers),
+                // color: '#c5e2ff',
+            },
+            {
+                title: 'Czasowniki',
+                lessons: deepFreeze(verbs),
+                // color: '#ffd9d9',
+            },
+            {
+                title: 'Cz. przeszły (czasowniki)',
+                lessons: deepFreeze(czasownikiCzasPrzeszly),
+                // color: '#ffd9d9',
+            },
+            {
+                title: 'Stopniowanie przymiotników',
+                lessons: deepFreeze(adjectives),
+                // color: '#ffd9d9',
+            },
+            {
+                title: 'Bonus',
+                lessons: deepFreeze(bonus),
+                // color: '#ffd9d9',
+            },
+        ]),
         chosenCategory: {},
         chosenLessons: [],
         lessonPreview: {
@@ -39,8 +66,6 @@ const store = new Vuex.Store({
     getters: {
         wordsAmount: state => {
             let res = 0
-
-            if (!state.database) return res
 
             state.database.forEach(category => {
                 category.lessons.forEach(lesson => res += lesson.length)
@@ -126,50 +151,6 @@ const store = new Vuex.Store({
     },
 
     actions: {
-        INIT_DATABASE ({ state }, { refresh } = {}) {
-            return new Promise(async resolve => {
-                const lsDb = ls.get('DATABASE')
-
-                if (lsDb && !refresh) {
-                    state.database = lsDb
-                    resolve()
-                } else {
-                    const { nounsAndOthers, verbs, bonus, adjectives, czasownikiCzasPrzeszly } = await require('@/dictionary')
-                    console.log('🌴 REFRESH')
-                    const db = Object.freeze([
-                        {
-                            title: 'Rzeczowniki + inne',
-                            lessons: deepFreeze(nounsAndOthers),
-                            // color: '#c5e2ff',
-                        },
-                        {
-                            title: 'Czasowniki',
-                            lessons: deepFreeze(verbs),
-                            // color: '#ffd9d9',
-                        },
-                        {
-                            title: 'Cz. przeszły (czasowniki)',
-                            lessons: deepFreeze(czasownikiCzasPrzeszly),
-                            // color: '#ffd9d9',
-                        },
-                        {
-                            title: 'Stopniowanie przymiotników',
-                            lessons: deepFreeze(adjectives),
-                            // color: '#ffd9d9',
-                        },
-                        {
-                            title: 'Bonus',
-                            lessons: deepFreeze(bonus),
-                            // color: '#ffd9d9',
-                        },
-                    ])
-
-                    state.database = db
-                    ls.set('DATABASE', db)
-                    resolve()
-                }
-            })
-        },
         async GET_MASTERED_FLASHCARDS ({ commit, state }) {
             if (!state.user.uid) return
 
