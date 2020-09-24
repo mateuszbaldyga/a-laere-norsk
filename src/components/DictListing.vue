@@ -1,22 +1,34 @@
 <template>
-    <ul class="DictListing">
-        <li
-            v-for="(word, index) in list"
-            :key="index"
-            >
-            <strong><i>🇳🇴</i> {{ word.no }}</strong><span><i>🇵🇱</i>{{ word.pl }}</span>
-            <button
-                v-if="onDeleteClick"
-                @click="onDeleteClick(word)"
+    <LazyList
+        :items="list"
+        class="DictListing"
+        :scrollTopKey="list.length"
+        >
+        <template slot-scope="props">
+            <li
+                v-for="(word, index) in props.items"
+                :key="index"
                 >
-                ❌
-            </button>
-        </li>
-    </ul>
+                <strong><i>🇳🇴</i> {{ word.no }}</strong><span><i>🇵🇱</i>{{ word.pl }}</span>
+                <button
+                    v-if="onDeleteClick"
+                    @click="onDeleteClick(word)"
+                    >
+                    ❌
+                </button>
+            </li>
+        </template>
+    </LazyList>
 </template>
 
 <script>
+import LazyList from '@/components/LazyList'
+
 export default {
+    components: {
+        LazyList,
+    },
+
     props: {
         list: Array,
         onDeleteClick: Function,
@@ -28,9 +40,6 @@ export default {
 .DictListing {
     flex: 1;
     padding: 30px 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
 
     > li {
         position: relative;
