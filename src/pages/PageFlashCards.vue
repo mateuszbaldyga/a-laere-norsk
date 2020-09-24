@@ -38,6 +38,22 @@
                 >
                 &#10545;
             </button>
+            <template>
+                <button
+                    v-if="typeof speakTimeoutId === 'undefined'"
+                    class="PageFlashCards_markBtn"
+                    @click="playAllFlashcards"
+                    >
+                    ▶️
+                </button>
+                <button
+                    v-else
+                    class="PageFlashCards_markBtn"
+                    @click="stopAllFlashcards"
+                    >
+                    🛑
+                </button>
+            </template>
             <button
                 class="PageFlashCards_counter"
                 @click="promptCardNumber()"
@@ -156,6 +172,7 @@ export default {
             },
             isPromptOpened: false,
             isNavBarVisible: true,
+            speakTimeoutId: undefined,
         }
     },
 
@@ -177,12 +194,14 @@ export default {
         currentNorskWord () {
             return this.flashcardsInGame[this.currentIndex].no
         },
+        langOrder () {
+            return this.isModePlToNo ? ['pl', 'no'] : ['no', 'pl']
+        },
         word () {
-            const langOrder = this.isModePlToNo ? ['pl', 'no'] : ['no', 'pl']
             if (this.isCardRevealed) {
-                return [ this.flashcardsInGame[this.currentIndex][langOrder[0]], this.flashcardsInGame[this.currentIndex][langOrder[1]] ]
+                return [ this.flashcardsInGame[this.currentIndex][this.langOrder[0]], this.flashcardsInGame[this.currentIndex][this.langOrder[1]] ]
             } else {
-                return [ null, this.flashcardsInGame[this.currentIndex][langOrder[0]] ]
+                return [ null, this.flashcardsInGame[this.currentIndex][this.langOrder[0]] ]
             }
         },
         className () {
@@ -226,6 +245,48 @@ export default {
                 el.requestFullscreen()
                 this.isNavBarVisible = false
             }
+        },
+        playAllFlashcards () {
+            let wordIndex = this.currentIndex
+            let langIndex = 0
+            let speakTimeouts = [500, 2000]
+
+            const speakObj = {
+                no (word, onend) {
+                    responsiveVoice.speak(word, 'Norwegian Female', { onend })
+                },
+                pl (word, onend) {
+                    responsiveVoice.speak(word, 'Polish Female', { pitch: 0.9, onend })
+                },
+            }
+
+            const speak = () => {
+                const lang = this.langOrder[langIndex]
+                const word = this.flashcardsInGame[wordIndex][lang]
+                const timeout = speakTimeouts[langIndex]
+
+                speakObj[lang](word, () => {
+                    langIndex = Number(!langIndex)
+
+                    if (!langIndex) {
+                        wordIndex += 1
+                    }
+
+                    if (wordIndex > this.flashcardsInGame - 1) return
+
+                    this.speakTimeoutId = setTimeout(() => {
+                        speak()
+                    }, timeout)
+                })
+            }
+
+            speak()
+            this.speakTimeoutId = 1
+        },
+        stopAllFlashcards () {
+            responsiveVoice.cancel()
+            clearTimeout(this.speakTimeoutId)
+            this.speakTimeoutId = undefined
         },
         speak () {
             responsiveVoice.speak(this.currentNorskWord, 'Norwegian Female')
