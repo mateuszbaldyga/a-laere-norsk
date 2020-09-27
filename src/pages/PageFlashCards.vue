@@ -278,7 +278,9 @@ export default {
                             this.isCardRevealed = true
                         }
 
-                        if (this.currentIndex > this.flashcardsInGame - 1) return
+                        if (this.currentIndex > this.flashcardsInGame.length - 1) {
+                            this.currentIndex = 0
+                        }
 
                         speak()
                     }, timeout)
