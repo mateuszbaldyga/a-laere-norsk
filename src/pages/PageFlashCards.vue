@@ -40,7 +40,7 @@
             </button>
             <template>
                 <button
-                    v-if="typeof speakTimeoutId === 'undefined'"
+                    v-if="!allFlashcardsArePlaying"
                     class="PageFlashCards_markBtn"
                     @click="playAllFlashcards"
                     >
@@ -226,6 +226,9 @@ export default {
         cardSide () {
             return this.isCardRevealed ? 'B' : 'A'
         },
+        allFlashcardsArePlaying () {
+            return typeof this.speakTimeoutId !== 'undefined'
+        },
     },
 
     watch: {
@@ -247,34 +250,36 @@ export default {
             }
         },
         playAllFlashcards () {
-            let wordIndex = this.currentIndex
             let langIndex = 0
-            let speakTimeouts = [500, 2000]
+            let speakTimeouts = [500, 5000]
 
             const speakObj = {
                 no (word, onend) {
-                    responsiveVoice.speak(word, 'Norwegian Female', { onend })
+                    responsiveVoice.speak(word, 'Norwegian Male', { onend, rate: 0.8 })
                 },
                 pl (word, onend) {
-                    responsiveVoice.speak(word, 'Polish Female', { pitch: 0.9, onend })
+                    responsiveVoice.speak(word, 'Polish Female', { pitch: 0.9, onend, volume: 0.7, rate: 0.9 })
                 },
             }
 
             const speak = () => {
                 const lang = this.langOrder[langIndex]
-                const word = this.flashcardsInGame[wordIndex][lang]
+                const word = this.flashcardsInGame[this.currentIndex][lang]
                 const timeout = speakTimeouts[langIndex]
 
                 speakObj[lang](word, () => {
-                    langIndex = Number(!langIndex)
-
-                    if (!langIndex) {
-                        wordIndex += 1
-                    }
-
-                    if (wordIndex > this.flashcardsInGame - 1) return
-
                     this.speakTimeoutId = setTimeout(() => {
+                        langIndex = Number(!langIndex)
+
+                        if (!langIndex) {
+                            this.currentIndex += 1
+                            this.isCardRevealed = false
+                        } else {
+                            this.isCardRevealed = true
+                        }
+
+                        if (this.currentIndex > this.flashcardsInGame - 1) return
+
                         speak()
                     }, timeout)
                 })
@@ -289,11 +294,13 @@ export default {
             this.speakTimeoutId = undefined
         },
         speak () {
-            responsiveVoice.speak(this.currentNorskWord, 'Norwegian Female')
+            responsiveVoice.speak(this.currentNorskWord, 'Norwegian Male', { onend, rate: 0.8 })
         },
         revealCard () {
             this.isCardRevealed = true
-            this.speak()
+            if (!this.allFlashcardsArePlaying) {
+                this.speak()
+            }
         },
         unrevealCard () {
             this.isCardRevealed = false
