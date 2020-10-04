@@ -296,7 +296,7 @@ export default {
             this.speakTimeoutId = undefined
         },
         speak () {
-            responsiveVoice.speak(this.currentNorskWord, 'Norwegian Male', { onend, rate: 0.8 })
+            responsiveVoice.speak(this.currentNorskWord, 'Norwegian Male', { rate: 0.8 })
         },
         revealCard () {
             this.isCardRevealed = true
