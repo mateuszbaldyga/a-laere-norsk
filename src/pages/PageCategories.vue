@@ -215,6 +215,12 @@ export default {
         overflow: visible !important;
     }
 
+    main {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
     &_main {
         margin: auto 0;
     }
