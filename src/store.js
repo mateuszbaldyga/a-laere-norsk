@@ -150,14 +150,14 @@ const store = new Vuex.Store({
 
                 if (lsDb && !refresh) {
                     state.database = deepFreeze(lsDb)
-                    resolve()
+                    resolve(state.database)
                 } else {
                     const { data } = await axios.get('https://a-laere-norsk-database.netlify.app/database.json')
                     const database = deepFreeze(data)
 
                     state.database = database
                     ls.set('DATABASE', database)
-                    resolve()
+                    resolve(state.database)
                 }
 
                 commit('SET_LOADING', { type: 'database', status: false })

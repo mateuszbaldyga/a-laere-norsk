@@ -63,7 +63,7 @@
                         <button
                             class="Navigation_shuffleSwitch -bottom"
                             :disabled="isLoading.database"
-                            @click="INIT_DATABASE({ refresh: true })"
+                            @click="handleRefresh()"
                             >
                             <i>🔄&nbsp;</i>
                             {{ isLoading.database ? 'Loading...' : 'Załaduj świeże fiszki' }}
@@ -157,9 +157,10 @@ export default {
             'TOGGLE_SUFFLE_BLOCK',
             'TOGGLE_AUTOSPEAK',
         ]),
-        ...mapActions([
-            'INIT_DATABASE',
-        ]),
+        async handleRefresh () {
+            const database = await this.$store.dispatch('INIT_DATABASE', { refresh: true })
+            this.$store.commit('CHOOSE_CATEGORY', database[0])
+        },
         toggleMenu (bool) {
             this.$store.commit('CHANGE_NAVIGATION_VISIBILITY', bool)
         },
