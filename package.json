@@ -12,6 +12,7 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "firebase": "^5.8.2",
     "local-storage": "^1.4.2",
     "lodash": "^4.17.11",

@@ -23,14 +23,14 @@
                     <BaseCheckbox
                         :value="chosenLessons"
                         :optionValue="index"
-                        @mousedown.native="onTouchStart(lesson, index)"
-                        @touchstart.native="onTouchStart(lesson, index)"
+                        @mousedown.native="onTouchStart(lesson)"
+                        @touchstart.native="onTouchStart(lesson)"
                         @mouseup.native="onTouchEnd()"
                         @touchend.native="onTouchEnd()"
                         @mouseleave.native="onTouchEnd()"
                         @input="selectLesson"
                         >
-                        {{ `${index + 1} Lekcja ` }}<em>{{ `${lesson.length} Cards` }}</em>
+                        {{ lesson.lessonName }}<em>{{ `${lesson.words.length} Cards` }}</em>
                     </BaseCheckbox>
                 </li>
             </ul>
@@ -53,7 +53,7 @@
             </StartButton>
         </template>
 
-        <LessonPreview v-if="lessonPreview.lesson.length" />
+        <LessonPreview v-if="lessonPreview.words.length" />
     </LayoutDefault>
 </template>
 
@@ -99,19 +99,21 @@ export default {
             // console.log('🦄 lesson', lesson)
             this.$store.commit('PREVIEW_LESSON', lesson)
         },
-        onTouchStart (lesson, index) {
-            this.timeoutId = setTimeout(() => this.previewLesson({ lesson, index }), 450)
+        onTouchStart (lesson) {
+            this.timeoutId = setTimeout(() => this.previewLesson(lesson), 450)
         },
         onTouchEnd () {
             clearTimeout(this.timeoutId)
         },
         start () {
-            // console.log('🦄 XXX')
             if (!this.chosenLessons.length) return
-
             const { lessons } = this.chosenCategory
-            const cards = flatten(lessons.filter((item, index) => this.chosenLessons.includes(index)))
-            // console.log('🦄 cards', cards)
+            const cards = []
+
+            this.chosenLessons.forEach(index => {
+                cards.push(...lessons[index].words)
+            })
+
             this.$store.commit('SET_FLASHCARDS', cards)
             this.$router.push({ name: 'flashcards' })
             ls.set('CURRENT_CARD_INDEX', 0)
@@ -126,7 +128,9 @@ export default {
         },
         scrollToBottom () {
             const { list } = this.$refs
-            list.scrollTo(0, list.scrollHeight)
+            if (list) {
+                list.scrollTo(0, list.scrollHeight)
+            }
         },
     },
 

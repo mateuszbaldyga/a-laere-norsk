@@ -12,20 +12,20 @@
                 >
                 <i>&#x1f500;</i>
             </button>
-            <button
+            <!-- <button
                 v-if="isLogged && !$route.params.hard"
                 class="PageFlashCards_markBtn"
                 @click="showConfirmDialog = true"
                 >
                 <i>❌</i>
-            </button>
-            <button
+            </button> -->
+            <!-- <button
                 v-if="!$route.params.hard"
                 class="PageFlashCards_markBtn"
                 @click="markAsMastered"
                 >
                 <i>✅</i>
-            </button>
+            </button> -->
             <button
                 class="PageFlashCards_markBtn"
                 @click="speak"
@@ -33,7 +33,7 @@
                 🔊
             </button>
             <button
-                class="PageFlashCards_markBtn"
+                class="PageFlashCards_markBtn -requestFullscreen"
                 @click="requestFullscreen"
                 >
                 &#10545;
@@ -180,6 +180,7 @@ export default {
         ...mapState([
             'isModePlToNo',
             'isShuffleBlocked',
+            'isAutospeakEnabled',
         ]),
         ...mapGetters([
             'isLogged',
@@ -300,7 +301,7 @@ export default {
         },
         revealCard () {
             this.isCardRevealed = true
-            if (!this.allFlashcardsArePlaying) {
+            if (!this.allFlashcardsArePlaying && this.isAutospeakEnabled) {
                 this.speak()
             }
         },
@@ -440,6 +441,12 @@ export default {
 
     &_markBtn {
         color: $color-screamin-green;
+    }
+
+    .-requestFullscreen {
+        @include media(ltTablet) {
+            display: none;
+        }
     }
 
     &_counter {

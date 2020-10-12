@@ -2,48 +2,22 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { flattenDepth } from 'lodash'
 import { deepFreeze, replaceSpecialChars } from '@/helpers'
-import { nounsAndOthers, verbs, bonus, adjectives, czasownikiCzasPrzeszly } from '@/dictionary'
 import ls from 'local-storage'
 import firebase from 'firebase/app'
 import 'firebase/database'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-    state: {
+function initialState () {
+    return {
         user: {},
-        database: Object.freeze([
-            {
-                title: 'Rzeczowniki + inne',
-                lessons: deepFreeze(nounsAndOthers),
-                // color: '#c5e2ff',
-            },
-            {
-                title: 'Czasowniki',
-                lessons: deepFreeze(verbs),
-                // color: '#ffd9d9',
-            },
-            {
-                title: 'Cz. przeszły (czasowniki)',
-                lessons: deepFreeze(czasownikiCzasPrzeszly),
-                // color: '#ffd9d9',
-            },
-            {
-                title: 'Stopniowanie przymiotników',
-                lessons: deepFreeze(adjectives),
-                // color: '#ffd9d9',
-            },
-            {
-                title: 'Bonus',
-                lessons: deepFreeze(bonus),
-                // color: '#ffd9d9',
-            },
-        ]),
+        database: null,
         chosenCategory: {},
         chosenLessons: [],
         lessonPreview: {
-            lesson: [],
-            index: null,
+            lessonName: '',
+            words: [],
         },
         searchQuery: '',
         searchResults: [],
@@ -53,6 +27,7 @@ const store = new Vuex.Store({
             masteredFlashCards: false,
             hardCards: false,
             auth: false,
+            database: true,
         },
         toast: {
             auth: '',
@@ -61,19 +36,34 @@ const store = new Vuex.Store({
         chosenFlashCards: [],
         isModePlToNo: true,
         isShuffleBlocked: true,
-    },
+        isAutospeakEnabled: false,
+    }
+}
+
+const store = new Vuex.Store({
+    state: initialState(),
 
     getters: {
         wordsAmount: state => {
             let res = 0
 
+            if (!state.database) return res
+
             state.database.forEach(category => {
-                category.lessons.forEach(lesson => res += lesson.length)
+                category.lessons.forEach(lesson => res += lesson.words.length)
             })
 
             return res
         },
-        SEARCH_RESULTS_SOURCE: state => flattenDepth(state.database.map(item => item.lessons), 2),
+        SEARCH_RESULTS_SOURCE: state => {
+            const output = []
+            state.database.forEach(({ lessons }) => {
+                lessons.forEach(lesson => lesson.words.forEach(word => {
+                    output.push(word)
+                }))
+            })
+            return output
+        },
         SEARCH_INDEXED_WORDS: (state, getters) => {
             return getters.SEARCH_RESULTS_SOURCE.map(item => {
                 return item.no + ' ' + item.pl + ' ' + replaceSpecialChars(item.no + ' ' + item.pl)
@@ -92,14 +82,11 @@ const store = new Vuex.Store({
             state.chosenLessons = lessons
             ls.set('SELECTED_LESSONS', lessons)
         },
-        PREVIEW_LESSON (state, { lesson, index }) {
-            Object.assign(state.lessonPreview, { lesson, index })
+        PREVIEW_LESSON (state, lesson) {
+            Object.assign(state.lessonPreview, lesson)
         },
         RESET_PREVIEW_LESSON (state) {
-            Object.assign(state.lessonPreview, {
-                lesson: [],
-                index: null,
-            })
+            state.lessonPreview = initialState().lessonPreview
         },
         SET_SEARCH_QUERY (state, str) {
             state.searchQuery = str
@@ -142,6 +129,10 @@ const store = new Vuex.Store({
             state.isShuffleBlocked = bool === undefined ? !state.isShuffleBlocked : bool
             ls.set('IS_SUFFLE_BLOCKED', state.isShuffleBlocked)
         },
+        TOGGLE_AUTOSPEAK (state, bool) {
+            state.isAutospeakEnabled = bool === undefined ? !state.isAutospeakEnabled : bool
+            ls.set('IS_AUTOSPEAK_ENABLED', state.isAutospeakEnabled)
+        },
         SET_TOAST (state, { type, message }) {
             state.toast[type] = message
         },
@@ -151,6 +142,27 @@ const store = new Vuex.Store({
     },
 
     actions: {
+        INIT_DATABASE ({ state, commit }, { refresh } = {}) {
+            return new Promise(async resolve => {
+                commit('SET_LOADING', { type: 'database', status: true })
+
+                const lsDb = ls.get('DATABASE')
+
+                if (lsDb && !refresh) {
+                    state.database = deepFreeze(lsDb)
+                    resolve()
+                } else {
+                    const { data } = await axios.get('https://a-laere-norsk-database.netlify.app/database.json')
+                    const database = deepFreeze(data)
+
+                    state.database = database
+                    ls.set('DATABASE', database)
+                    resolve()
+                }
+
+                commit('SET_LOADING', { type: 'database', status: false })
+            })
+        },
         async GET_MASTERED_FLASHCARDS ({ commit, state }) {
             if (!state.user.uid) return
 

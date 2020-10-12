@@ -32,11 +32,11 @@
                             Trudne
                         </RouterLink>
                     </li>
-                    <li>
+                    <!-- <li>
                         <RouterLink :to="{ name: 'create-dict' }">
                             Stwórz słownik
                         </RouterLink>
-                    </li>
+                    </li> -->
                     <li>
                         <button
                             class="Navigation_langSwitch"
@@ -50,13 +50,28 @@
                             class="Navigation_shuffleSwitch"
                             @click="TOGGLE_SUFFLE_BLOCK()"
                             >
-                            <i>&#x1f500;</i>
+                            <i>&#x1f500;&nbsp;</i>
                             Shuffle? {{ isShuffleBlocked ? 'NO!' : 'YES :)' }}
+                        </button>
+                        <button
+                            class="Navigation_shuffleSwitch"
+                            @click="TOGGLE_AUTOSPEAK()"
+                            >
+                            <i>🔊&nbsp;</i>
+                            Auto-speak? {{ !isAutospeakEnabled ? 'NO!' : 'YES :)' }}
+                        </button>
+                        <button
+                            class="Navigation_shuffleSwitch -bottom"
+                            :disabled="isLoading.database"
+                            @click="INIT_DATABASE({ refresh: true })"
+                            >
+                            <i>🔄&nbsp;</i>
+                            {{ isLoading.database ? 'Loading...' : 'Załaduj świeże fiszki' }}
                         </button>
                     </li>
 
 
-                    <li
+                    <!-- <li
                         v-if="!isLogged"
                         class="-bottom"
                         >
@@ -96,7 +111,7 @@
                         <button @click="logOut()">
                             Wyloguj się
                         </button>
-                    </li>
+                    </li> -->
                 </ul>
                 <div
                     class="menu_backdrop"
@@ -108,7 +123,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex'
+import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
 
@@ -127,6 +142,7 @@ export default {
             'isModePlToNo',
             'isLoading',
             'isShuffleBlocked',
+            'isAutospeakEnabled',
             'toast',
         ]),
         ...mapGetters([
@@ -139,6 +155,10 @@ export default {
         ...mapMutations([
             'SET_MODE',
             'TOGGLE_SUFFLE_BLOCK',
+            'TOGGLE_AUTOSPEAK',
+        ]),
+        ...mapActions([
+            'INIT_DATABASE',
         ]),
         toggleMenu (bool) {
             this.$store.commit('CHANGE_NAVIGATION_VISIBILITY', bool)
@@ -174,7 +194,7 @@ export default {
         top: 0;
         left: 0;
         z-index: $z-id-modal;
-        width: 200px;
+        width: 230px;
         height: 100vh;
         padding: 100px 0;
         background: var(--color-background-primary);

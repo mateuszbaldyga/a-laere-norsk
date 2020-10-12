@@ -21,17 +21,28 @@ store.subscribe(mutation => {
 auth.getUser()
 
 // Init initial state
-store.commit('CHOOSE_CATEGORY', ls.get('SELECTED_CATEGORY') || store.state.database[0])
-store.commit('CHOOSE_LESSONS', ls.get('SELECTED_LESSONS') || [ store.state.chosenCategory.lessons.length - 1 ])
-if (ls.get('IS_MODE_PL_TO_NO')) {
-    store.commit('SET_MODE', JSON.parse(ls.get('IS_MODE_PL_TO_NO')))
+async function init () {
+
+    await store.dispatch('INIT_DATABASE')
+
+    store.commit('CHOOSE_CATEGORY', ls.get('SELECTED_CATEGORY') || store.state.database[0])
+    store.commit('CHOOSE_LESSONS', ls.get('SELECTED_LESSONS') || [ store.state.chosenCategory.lessons.length - 1 ])
+
+    if (ls.get('IS_MODE_PL_TO_NO')) {
+        store.commit('SET_MODE', JSON.parse(ls.get('IS_MODE_PL_TO_NO')))
+    }
+    if (ls.get('IS_SUFFLE_BLOCKED')) {
+        store.commit('TOGGLE_SUFFLE_BLOCK', JSON.parse(ls.get('IS_SUFFLE_BLOCKED')))
+    }
+    if (ls.get('LAST_FLASHCARDS')) {
+        store.commit('SET_FLASHCARDS', ls.get('LAST_FLASHCARDS'))
+    }
+    if (ls.get('IS_AUTOSPEAK_ENABLED')) {
+        store.commit('TOGGLE_AUTOSPEAK', Boolean(ls.get('IS_AUTOSPEAK_ENABLED')))
+    }
 }
-if (ls.get('IS_SUFFLE_BLOCKED')) {
-    store.commit('TOGGLE_SUFFLE_BLOCK', JSON.parse(ls.get('IS_SUFFLE_BLOCKED')))
-}
-if (ls.get('LAST_FLASHCARDS')) {
-    store.commit('SET_FLASHCARDS', ls.get('LAST_FLASHCARDS'))
-}
+
+init()
 
 
 new Vue({

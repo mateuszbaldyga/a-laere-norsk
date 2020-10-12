@@ -1,16 +1,16 @@
 <template>
     <div
-        v-if="lessonPreview.lesson.length"
+        v-if="lessonPreview.words.length"
         class="LessonPreview"
         style="user-select: none;"
         >
         <button @click="close()">
             ❌
         </button>
-        <h1>{{ lessonPreview.index + 1 + ' Lekcja' }}</h1>
+        <h1>{{ lessonPreview.lessonName }}</h1>
         <ul>
             <li
-                v-for="(item, index) in lessonPreview.lesson"
+                v-for="(item, index) in lessonPreview.words"
                 :key="index"
                 >
                 <strong>{{ index + 1 }}.&nbsp;&nbsp;{{ item.no }}</strong>&nbsp;–&nbsp;{{ item.pl }}
