@@ -112,18 +112,53 @@
                 @click="onCardClick"
                 />
 
-            <form
+            <div
                 v-if="isPromptOpened"
                 class="CardNumberPrompt"
-                @submit.prevent="goToCard(form.cardNumber) + promptCardNumber(false)"
                 >
-                <h1> Przejdź do karty: </h1>
-                <input
-                    ref="CardNumberPrompt"
-                    v-model="form.cardNumber"
-                    type="number"
-                    placeholder="1"
+                <h1> Ustaw limit: (min: 0, max: {{ flashcards.length }})</h1>
+                <form
+                    class="CardNumberPrompt_limitRow"
+                    @submit.prevent="limitTheFlashcards() + promptCardNumber(false)"
                     >
+                    <input
+                        :value="form.downLimit + 1"
+                        type="number"
+                        placeholder="min"
+                        min="0"
+                        @input="e => {
+                            form.downLimit = e.target.value ? e.target.value - 1 : undefined
+                            if (form.upperLimit < form.downLimit) {
+                                form.upperLimit = undefined
+                            }
+                        }"
+                        >
+                    :
+                    <input
+                        :value="form.upperLimit + 1"
+                        type="number"
+                        placeholder="max"
+                        :max="flashcards.length"
+                        @input="e => form.upperLimit = e.target.value - 1"
+                        >
+                    <button type="submit">
+                        OK
+                    </button>
+                </form>
+                <h1> Przejdź do karty: </h1>
+                <form
+                    class="CardNumberPrompt_cardNumberRow"
+                    @submit.prevent="goToCard(form.cardNumber) + promptCardNumber(false)"
+                    >
+                    <input
+                        v-model="form.cardNumber"
+                        type="number"
+                        placeholder="1"
+                        >
+                    <button type="submit">
+                        OK
+                    </button>
+                </form>
                 <ul>
                     <li
                         v-for="item in numbers"
@@ -138,7 +173,7 @@
                         </button>
                     </li>
                 </ul>
-            </form>
+            </div>
         </div>
     </LayoutDefault>
 </template>
@@ -169,6 +204,8 @@ export default {
             markedWord: '',
             form: {
                 cardNumber: null,
+                downLimit: undefined,
+                upperLimit: undefined,
             },
             isPromptOpened: false,
             isNavBarVisible: true,
@@ -243,6 +280,10 @@ export default {
     },
 
     methods: {
+        limitTheFlashcards () {
+            this.flashcardsInGame = this.flashcards.slice(this.form.downLimit || 0, this.form.upperLimit || undefined)
+            this.currentIndex = 0
+        },
         requestFullscreen () {
             const el = document.querySelector('#app')
             if (el) {
@@ -312,7 +353,7 @@ export default {
             if (this.isCardRevealed) {
                 this.unrevealCard()
             } else if (this.currentIndex === 0) {
-                return
+                this.currentIndex = this.flashcardsInGame.length - 1
             } else {
                 this.currentIndex--
             }
@@ -383,11 +424,6 @@ export default {
         promptCardNumber (bool) {
             this.isPromptOpened = bool === undefined ? !this.isPromptOpened : bool
             this.form.cardNumber = null
-            // if (this.isPromptOpened) {
-            //     this.$nextTick(() => {
-            //         this.$refs.CardNumberPrompt.focus()
-            //     })
-            // }
         },
         goToCard (num) {
             if (num > this.flashcardsInGame.length) return
@@ -440,7 +476,7 @@ export default {
     }
 
     &_markBtn {
-        color: $color-screamin-green;
+        color: var(--color-green);
     }
 
     .-requestFullscreen {
@@ -629,7 +665,7 @@ export default {
     background: var(--color-background-primary);
 
     h1 {
-        margin-bottom: 10px;
+        margin: 10px 0;
         font-size: 20px;
     }
 
@@ -639,6 +675,32 @@ export default {
         border: 1px solid var(--color-border-light);
         border-radius: 0;
         font-size: 22px;
+    }
+
+    button {
+        background: var(--color-green);
+        color: var(--color-black);
+    }
+
+    &_limitRow {
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 40px;
+
+        > * {
+            width: calc(33.33% - 5px);
+        }
+    }
+
+    &_cardNumberRow {
+        flex-direction: row;
+        justify-content: space-between;
+        input {
+            width: calc(66.66%);
+        }
+        button {
+            width: calc(33.33% - 5px);
+        }
     }
 
     ul {
@@ -660,8 +722,10 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
-            border: 1px solid var(--color-border-light);
+            height: 54px;
+            border: 2px solid var(--color-black);
+            color: var(--color-black);
+            background: var(--color-green);
 
             &:disabled {
                 color: var(--color-text-dimmed);

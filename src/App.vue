@@ -25,6 +25,7 @@ export default {
     --color-orange: #f25c23;
     --color-white: #fff;
     --color-black: #000;
+    --color-green: #68ff93;
     --color-text-light: #ddd;
     --color-text-dimmed: #676767;
     --color-text-dark: var(--color-black);
