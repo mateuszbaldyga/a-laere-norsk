@@ -135,11 +135,13 @@
                         >
                     :
                     <input
-                        :value="form.upperLimit + 1"
+                        :value="form.upperLimit"
                         type="number"
                         placeholder="max"
                         :max="flashcards.length"
-                        @input="e => form.upperLimit = e.target.value - 1"
+                        @input="e => {
+                            form.upperLimit = e.target.value ? e.target.value : undefined
+                        }"
                         >
                     <button type="submit">
                         OK
