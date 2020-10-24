@@ -1,6 +1,6 @@
 <template>
     <LayoutDefault
-        class="PageFlashCards"
+        :class="rootClassName"
         :isNavBarVisible="isNavBarVisible"
         >
         <template slot="header">
@@ -224,6 +224,12 @@ export default {
         ...mapGetters([
             'isLogged',
         ]),
+        rootClassName () {
+            return {
+                'PageFlashCards': true,
+                '-limited': this.areFlashcardsLimited,
+            }
+        },
         numbers () {
             const res = [1]
             for (let i = 5; i < this.flashcardsInGame.length; i += 5) {
@@ -268,6 +274,9 @@ export default {
         },
         allFlashcardsArePlaying () {
             return typeof this.speakTimeoutId !== 'undefined'
+        },
+        areFlashcardsLimited () {
+            return this.flashcardsInGame.length !== this.flashcards.length
         },
     },
 
@@ -653,6 +662,12 @@ export default {
 
     footer {
         display: none;
+    }
+
+    &.-limited {
+        .PageFlashCards_counter {
+            color: var(--color-green);
+        }
     }
 }
 
