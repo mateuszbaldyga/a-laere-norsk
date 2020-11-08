@@ -95,10 +95,34 @@ const store = new Vuex.Store({
             state.searchResults = deepFreeze(arr)
         },
         HANDLE_SEARCH (state) {
+            let numOfBoosted = 0
+
             const indexes = this.getters['SEARCH_INDEXED_WORDS'].reduce((res, item, i) => {
-                const foundIndex = item.indexOf(state.searchQuery.toLowerCase())
+                const loweredQuery = state.searchQuery.toLowerCase()
+                const foundIndex = item.indexOf(loweredQuery)
+
                 if (foundIndex > -1) {
+                    const trimmed = item.replaceAll(',', '')
+                    const arr = trimmed.split(' ')
+
+                    // If item has whole word, boost it
+                    if (arr.indexOf(loweredQuery) > -1) {
+                        res.unshift(i)
+                        numOfBoosted++
+
+                        return res
+                    }
+
+                    const someWordStartsWithQuery = arr.findIndex(item => item.startsWith(loweredQuery)) > -1
+                    if (someWordStartsWithQuery) {
+                        res.splice(numOfBoosted, 0, i)
+
+                        return res
+                    }
+
                     res.push(i)
+
+                    return res
                 }
 
                 return res
