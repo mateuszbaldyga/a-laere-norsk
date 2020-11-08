@@ -260,6 +260,7 @@ export default {
                     '-male': this.currentNorskWord.indexOf('en ') === 0,
                     '-female': this.currentNorskWord.indexOf('ei ') === 0,
                     '-male-female': this.currentNorskWord.indexOf('ei/en') === 0 || this.currentNorskWord.indexOf('en/ei') === 0,
+                    '-male-neuter': this.currentNorskWord.indexOf('en/et') === 0 || this.currentNorskWord.indexOf('et/en') === 0,
                     '-neuter': this.currentNorskWord.indexOf('et ') === 0,
                 })
             }
@@ -607,6 +608,15 @@ export default {
                 &:before {
                     opacity: 1;
                     background-image: linear-gradient(15deg, $color-bg-card-male 50%, $color-bg-card-female 50%);
+                }
+            }
+
+            &.-male-neuter {
+                color: var(--color-text-dark);
+
+                &:before {
+                    opacity: 1;
+                    background-image: linear-gradient(15deg, $color-bg-card-male 50%, $color-bg-card-neuter 50%);
                 }
             }
 
